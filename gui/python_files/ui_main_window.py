@@ -1,24 +1,34 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_window.ui'
+## Form generated from reading UI file 'ui_main_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
+    QLabel, QLineEdit, QListWidget, QListWidgetItem,
+    QMainWindow, QMenu, QMenuBar, QPushButton,
+    QRadioButton, QSizePolicy, QSpacerItem, QStatusBar,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1497, 1001)
-        sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+        MainWindow.resize(1497, 1058)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
@@ -72,7 +82,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
@@ -82,7 +92,7 @@ class Ui_MainWindow(object):
 
         self.line_9 = QFrame(self.centralwidget)
         self.line_9.setObjectName(u"line_9")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.line_9.sizePolicy().hasHeightForWidth())
@@ -170,7 +180,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -235,7 +245,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.gridLayout_3)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer)
 
@@ -290,7 +300,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.verticalLayout_4)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_2)
 
@@ -322,36 +332,46 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5 = QGridLayout()
         self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.label_10 = QLabel(self.centralwidget)
-        self.label_10.setObjectName(u"label_10")
-
-        self.gridLayout_5.addWidget(self.label_10, 1, 0, 1, 1)
-
-        self.annotationTierNamesInfoLabel = QLabel(self.centralwidget)
-        self.annotationTierNamesInfoLabel.setObjectName(u"annotationTierNamesInfoLabel")
-        sizePolicy1.setHeightForWidth(self.annotationTierNamesInfoLabel.sizePolicy().hasHeightForWidth())
-        self.annotationTierNamesInfoLabel.setSizePolicy(sizePolicy1)
-        self.annotationTierNamesInfoLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-
-        self.gridLayout_5.addWidget(self.annotationTierNamesInfoLabel, 1, 1, 1, 1)
-
-        self.label_16 = QLabel(self.centralwidget)
-        self.label_16.setObjectName(u"label_16")
-
-        self.gridLayout_5.addWidget(self.label_16, 0, 0, 1, 1)
-
         self.annotationTierNumberInfoLabel = QLabel(self.centralwidget)
         self.annotationTierNumberInfoLabel.setObjectName(u"annotationTierNumberInfoLabel")
         self.annotationTierNumberInfoLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
         self.gridLayout_5.addWidget(self.annotationTierNumberInfoLabel, 0, 1, 1, 1)
 
+        self.label_16 = QLabel(self.centralwidget)
+        self.label_16.setObjectName(u"label_16")
+
+        self.gridLayout_5.addWidget(self.label_16, 0, 0, 1, 1)
+
 
         self.verticalLayout_5.addLayout(self.gridLayout_5)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalLayout_15 = QVBoxLayout()
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.tierList = QTableWidget(self.centralwidget)
+        self.tierList.setObjectName(u"tierList")
 
-        self.verticalLayout_5.addItem(self.verticalSpacer_3)
+        self.verticalLayout_15.addWidget(self.tierList)
+
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.addTierNameToTierListButton = QPushButton(self.centralwidget)
+        self.addTierNameToTierListButton.setObjectName(u"addTierNameToTierListButton")
+        self.addTierNameToTierListButton.setEnabled(True)
+
+        self.horizontalLayout_12.addWidget(self.addTierNameToTierListButton)
+
+        self.removeTierNameFromTierListButton = QPushButton(self.centralwidget)
+        self.removeTierNameFromTierListButton.setObjectName(u"removeTierNameFromTierListButton")
+        self.removeTierNameFromTierListButton.setEnabled(True)
+
+        self.horizontalLayout_12.addWidget(self.removeTierNameFromTierListButton)
+
+
+        self.verticalLayout_15.addLayout(self.horizontalLayout_12)
+
+
+        self.verticalLayout_5.addLayout(self.verticalLayout_15)
 
 
         self.verticalLayout_2.addLayout(self.verticalLayout_5)
@@ -375,18 +395,19 @@ class Ui_MainWindow(object):
 
         self.open3DInspectorWindowButton = QPushButton(self.centralwidget)
         self.open3DInspectorWindowButton.setObjectName(u"open3DInspectorWindowButton")
+        self.open3DInspectorWindowButton.setEnabled(False)
 
         self.verticalLayout_6.addWidget(self.open3DInspectorWindowButton)
 
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.landmarkDetectionButton = QPushButton(self.centralwidget)
+        self.landmarkDetectionButton.setObjectName(u"landmarkDetectionButton")
 
-        self.verticalLayout_6.addWidget(self.pushButton_2)
+        self.verticalLayout_6.addWidget(self.landmarkDetectionButton)
 
-        self.pushButton_3 = QPushButton(self.centralwidget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.measurementsButton = QPushButton(self.centralwidget)
+        self.measurementsButton.setObjectName(u"measurementsButton")
 
-        self.verticalLayout_6.addWidget(self.pushButton_3)
+        self.verticalLayout_6.addWidget(self.measurementsButton)
 
         self.verticalLayout_7 = QVBoxLayout()
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -590,13 +611,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addLayout(self.verticalLayout_13)
 
+        self.testButton = QPushButton(self.centralwidget)
+        self.testButton.setObjectName(u"testButton")
+
+        self.verticalLayout_8.addWidget(self.testButton)
+
 
         self.gridLayout_2.addLayout(self.verticalLayout_8, 0, 4, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1497, 34))
+        self.menubar.setGeometry(QRect(0, 0, 1497, 28))
         self.menuFiles = QMenu(self.menubar)
         self.menuFiles.setObjectName(u"menuFiles")
         self.menuSettings = QMenu(self.menubar)
@@ -662,15 +688,15 @@ class Ui_MainWindow(object):
         self.audioDurationInfoLabel.setText("")
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Duration:", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"ANNOTATION", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Tier names:", None))
-        self.annotationTierNamesInfoLabel.setText("")
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Number of Tiers:", None))
         self.annotationTierNumberInfoLabel.setText("")
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Number of Tiers:", None))
+        self.addTierNameToTierListButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.removeTierNameFromTierListButton.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.openInspectorWindowButton.setText(QCoreApplication.translate("MainWindow", u"Inspector", None))
         self.open2DInspectorWindowButton.setText(QCoreApplication.translate("MainWindow", u"2D Inspector", None))
         self.open3DInspectorWindowButton.setText(QCoreApplication.translate("MainWindow", u"3D Inspector", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Landmark detection", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Measurements", None))
+        self.landmarkDetectionButton.setText(QCoreApplication.translate("MainWindow", u"Landmark detection", None))
+        self.measurementsButton.setText(QCoreApplication.translate("MainWindow", u"Measurements", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"CHANNELS", None))
         self.addChannelToChannelTableButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.removeChannelFromChannelTableButton.setText(QCoreApplication.translate("MainWindow", u"-", None))
@@ -687,6 +713,7 @@ class Ui_MainWindow(object):
         self.movingAverageInput.setText(QCoreApplication.translate("MainWindow", u"window size", None))
         self.bwLowPassCutoffInput.setText(QCoreApplication.translate("MainWindow", u"cutoff", None))
         self.bwLowPassOrderInput.setText(QCoreApplication.translate("MainWindow", u"order", None))
+        self.testButton.setText(QCoreApplication.translate("MainWindow", u"test", None))
         self.menuFiles.setTitle(QCoreApplication.translate("MainWindow", u"Files", None))
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.menuexport.setTitle(QCoreApplication.translate("MainWindow", u"export", None))

@@ -3,17 +3,26 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_inspector.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QLineEdit, QMainWindow, QMenuBar, QPushButton,
+    QScrollBar, QSizePolicy, QSpacerItem, QSplitter,
+    QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 from pyqtgraph import PlotWidget
-
 
 class Ui_INSPECTOR(object):
     def setupUi(self, INSPECTOR):
@@ -33,8 +42,15 @@ class Ui_INSPECTOR(object):
         self.splitter.setHandleWidth(20)
         self.waveformSplitter = QSplitter(self.splitter)
         self.waveformSplitter.setObjectName(u"waveformSplitter")
+        self.waveformSplitter.setAcceptDrops(False)
+        self.waveformSplitter.setAutoFillBackground(False)
+        self.waveformSplitter.setFrameShape(QFrame.NoFrame)
+        self.waveformSplitter.setFrameShadow(QFrame.Plain)
+        self.waveformSplitter.setLineWidth(1)
         self.waveformSplitter.setOrientation(Qt.Horizontal)
+        self.waveformSplitter.setOpaqueResize(False)
         self.waveformSplitter.setHandleWidth(20)
+        self.waveformSplitter.setChildrenCollapsible(False)
         self.layoutWidget = QWidget(self.waveformSplitter)
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.verticalLayout_3 = QVBoxLayout(self.layoutWidget)
@@ -44,7 +60,7 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(self.layoutWidget)
         self.label.setObjectName(u"label")
-        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -54,7 +70,7 @@ class Ui_INSPECTOR(object):
 
         self.line = QFrame(self.layoutWidget)
         self.line.setObjectName(u"line")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.line.sizePolicy().hasHeightForWidth())
@@ -69,7 +85,7 @@ class Ui_INSPECTOR(object):
 
         self.waveformPlotWidget = PlotWidget(self.layoutWidget)
         self.waveformPlotWidget.setObjectName(u"waveformPlotWidget")
-        sizePolicy2 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.waveformPlotWidget.sizePolicy().hasHeightForWidth())
@@ -99,7 +115,7 @@ class Ui_INSPECTOR(object):
 
         self.zoomOutButton = QPushButton(self.layoutWidget)
         self.zoomOutButton.setObjectName(u"zoomOutButton")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.zoomOutButton.sizePolicy().hasHeightForWidth())
@@ -131,7 +147,7 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_2 = QLabel(self.layoutWidget_2)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -160,7 +176,7 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.displayAnnotationCheckBox = QCheckBox(self.layoutWidget_2)
         self.displayAnnotationCheckBox.setObjectName(u"displayAnnotationCheckBox")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.displayAnnotationCheckBox.sizePolicy().hasHeightForWidth())
@@ -179,11 +195,11 @@ class Ui_INSPECTOR(object):
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_5)
 
-        self.verticalSpacer = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 200, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_6.addItem(self.verticalSpacer)
 
-        self.horizontalSpacer_2 = QSpacerItem(500, 20, QSizePolicy.Preferred, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(500, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout_6.addItem(self.horizontalSpacer_2)
 
@@ -191,8 +207,15 @@ class Ui_INSPECTOR(object):
         self.splitter.addWidget(self.waveformSplitter)
         self.emaSplitter = QSplitter(self.splitter)
         self.emaSplitter.setObjectName(u"emaSplitter")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.emaSplitter.sizePolicy().hasHeightForWidth())
+        self.emaSplitter.setSizePolicy(sizePolicy6)
         self.emaSplitter.setOrientation(Qt.Horizontal)
+        self.emaSplitter.setOpaqueResize(False)
         self.emaSplitter.setHandleWidth(20)
+        self.emaSplitter.setChildrenCollapsible(True)
         self.layoutWidget_3 = QWidget(self.emaSplitter)
         self.layoutWidget_3.setObjectName(u"layoutWidget_3")
         self.EMA_PANEL_LAYOUT = QVBoxLayout(self.layoutWidget_3)
@@ -200,11 +223,11 @@ class Ui_INSPECTOR(object):
         self.EMA_PANEL_LAYOUT.setContentsMargins(0, 0, 0, 0)
         self.emaPanel1 = QFrame(self.layoutWidget_3)
         self.emaPanel1.setObjectName(u"emaPanel1")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.MinimumExpanding)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.emaPanel1.sizePolicy().hasHeightForWidth())
-        self.emaPanel1.setSizePolicy(sizePolicy6)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.MinimumExpanding)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.emaPanel1.sizePolicy().hasHeightForWidth())
+        self.emaPanel1.setSizePolicy(sizePolicy7)
         self.emaPanel1.setMinimumSize(QSize(0, 50))
         self.emaPanel1.setFrameShape(QFrame.StyledPanel)
         self.emaPanel1.setFrameShadow(QFrame.Raised)
@@ -216,11 +239,11 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
         self.label_11 = QLabel(self.emaPanel1)
         self.label_11.setObjectName(u"label_11")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
-        self.label_11.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
+        self.label_11.setSizePolicy(sizePolicy8)
         self.label_11.setMinimumSize(QSize(0, 10))
         self.label_11.setScaledContents(True)
 
@@ -228,11 +251,11 @@ class Ui_INSPECTOR(object):
 
         self.line_16 = QFrame(self.emaPanel1)
         self.line_16.setObjectName(u"line_16")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.line_16.sizePolicy().hasHeightForWidth())
-        self.line_16.setSizePolicy(sizePolicy8)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.line_16.sizePolicy().hasHeightForWidth())
+        self.line_16.setSizePolicy(sizePolicy9)
         self.line_16.setMinimumSize(QSize(0, 10))
         self.line_16.setFrameShape(QFrame.HLine)
         self.line_16.setFrameShadow(QFrame.Sunken)
@@ -244,11 +267,11 @@ class Ui_INSPECTOR(object):
 
         self.emaPlotWidget1 = PlotWidget(self.emaPanel1)
         self.emaPlotWidget1.setObjectName(u"emaPlotWidget1")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.emaPlotWidget1.sizePolicy().hasHeightForWidth())
-        self.emaPlotWidget1.setSizePolicy(sizePolicy9)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.emaPlotWidget1.sizePolicy().hasHeightForWidth())
+        self.emaPlotWidget1.setSizePolicy(sizePolicy10)
 
         self.verticalLayout_16.addWidget(self.emaPlotWidget1)
 
@@ -260,8 +283,8 @@ class Ui_INSPECTOR(object):
 
         self.emaPanel2 = QFrame(self.layoutWidget_3)
         self.emaPanel2.setObjectName(u"emaPanel2")
-        sizePolicy6.setHeightForWidth(self.emaPanel2.sizePolicy().hasHeightForWidth())
-        self.emaPanel2.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.emaPanel2.sizePolicy().hasHeightForWidth())
+        self.emaPanel2.setSizePolicy(sizePolicy7)
         self.emaPanel2.setMinimumSize(QSize(0, 50))
         self.emaPanel2.setFrameShape(QFrame.StyledPanel)
         self.emaPanel2.setFrameShadow(QFrame.Raised)
@@ -273,8 +296,8 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.label_12 = QLabel(self.emaPanel2)
         self.label_12.setObjectName(u"label_12")
-        sizePolicy7.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
-        self.label_12.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
+        self.label_12.setSizePolicy(sizePolicy8)
         self.label_12.setMinimumSize(QSize(0, 10))
         self.label_12.setScaledContents(True)
 
@@ -282,8 +305,8 @@ class Ui_INSPECTOR(object):
 
         self.line_17 = QFrame(self.emaPanel2)
         self.line_17.setObjectName(u"line_17")
-        sizePolicy8.setHeightForWidth(self.line_17.sizePolicy().hasHeightForWidth())
-        self.line_17.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.line_17.sizePolicy().hasHeightForWidth())
+        self.line_17.setSizePolicy(sizePolicy9)
         self.line_17.setMinimumSize(QSize(0, 10))
         self.line_17.setFrameShape(QFrame.HLine)
         self.line_17.setFrameShadow(QFrame.Sunken)
@@ -295,8 +318,8 @@ class Ui_INSPECTOR(object):
 
         self.emaPlotWidget2 = PlotWidget(self.emaPanel2)
         self.emaPlotWidget2.setObjectName(u"emaPlotWidget2")
-        sizePolicy9.setHeightForWidth(self.emaPlotWidget2.sizePolicy().hasHeightForWidth())
-        self.emaPlotWidget2.setSizePolicy(sizePolicy9)
+        sizePolicy10.setHeightForWidth(self.emaPlotWidget2.sizePolicy().hasHeightForWidth())
+        self.emaPlotWidget2.setSizePolicy(sizePolicy10)
 
         self.verticalLayout_18.addWidget(self.emaPlotWidget2)
 
@@ -308,8 +331,8 @@ class Ui_INSPECTOR(object):
 
         self.emaPanel3 = QFrame(self.layoutWidget_3)
         self.emaPanel3.setObjectName(u"emaPanel3")
-        sizePolicy6.setHeightForWidth(self.emaPanel3.sizePolicy().hasHeightForWidth())
-        self.emaPanel3.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.emaPanel3.sizePolicy().hasHeightForWidth())
+        self.emaPanel3.setSizePolicy(sizePolicy7)
         self.emaPanel3.setMinimumSize(QSize(0, 50))
         self.emaPanel3.setFrameShape(QFrame.StyledPanel)
         self.emaPanel3.setFrameShadow(QFrame.Raised)
@@ -321,8 +344,8 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.label_13 = QLabel(self.emaPanel3)
         self.label_13.setObjectName(u"label_13")
-        sizePolicy7.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
-        self.label_13.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
+        self.label_13.setSizePolicy(sizePolicy8)
         self.label_13.setMinimumSize(QSize(0, 10))
         self.label_13.setTextFormat(Qt.AutoText)
         self.label_13.setScaledContents(True)
@@ -331,8 +354,8 @@ class Ui_INSPECTOR(object):
 
         self.line_18 = QFrame(self.emaPanel3)
         self.line_18.setObjectName(u"line_18")
-        sizePolicy8.setHeightForWidth(self.line_18.sizePolicy().hasHeightForWidth())
-        self.line_18.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.line_18.sizePolicy().hasHeightForWidth())
+        self.line_18.setSizePolicy(sizePolicy9)
         self.line_18.setMinimumSize(QSize(0, 10))
         self.line_18.setFrameShape(QFrame.HLine)
         self.line_18.setFrameShadow(QFrame.Sunken)
@@ -344,8 +367,8 @@ class Ui_INSPECTOR(object):
 
         self.emaPlotWidget3 = PlotWidget(self.emaPanel3)
         self.emaPlotWidget3.setObjectName(u"emaPlotWidget3")
-        sizePolicy9.setHeightForWidth(self.emaPlotWidget3.sizePolicy().hasHeightForWidth())
-        self.emaPlotWidget3.setSizePolicy(sizePolicy9)
+        sizePolicy10.setHeightForWidth(self.emaPlotWidget3.sizePolicy().hasHeightForWidth())
+        self.emaPlotWidget3.setSizePolicy(sizePolicy10)
 
         self.verticalLayout_20.addWidget(self.emaPlotWidget3)
 
@@ -375,11 +398,11 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_4 = QLabel(self.layoutWidget_4)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy10 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
-        sizePolicy10.setHorizontalStretch(0)
-        sizePolicy10.setVerticalStretch(0)
-        sizePolicy10.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy10)
+        sizePolicy11 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
+        sizePolicy11.setHorizontalStretch(0)
+        sizePolicy11.setVerticalStretch(0)
+        sizePolicy11.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy11)
         self.label_4.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.horizontalLayout_8.addWidget(self.label_4)
@@ -422,11 +445,9 @@ class Ui_INSPECTOR(object):
 
         self.emaControlTable = QTableWidget(self.layoutWidget_4)
         self.emaControlTable.setObjectName(u"emaControlTable")
-        sizePolicy11 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy11.setHorizontalStretch(0)
-        sizePolicy11.setVerticalStretch(0)
-        sizePolicy11.setHeightForWidth(self.emaControlTable.sizePolicy().hasHeightForWidth())
-        self.emaControlTable.setSizePolicy(sizePolicy11)
+        sizePolicy6.setHeightForWidth(self.emaControlTable.sizePolicy().hasHeightForWidth())
+        self.emaControlTable.setSizePolicy(sizePolicy6)
+        self.emaControlTable.setMinimumSize(QSize(100, 0))
 
         self.verticalLayout_10.addWidget(self.emaControlTable)
 
@@ -434,7 +455,7 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.addChannelToEmaControlTableButton = QPushButton(self.layoutWidget_4)
         self.addChannelToEmaControlTableButton.setObjectName(u"addChannelToEmaControlTableButton")
-        sizePolicy12 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy12 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
         sizePolicy12.setHorizontalStretch(0)
         sizePolicy12.setVerticalStretch(0)
         sizePolicy12.setHeightForWidth(self.addChannelToEmaControlTableButton.sizePolicy().hasHeightForWidth())
@@ -477,7 +498,7 @@ class Ui_INSPECTOR(object):
 
         self.line_9 = QFrame(self.layoutWidget_4)
         self.line_9.setObjectName(u"line_9")
-        sizePolicy13 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy13 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy13.setHorizontalStretch(0)
         sizePolicy13.setVerticalStretch(0)
         sizePolicy13.setHeightForWidth(self.line_9.sizePolicy().hasHeightForWidth())
@@ -525,6 +546,10 @@ class Ui_INSPECTOR(object):
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.selectLandmarkDetectionComboBox = QComboBox(self.layoutWidget_4)
+        self.selectLandmarkDetectionComboBox.addItem("")
+        self.selectLandmarkDetectionComboBox.addItem("")
+        self.selectLandmarkDetectionComboBox.addItem("")
+        self.selectLandmarkDetectionComboBox.addItem("")
         self.selectLandmarkDetectionComboBox.addItem("")
         self.selectLandmarkDetectionComboBox.addItem("")
         self.selectLandmarkDetectionComboBox.addItem("")
@@ -648,15 +673,15 @@ class Ui_INSPECTOR(object):
 
         self.gridLayout_3.addWidget(self.emaPanel3TierNameLineEdit, 3, 2, 1, 1)
 
-        self.pushButton = QPushButton(self.layoutWidget_4)
-        self.pushButton.setObjectName(u"pushButton")
+        self.removeTierButton = QPushButton(self.layoutWidget_4)
+        self.removeTierButton.setObjectName(u"removeTierButton")
 
-        self.gridLayout_3.addWidget(self.pushButton, 4, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.removeTierButton, 4, 2, 1, 1)
 
-        self.comboBox = QComboBox(self.layoutWidget_4)
-        self.comboBox.setObjectName(u"comboBox")
+        self.emaAllTiersComboBox = QComboBox(self.layoutWidget_4)
+        self.emaAllTiersComboBox.setObjectName(u"emaAllTiersComboBox")
 
-        self.gridLayout_3.addWidget(self.comboBox, 4, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.emaAllTiersComboBox, 4, 1, 1, 1)
 
 
         self.EMA_CONTROL_LAYOUT.addLayout(self.gridLayout_3)
@@ -666,11 +691,11 @@ class Ui_INSPECTOR(object):
 
         self.EMA_CONTROL_LAYOUT.addWidget(self.storeLandmarksButton)
 
-        self.horizontalSpacer = QSpacerItem(500, 20, QSizePolicy.Preferred, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(500, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
 
         self.EMA_CONTROL_LAYOUT.addItem(self.horizontalSpacer)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.EMA_CONTROL_LAYOUT.addItem(self.verticalSpacer_3)
 
@@ -685,7 +710,7 @@ class Ui_INSPECTOR(object):
         INSPECTOR.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(INSPECTOR)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 914, 34))
+        self.menubar.setGeometry(QRect(0, 0, 914, 28))
         INSPECTOR.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(INSPECTOR)
         self.statusbar.setObjectName(u"statusbar")
@@ -721,18 +746,22 @@ class Ui_INSPECTOR(object):
         self.renameLandmarkButton.setText(QCoreApplication.translate("INSPECTOR", u"rename", None))
         self.selectRegionButton.setText(QCoreApplication.translate("INSPECTOR", u"select region", None))
         self.selectLandmarkDetectionComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"vel20", None))
-        self.selectLandmarkDetectionComboBox.setItemText(1, QCoreApplication.translate("INSPECTOR", u"tvel20", None))
-        self.selectLandmarkDetectionComboBox.setItemText(2, QCoreApplication.translate("INSPECTOR", u"acc", None))
+        self.selectLandmarkDetectionComboBox.setItemText(1, QCoreApplication.translate("INSPECTOR", u"vel15", None))
+        self.selectLandmarkDetectionComboBox.setItemText(2, QCoreApplication.translate("INSPECTOR", u"tvel20_xy", None))
+        self.selectLandmarkDetectionComboBox.setItemText(3, QCoreApplication.translate("INSPECTOR", u"tvel20_xz", None))
+        self.selectLandmarkDetectionComboBox.setItemText(4, QCoreApplication.translate("INSPECTOR", u"tvel15_xy", None))
+        self.selectLandmarkDetectionComboBox.setItemText(5, QCoreApplication.translate("INSPECTOR", u"tvel15_xz", None))
+        self.selectLandmarkDetectionComboBox.setItemText(6, QCoreApplication.translate("INSPECTOR", u"acc", None))
 
         self.label_6.setText(QCoreApplication.translate("INSPECTOR", u"detection algorithm:", None))
         self.label_17.setText(QCoreApplication.translate("INSPECTOR", u"LANDMARK TIER CONTROLS", None))
-        self.emaPanel2DisplayLandmarksCheckBox.setText("")
-        self.emaPanel3DisplayLandmarksCheckBox.setText("")
+        self.emaPanel2DisplayLandmarksCheckBox.setText(QCoreApplication.translate("INSPECTOR", u"2", None))
+        self.emaPanel3DisplayLandmarksCheckBox.setText(QCoreApplication.translate("INSPECTOR", u"3", None))
         self.label_10.setText(QCoreApplication.translate("INSPECTOR", u"show", None))
-        self.emaPanel1DisplayLandmarksCheckBox.setText("")
+        self.emaPanel1DisplayLandmarksCheckBox.setText(QCoreApplication.translate("INSPECTOR", u"1", None))
         self.label_15.setText(QCoreApplication.translate("INSPECTOR", u"edit tier name", None))
         self.label_14.setText(QCoreApplication.translate("INSPECTOR", u"tier", None))
-        self.pushButton.setText(QCoreApplication.translate("INSPECTOR", u"remove", None))
+        self.removeTierButton.setText(QCoreApplication.translate("INSPECTOR", u"remove", None))
         self.storeLandmarksButton.setText(QCoreApplication.translate("INSPECTOR", u"store", None))
     # retranslateUi
 

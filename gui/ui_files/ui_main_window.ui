@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1497</width>
-    <height>1001</height>
+    <height>1058</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -385,21 +385,8 @@
         </item>
         <item>
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>Tier names:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="annotationTierNamesInfoLabel">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
+          <item row="0" column="1">
+           <widget class="QLabel" name="annotationTierNumberInfoLabel">
             <property name="text">
              <string/>
             </property>
@@ -415,30 +402,38 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="annotationTierNumberInfoLabel">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QTableWidget" name="tierList"/>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QPushButton" name="addTierNameToTierListButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="removeTierNameFromTierListButton">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>-</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -464,20 +459,23 @@
         </item>
         <item>
          <widget class="QPushButton" name="open3DInspectorWindowButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>3D Inspector</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="landmarkDetectionButton">
           <property name="text">
            <string>Landmark detection</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="measurementsButton">
           <property name="text">
            <string>Measurements</string>
           </property>
@@ -734,6 +732,13 @@
         </item>
        </layout>
       </item>
+      <item>
+       <widget class="QPushButton" name="testButton">
+        <property name="text">
+         <string>test</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -744,7 +749,7 @@
      <x>0</x>
      <y>0</y>
      <width>1497</width>
-     <height>34</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFiles">

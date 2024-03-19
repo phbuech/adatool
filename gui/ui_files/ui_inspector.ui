@@ -29,11 +29,32 @@
          <number>20</number>
         </property>
         <widget class="QSplitter" name="waveformSplitter">
+         <property name="acceptDrops">
+          <bool>false</bool>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
+         <property name="opaqueResize">
+          <bool>false</bool>
+         </property>
          <property name="handleWidth">
           <number>20</number>
+         </property>
+         <property name="childrenCollapsible">
+          <bool>false</bool>
          </property>
          <widget class="QWidget" name="layoutWidget">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -70,7 +91,7 @@
            <item>
             <widget class="PlotWidget" name="waveformPlotWidget">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -269,11 +290,23 @@
          </widget>
         </widget>
         <widget class="QSplitter" name="emaSplitter">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
+         <property name="opaqueResize">
+          <bool>false</bool>
+         </property>
          <property name="handleWidth">
           <number>20</number>
+         </property>
+         <property name="childrenCollapsible">
+          <bool>true</bool>
          </property>
          <widget class="QWidget" name="layoutWidget_3">
           <layout class="QVBoxLayout" name="EMA_PANEL_LAYOUT">
@@ -632,6 +665,12 @@
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
               </widget>
              </item>
              <item>
@@ -802,7 +841,27 @@
                </item>
                <item>
                 <property name="text">
-                 <string>tvel20</string>
+                 <string>vel15</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>tvel20_xy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>tvel20_xz</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>tvel15_xy</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>tvel15_xz</string>
                 </property>
                </item>
                <item>
@@ -866,7 +925,7 @@
              <item row="2" column="0">
               <widget class="QCheckBox" name="emaPanel2DisplayLandmarksCheckBox">
                <property name="text">
-                <string/>
+                <string>2</string>
                </property>
               </widget>
              </item>
@@ -905,7 +964,7 @@
              <item row="3" column="0">
               <widget class="QCheckBox" name="emaPanel3DisplayLandmarksCheckBox">
                <property name="text">
-                <string/>
+                <string>3</string>
                </property>
               </widget>
              </item>
@@ -953,7 +1012,7 @@
                 <enum>Qt::LeftToRight</enum>
                </property>
                <property name="text">
-                <string/>
+                <string>1</string>
                </property>
               </widget>
              </item>
@@ -1004,14 +1063,14 @@
               </widget>
              </item>
              <item row="4" column="2">
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="removeTierButton">
                <property name="text">
                 <string>remove</string>
                </property>
               </widget>
              </item>
              <item row="4" column="1">
-              <widget class="QComboBox" name="comboBox"/>
+              <widget class="QComboBox" name="emaAllTiersComboBox"/>
              </item>
             </layout>
            </item>
@@ -1066,7 +1125,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>34</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>
