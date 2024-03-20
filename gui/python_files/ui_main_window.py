@@ -113,23 +113,23 @@ class Ui_MainWindow(object):
 
         self.gridLayout_8 = QGridLayout()
         self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.comboBox_3 = QComboBox(self.centralwidget)
-        self.comboBox_3.addItem("")
-        self.comboBox_3.setObjectName(u"comboBox_3")
+        self.annotationFormatComboBox = QComboBox(self.centralwidget)
+        self.annotationFormatComboBox.addItem("")
+        self.annotationFormatComboBox.setObjectName(u"annotationFormatComboBox")
 
-        self.gridLayout_8.addWidget(self.comboBox_3, 1, 2, 1, 1)
+        self.gridLayout_8.addWidget(self.annotationFormatComboBox, 1, 2, 1, 1)
 
-        self.comboBox = QComboBox(self.centralwidget)
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.emaFormatComboBox = QComboBox(self.centralwidget)
+        self.emaFormatComboBox.addItem("")
+        self.emaFormatComboBox.setObjectName(u"emaFormatComboBox")
 
-        self.gridLayout_8.addWidget(self.comboBox, 1, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.emaFormatComboBox, 1, 0, 1, 1)
 
-        self.comboBox_2 = QComboBox(self.centralwidget)
-        self.comboBox_2.addItem("")
-        self.comboBox_2.setObjectName(u"comboBox_2")
+        self.audioFormatComboBox = QComboBox(self.centralwidget)
+        self.audioFormatComboBox.addItem("")
+        self.audioFormatComboBox.setObjectName(u"audioFormatComboBox")
 
-        self.gridLayout_8.addWidget(self.comboBox_2, 1, 1, 1, 1)
+        self.gridLayout_8.addWidget(self.audioFormatComboBox, 1, 1, 1, 1)
 
         self.label_8 = QLabel(self.centralwidget)
         self.label_8.setObjectName(u"label_8")
@@ -664,11 +664,11 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"INPUT FORMATS", None))
         self.comboBox_4.setItemText(0, QCoreApplication.translate("MainWindow", u"EMA", None))
 
-        self.comboBox_3.setItemText(0, QCoreApplication.translate("MainWindow", u"TextGrid", None))
+        self.annotationFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"TextGrid", None))
 
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"pos (Carstens)", None))
+        self.emaFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"pos (Carstens)", None))
 
-        self.comboBox_2.setItemText(0, QCoreApplication.translate("MainWindow", u"wav", None))
+        self.audioFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"wav", None))
 
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"EMA", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"AUDIO", None))

@@ -27,13 +27,15 @@ sys.path.insert(1,main_path+ "/src/utils/")
 
 
 from ui_main_window import Ui_MainWindow
-import data_import as di
+import data_import as din
+import data_export as dout
 import filter_application
 
 import landmark_detection
 import inspector
 import inspector2D
 import pandas as pd
+import json
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -91,7 +93,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         #add function to QActions of toolbar
         self.actionexport_landmarks_to_csv.triggered.connect(lambda: self.export_landmarks("csv"))
         self.actionexport_landmarks_to_JSON.triggered.connect(lambda: self.export_landmarks("JSON"))
-        self.actionexport_landmarks_to_TextGrid.triggered.connect(lambda: self.export_landmark("TextGrid"))
+        self.actionexport_landmarks_to_TextGrid.triggered.connect(lambda: self.export_landmarks("TextGrid"))
         self.actionexport_EMA_to_netcdf.triggered.connect(lambda: self.export_data("netcdf"))
         self.actionexport_EMA_to_csv.triggered.connect(lambda: self.export_data("csv"))
         self.testButton.clicked.connect(self.test_fun)
@@ -199,17 +201,50 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     def export_landmarks(self, fmt):
 
         directory = QFileDialog.getExistingDirectory(caption="select folder") + "/"
-        if fmt == "JSON":
-            number_of_files = self.dataList.count()
-            for i in range(number_of_files):
-                fname = self.dataList.item(i).text()
-                if isinstance(self.files[fname].annotation["ema"],type(None)) == False:
-                    landmarks = self.files[fname].annotation["ema"]
-                    with open(directory + fname + ".json",mode="w") as output_file:
-                        json.dump(landmarks,output_file,indent=4)
+        landmark_tier_names = tier_list_to_transmit = self.collect_articulatory_landmarks()
+        number_of_files = self.dataList.count()
         
+        if fmt == "JSON":
+            for file_idx in range(number_of_files):
+                fname = self.dataList.item(file_idx).text()
+                tier_names = self.files[fname].annotation["tierName"].unique()
+                tmp_dict = {}
+                if self.files[fname].annotation is not None:
+                    for i in range(len(tier_names)):
+                        if tier_names[i] in landmark_tier_names:
+                            tmp = {}
+                            tmp_landmarks = self.files[fname].annotation[self.files[fname].annotation["tierName"] == tier_names[i]].reset_index(drop=True)
+                            for j in range(len(tmp_landmarks)):
+                                segment = {}
+                                segment["time"] = tmp_landmarks["tmin"][j]
+                                segment["label"] = tmp_landmarks["label"][j]
+                                tmp[j] = segment
+                            tmp_dict[tier_names[i]] = tmp
+                        else:
+                            tmp = {}
+                            tmp_landmarks = self.files[fname].annotation[self.files[fname].annotation["tierName"] == tier_names[i]].reset_index(drop=True)
+                            for j in range(len(tmp_landmarks)):
+                                segment = {}
+                                segment["tmin"] = tmp_landmarks["tmin"][j]
+                                segment["tmax"] = tmp_landmarks["tmax"][j]
+                                segment["label"] = tmp_landmarks["label"][j]
+                                tmp[j] = segment
+                            tmp_dict[tier_names[i]] = tmp
 
-
+                    with open(directory + fname + ".json",mode="w") as output_file:
+                        json.dump(tmp_dict,output_file,indent=4)
+        elif fmt == "csv":
+            for file_idx in range(number_of_files):
+                fname = self.dataList.item(file_idx).text()
+                tier_names = self.files[fname].annotation["tierName"].unique()
+                if self.files[fname].annotation is not None:
+                    tmp_landmarks = self.files[fname].annotation[self.files[fname].annotation["tierName"].isin(tier_names)].reset_index(drop=True)
+                    tmp_landmarks.to_csv(directory+fname+".csv",sep=",",encoding="utf8",index=False)
+        elif fmt == "TextGrid":
+            for file_idx in range(number_of_files):
+                fname = self.dataList.item(file_idx).text()
+                if self.files[fname].annotation is not None:
+                    dout.export_annotation_to_TextGrid(directory=directory,fname=fname,annotation=self.files[fname].annotation,landmark_tier_names=landmark_tier_names)
 
     def openInspectorWindow(self):
         selected_files = self.dataList.selectedItems()
@@ -338,7 +373,10 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     def addFilesToDataList(self):
         file_urls = QFileDialog().getOpenFileUrls()
         #get main path
-        self.files = di.read_data(file_urls = file_urls, file_dict = self.files)
+        ema_format = emaFormatComboBox.currentText()
+        audio_format = audioFormatComboBox.currentText()
+        annotation_format = annotationFormatComboBox.currentText()
+        self.files = din.read_data(file_urls = file_urls, file_dict = self.files)
         filenames = list(self.files.keys())
         
         for i in range(len(filenames)):
