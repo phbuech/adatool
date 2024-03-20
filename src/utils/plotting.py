@@ -13,7 +13,26 @@ import scipy as sp
 
 import utils
 
+def add_landmarks_to_pw(plot_widget,landmarks):
+    for i in range(len(landmarks)):
+        infline = pg.InfiniteLine(
+                                    pos = landmarks["tmin"][i],
+                                    label = landmarks["label"][i],
+                                    movable = True,
+                                    pen = pg.mkPen("green",width=4),
+                                    labelOpts={"position" : 0.95}
+                                )
+        plot_widget.addItem(infline)
 
+def remove_landmarks_from_pw(plot_widget):
+    """
+        removes all landmarks from the plot widget.
+        landmarks are InfiniteLines with labels.
+    """
+    item_list = plot_widget.allChildItems()
+    for item in item_list:
+        if isinstance(item,pg.InfiniteLine) and hasattr(item,"label"):
+            plot_widget.removeItem(item)
 
 def plot_ema_trajectory(data,panels,signal,target_panel,color,label):
     """

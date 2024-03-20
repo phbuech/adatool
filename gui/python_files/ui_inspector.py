@@ -45,8 +45,9 @@ class Ui_INSPECTOR(object):
         self.waveformSplitter.setAcceptDrops(False)
         self.waveformSplitter.setAutoFillBackground(False)
         self.waveformSplitter.setFrameShape(QFrame.NoFrame)
-        self.waveformSplitter.setFrameShadow(QFrame.Plain)
-        self.waveformSplitter.setLineWidth(1)
+        self.waveformSplitter.setFrameShadow(QFrame.Raised)
+        self.waveformSplitter.setLineWidth(10)
+        self.waveformSplitter.setMidLineWidth(5)
         self.waveformSplitter.setOrientation(Qt.Horizontal)
         self.waveformSplitter.setOpaqueResize(False)
         self.waveformSplitter.setHandleWidth(20)
@@ -90,7 +91,7 @@ class Ui_INSPECTOR(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.waveformPlotWidget.sizePolicy().hasHeightForWidth())
         self.waveformPlotWidget.setSizePolicy(sizePolicy2)
-        self.waveformPlotWidget.setMinimumSize(QSize(0, 100))
+        self.waveformPlotWidget.setMinimumSize(QSize(0, 0))
         self.waveformPlotWidget.setMaximumSize(QSize(16777215, 250))
 
         self.verticalLayout_3.addWidget(self.waveformPlotWidget)
@@ -100,7 +101,8 @@ class Ui_INSPECTOR(object):
         self.waveformSlider = QScrollBar(self.layoutWidget)
         self.waveformSlider.setObjectName(u"waveformSlider")
         self.waveformSlider.setMinimumSize(QSize(0, 15))
-        self.waveformSlider.setMaximum(200)
+        self.waveformSlider.setMaximum(1)
+        self.waveformSlider.setSliderPosition(1)
         self.waveformSlider.setOrientation(Qt.Horizontal)
 
         self.verticalLayout_5.addWidget(self.waveformSlider)
@@ -199,7 +201,7 @@ class Ui_INSPECTOR(object):
 
         self.verticalLayout_6.addItem(self.verticalSpacer)
 
-        self.horizontalSpacer_2 = QSpacerItem(500, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(100, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout_6.addItem(self.horizontalSpacer_2)
 
@@ -212,10 +214,13 @@ class Ui_INSPECTOR(object):
         sizePolicy6.setVerticalStretch(0)
         sizePolicy6.setHeightForWidth(self.emaSplitter.sizePolicy().hasHeightForWidth())
         self.emaSplitter.setSizePolicy(sizePolicy6)
+        self.emaSplitter.setFrameShadow(QFrame.Raised)
+        self.emaSplitter.setLineWidth(10)
+        self.emaSplitter.setMidLineWidth(5)
         self.emaSplitter.setOrientation(Qt.Horizontal)
         self.emaSplitter.setOpaqueResize(False)
         self.emaSplitter.setHandleWidth(20)
-        self.emaSplitter.setChildrenCollapsible(True)
+        self.emaSplitter.setChildrenCollapsible(False)
         self.layoutWidget_3 = QWidget(self.emaSplitter)
         self.layoutWidget_3.setObjectName(u"layoutWidget_3")
         self.EMA_PANEL_LAYOUT = QVBoxLayout(self.layoutWidget_3)
@@ -381,7 +386,7 @@ class Ui_INSPECTOR(object):
         self.waveformSlider_2 = QScrollBar(self.layoutWidget_3)
         self.waveformSlider_2.setObjectName(u"waveformSlider_2")
         self.waveformSlider_2.setMinimumSize(QSize(0, 15))
-        self.waveformSlider_2.setMaximum(200)
+        self.waveformSlider_2.setMaximum(1)
         self.waveformSlider_2.setSingleStep(1)
         self.waveformSlider_2.setOrientation(Qt.Horizontal)
 
@@ -691,7 +696,7 @@ class Ui_INSPECTOR(object):
 
         self.EMA_CONTROL_LAYOUT.addWidget(self.storeLandmarksButton)
 
-        self.horizontalSpacer = QSpacerItem(500, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer = QSpacerItem(100, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
 
         self.EMA_CONTROL_LAYOUT.addItem(self.horizontalSpacer)
 

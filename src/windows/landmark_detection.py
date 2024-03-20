@@ -29,10 +29,12 @@ from ui_landmark_detection import Ui_LM_DETECT
 
 import pyqtgraph as pg
 
+#load internal modules
 import data_import
 import plotting as plt
 
-import utils
+import information_collection as icoll
+import landmark_detection_backend as ldb
 
 
 class landmark_detection_window(QWidget, Ui_LM_DETECT):
@@ -77,8 +79,8 @@ class landmark_detection_window(QWidget, Ui_LM_DETECT):
         self.storeLandmarksButton.clicked.connect(self.store_landmarks)
 
     def run_landmark_detection(self):
-        info = utils.collect_landmark_detection_info(self.selectionTreeWidget)
-        landmarks, protocol, processed_segments = utils.automatic_landmark_detection(files=self.files,info=info,channel_dict=self.channel_dict,pbar=self.progressBar)
+        info = icoll.collect_landmark_detection_info(self.selectionTreeWidget)
+        landmarks, protocol, processed_segments = lbd.automatic_landmark_detection(files=self.files,info=info,channel_dict=self.channel_dict,pbar=self.progressBar)
         self.detectedLandmarks = landmarks
         self.progressBar.setValue(len(self.files))
         if processed_segments > 0:

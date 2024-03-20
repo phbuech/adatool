@@ -87,8 +87,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         #self.open3DInspectorWindowButton.clicked.connect(self.openInspector3DWindow)
 
         #add function to QActions of toolbar
-        self.actionexport_landmark_to_JSON.triggered.connect(lambda: self.export_landmarks("JSON"))
+        self.actionexport_landmarks_to_csv.triggered.connect(lambda: self.export_landmarks("csv"))
+        self.actionexport_landmarks_to_JSON.triggered.connect(lambda: self.export_landmarks("JSON"))
+        self.actionexport_landmarks_to_TextGrid.triggered.connect(lambda: self.export_landmark("TextGrid"))
         self.actionexport_EMA_to_netcdf.triggered.connect(lambda: self.export_data("netcdf"))
+        self.actionexport_EMA_to_csv.triggered.connect(lambda: self.export_data("csv"))
         self.testButton.clicked.connect(self.test_fun)
         self.landmarkDetectionButton.clicked.connect(self.start_landmark_detection)
 
@@ -140,11 +143,19 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     def export_data(self, fmt):
 
         directory = QFileDialog.getExistingDirectory(caption="select folder") + "/"
+        number_of_files = self.dataList.count()
         if fmt == "netcdf":
-            number_of_files = self.dataList.count()
             for i in range(number_of_files):
                 fname = self.dataList.item(i).text()
                 self.files[fname].ema.to_netcdf(directory+fname+".nc")
+        elif fmt == "csv":
+            for i in range(number_of_files):
+                cols = ["Time"]
+                fname = self.dataList.item(i).text()
+                file = self.files[fname].ema.channels
+                print(file)
+                df = pd.DataFrame(columns=cols)
+
 
 
     def export_landmarks(self, fmt):

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>MEASUREMENTS</class>
+ <widget class="QWidget" name="MEASUREMENTS">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -178,7 +178,7 @@
           <widget class="QComboBox" name="landmarkAllocationComboBox_6"/>
          </item>
          <item row="2" column="0">
-          <widget class="QCheckBox" name="landmarkCheckbox_3">
+          <widget class="QCheckBox" name="landmarkCheckBox_3">
            <property name="text">
             <string/>
            </property>
@@ -267,14 +267,14 @@
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget"/>
+        <widget class="QTableWidget" name="measurementsTableWidget"/>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
           <widget class="QPushButton" name="addMeasurementButton">
            <property name="text">
-            <string>add meaurement</string>
+            <string>add measurement</string>
            </property>
           </widget>
          </item>
@@ -288,7 +288,7 @@
         </layout>
        </item>
        <item>
-        <layout class="QFormLayout" name="formLayout_2">
+        <layout class="QGridLayout" name="gridLayout_4">
          <item row="0" column="0">
           <widget class="QRadioButton" name="massSpringParametersRadioButton">
            <property name="text">

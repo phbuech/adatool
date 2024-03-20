@@ -766,13 +766,13 @@
    </widget>
    <widget class="QMenu" name="menuexport">
     <property name="title">
-     <string>export</string>
+     <string>Export</string>
     </property>
     <addaction name="actionexport_EMA_to_netcdf"/>
     <addaction name="actionexport_EMA_to_csv"/>
-    <addaction name="actionexport_landmark_to_JSON"/>
-    <addaction name="actionexport_landmark_to_TextGrid"/>
-    <addaction name="actionexport_landmark_to_csv"/>
+    <addaction name="actionexport_landmarks_to_JSON"/>
+    <addaction name="actionexport_landmarks_to_TextGrid"/>
+    <addaction name="actionexport_landmarks_to_csv"/>
    </widget>
    <addaction name="menuFiles"/>
    <addaction name="menuSettings"/>
@@ -799,19 +799,19 @@
     <string>export EMA to csv</string>
    </property>
   </action>
-  <action name="actionexport_landmark_to_TextGrid">
+  <action name="actionexport_landmarks_to_TextGrid">
    <property name="text">
-    <string>export landmark to TextGrid</string>
+    <string>export landmarks to TextGrid</string>
    </property>
   </action>
-  <action name="actionexport_landmark_to_csv">
+  <action name="actionexport_landmarks_to_csv">
    <property name="text">
-    <string>export landmark to csv</string>
+    <string>export landmarks to csv</string>
    </property>
   </action>
-  <action name="actionexport_landmark_to_JSON">
+  <action name="actionexport_landmarks_to_JSON">
    <property name="text">
-    <string>export landmark to JSON</string>
+    <string>export landmarks to JSON</string>
    </property>
   </action>
  </widget>

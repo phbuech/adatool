@@ -31,6 +31,16 @@ def butter_lowpass_filter(data, cutoff_freq, nyq_freq, order):
     y = signal.filtfilt(b, a, data)
     return y
 
+def add_landmarks_to_pw(plot_widget,landmarks):
+    for i in range(len(landmarks)):
+        infline = pg.InfiniteLine(
+                                    pos = landmarks["tmin"][i],
+                                    label = landmarks["label"][i],
+                                    movable = True,
+                                    pen = pg.mkPen("green",width=4),
+                                    labelOpts={"position" : 0.95}
+                                )
+        plot_widget.addItem(infline)
 
 def filter_data(dataset,cutoff,order,filter_type=None):
     tmp_data = dataset.ema.values.copy()
@@ -53,6 +63,43 @@ def filter_data(dataset,cutoff,order,filter_type=None):
                                     attrs=dataset.attrs
                                 )
     return filtered_dataset
+
+
+
+def remove_landmarks_from_pw(plot_widget):
+    """
+        removes all landmarks from the plot widget.
+        landmarks are InfiniteLines with labels.
+    """
+    item_list = plot_widget.allChildItems()
+    for item in item_list:
+        if isinstance(item,pg.InfiniteLine) and hasattr(item,"label"):
+            plot_widget.removeItem(item)
+            
+
+def collect_landmarks(plot_widget):
+    item_list = plot_widget.allChildItems()
+    lm_counter = 0
+    lm_dict = {}
+    for item in item_list:
+        if isinstance(item,pg.InfiniteLine):
+            if hasattr(item,"label"):
+                lm_dict[lm_counter] = {
+                                        "position" : item.pos()[0],
+                                        "label" : item.label.format
+                                    }
+                lm_counter += 1
+    print(lm_dict)
+    return lm_dict
+
+def collect_channels(channelTable):
+    number_of_rows = channelTable.rowCount()
+    channel_dict = {}
+    for i in range(number_of_rows):
+        value = int(channelTable.cellWidget(i,0).currentText())-1
+        key = channelTable.item(i,1).text()
+        channel_dict[key] = value
+    return channel_dict
     
 
 def get_channel_indexes(channel_dict,target_channels):

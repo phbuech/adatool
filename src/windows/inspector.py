@@ -2,7 +2,6 @@ import os
 import sys
 import io
 import numpy as np
-import scipy as sp
 import pandas as pd
 
 from PySide6.QtGui import *
@@ -28,11 +27,15 @@ from ui_inspector import Ui_INSPECTOR
 
 import pyqtgraph as pg
 
+#load internal modules
 import data_import
 import plotting as plt
+import information_collection as icoll
+import signal_processing as sp
+import landmark_detection_backend as ldb
 
 import inspector
-import utils
+
 
 
 #uiclass, baseclass = pg.Qt.loadUiType(absolute_path+"/gui/inspector.ui")
@@ -93,9 +96,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         #self.waveformPlotWidget.scene().installEventFilter(self)
 
+        self.waveformSlider.setMaximum(0)
+        self.waveformSlider_2.setMaximum(0)
         # add functionality to slider
-        #self.waveformSlider.valueChanged.connect(self.sliderMovePlot)
-        #self.waveformSlider_2.valueChanged.connect(self.sliderMovePlot)
+        self.waveformSlider.valueChanged.connect(self.sliderMovePlot)
+        self.waveformSlider_2.valueChanged.connect(self.sliderMovePlot)
         #self.waveformPlotWidget.sigXRangeChanged.connect(self.move_slider)
 
         # show grids for all plotwidgets
@@ -142,7 +147,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.rename_landmarks)
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.remove_landmarks)
 
-        for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
+        #for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
 
         self.addLandmarkButton.clicked.connect(self.activate_landmark_addition)
         self.renameLandmarkButton.clicked.connect(self.activate_landmark_renaming)
@@ -261,7 +266,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         sound_snippet = self.data.audio.signal.values[xmin:xmax]
         
         f = io.BytesIO()
-        sp.io.wavfile.write(f,self.data.audio.attrs["samplerate"], sound_snippet)
+        #io.wavfile.write(f,self.data.audio.attrs["samplerate"], sound_snippet)
         buf = QBuffer()
         buf.setData(f.getvalue())
         buf.open(QIODevice.ReadWrite)
@@ -354,9 +359,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         if self.sender().isChecked() and self.emaLandmarksComboBoxes[idx].currentText() != "":
             current_text = self.emaLandmarksComboBoxes[idx].currentText()
             tmp_landmark_register = self.landmarkRegister[self.landmarkRegister["tierName"] == current_text].reset_index(drop=True)
-            utils.add_landmarks_to_pw(self.emaPanelDict[idx]["PlotWidget"],tmp_landmark_register)
+            plt.add_landmarks_to_pw(self.emaPanelDict[idx]["PlotWidget"],tmp_landmark_register)
         else:
-            utils.remove_landmarks_from_pw(self.emaPanelDict[idx]["PlotWidget"])
+            plt.remove_landmarks_from_pw(self.emaPanelDict[idx]["PlotWidget"])
 
 
     def landmark_cmbbox_value_changed(self):
@@ -364,15 +369,15 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         idx = int(name.replace("emaPanel","").replace("SelectTierComboBox",""))
         current_text = self.sender().currentText()
         if self.displayLandmarksCheckBoxes[idx].isChecked():
-            utils.remove_landmarks_from_pw(self.emaPanelDict[idx]["PlotWidget"])
+            plt.remove_landmarks_from_pw(self.emaPanelDict[idx]["PlotWidget"])
             tmp_landmark_register = self.landmarkRegister[self.landmarkRegister["tierName"] == current_text].reset_index(drop=True)
-            utils.add_landmarks_to_pw(self.emaPanelDict[idx]["PlotWidget"],tmp_landmark_register)
+            plt.add_landmarks_to_pw(self.emaPanelDict[idx]["PlotWidget"],tmp_landmark_register)
 
 
-    def test_fun(self):
-        keys = list(self.landmarkRegister.keys())
-        for key in keys:
-            print(key,self.landmarkRegister[key])
+    #def test_fun(self):
+    #    keys = list(self.landmarkRegister.keys())
+    #    for key in keys:
+    #        print(key,self.landmarkRegister[key])
 
     def store_landmarks(self):
         for i in range(1,4):
@@ -382,7 +387,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                 else:
                     tier_name = self.displayLandmarksCheckBoxes[i].currentText()
 
-                tmp_lm = utils.collect_landmarks(self.emaPanelDict[i]["PlotWidget"])
+                tmp_lm = icoll.collect_landmarks(self.emaPanelDict[i]["PlotWidget"])
                 tmp_landmark_register = pd.DataFrame(columns=["tierName","tmin","tmax","label"])
                 for j in range(len(tmp_lm)):
                     landmark = pd.Series(index=tmp_landmark_register.columns)
@@ -542,7 +547,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                 if parameter in ["pos","eucl2D","eucl3D"] and detection_algorithm in ["vel20","vel15"]:
                                     
 
-                                    signal, _ = utils.get_signal(
+                                    signal, _ = sp.get_signal(
                                                     data = self.data.ema,
                                                     channel_dict = self.channels,
                                                     target_channel = channel,
@@ -550,11 +555,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                                     target_parameter = parameter,
                                                     )
                                     
-                                    velocity = utils.derivation(signal,ema_fs=self.data.ema.attrs["samplerate"],time=self.data.ema.time.values,order=1)
+                                    velocity = sp.derivation(signal,ema_fs=self.data.ema.attrs["samplerate"],time=self.data.ema.time.values,order=1)
                                     if detection_algorithm == "vel20":
-                                        landmarks = utils.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.2)
+                                        landmarks = ldb.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.2)
                                     elif detection_algorithm == "vel15":
-                                        landmarks = utils.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.15)
+                                        landmarks = ldb.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.15)
                                     landmark_keys = list(landmarks.keys())
                                     for key in landmark_keys:
                                         infinite_line_item = pg.InfiniteLine(
@@ -568,8 +573,8 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
                                 elif parameter == "pos" and detection_algorithm in ["tvel15_xy","tvel15_xz","tvel20_xy","tvel20_yz"]:
                                     dims = list(detection_algorithm.split("_")[1])
-                                    tangential_velocity = utils.get_tangential_velocity(data=self.data.ema,channel_index=self.channels[channel],dims=dims)
-                                    landmarks = utils.detect_landmarks_tvel(time=self.data.ema.time.values,tangential_velocity=tangential_velocity,tmin=tmin,tmax=tmax,factor=0.15)
+                                    tangential_velocity = sp.get_tangential_velocity(data=self.data.ema,channel_index=self.channels[channel],dims=dims)
+                                    landmarks = ldb.detect_landmarks_tvel(time=self.data.ema.time.values,tangential_velocity=tangential_velocity,tmin=tmin,tmax=tmax,factor=0.15)
                                     landmark_keys = list(landmarks.keys())
                                     for key in landmark_keys:
                                         infinite_line_item = pg.InfiniteLine(
@@ -643,7 +648,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             parameter   = self.emaControlTable.cellWidget(index.row(),3).currentText()
             panel       = self.emaControlTable.cellWidget(index.row(),4).currentText()
             color       = self.emaControlTable.cellWidget(index.row(),5).currentText()
-            signal, label = utils.get_signal(
+            signal, label = sp.get_signal(
                                                 data = self.data.ema,
                                                 channel_dict = self.channels,
                                                 target_channel = channel,
@@ -732,46 +737,61 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         
     def color_selection(self):
         self.sender().setStyleSheet("background-color:"+self.sender().currentText()+"; color: black")
-    
-
-    def move_slider(self):
-        xmin, xmax = self.waveformPlotWidget.getViewBox().viewRange()[0]
-        tmin, tmax = self.data.audio.time[0],self.data.audio.time[-1]
-        new_slider_value = int(xmin/tmax * self.waveformSlider.maximum())
-        self.waveformSlider.setValue(new_slider_value)
-        self.waveformSlider_2.setValue(new_slider_value)
 
 
     def sliderMovePlot(self):
         #get current xmin
         xmin,xmax = self.waveformPlotWidget.getViewBox().viewRange()[0]
-        xrange = np.abs(xmin-xmax)
         slider_value = self.sender().value()
-        tmin, tmax = self.data.audio.time[0],self.data.audio.time[-1]
-        time_steps = tmax/200
-        slider_value_time = slider_value*time_steps
-        difference = xmin - slider_value_time
-        self.waveformPlotWidget.getViewBox().setXRange(xmin-difference,xmax-difference,padding=0)
+        mid = (xmin + xmax)/2
+        half = np.abs(mid - xmin)
+        max_slider_value = self.sender().maximum()
+        new_value = ((slider_value - 0)*(self.data.audio.time.values[-1]))/(max_slider_value)
+        self.waveformPlotWidget.getViewBox().setXRange(new_value-half,new_value+half,padding=0.0,update=True)
+        self.update_plot()
+        if self.sender().objectName() == "waveformSlider":
+            self.waveformSlider_2.setValue(slider_value)
+        else:
+            self.waveformSlider.setValue(slider_value)
 
     # function for zoom control
     def zoom(self,direction):
         s = 0.9
+        audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
         if isinstance(self.LinearRegionItemRegister["waveformPlotWidget"],pg.LinearRegionItem) and direction == "in":
             boundaries = self.LinearRegionItemRegister["waveformPlotWidget"].getRegion()
-            mid = (boundaries[0] + boundaries[1])/2
-            boundary_range = np.abs(boundaries[0] - boundaries[1]) 
-            audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
-            self.waveformPlotWidget.getViewBox().setXRange(boundaries[0],boundaries[1],padding=0,update=True)
+            mid = (boundaries[0] + boundaries[1])/2 
+            
+            self.waveformPlotWidget.getViewBox().setXRange(boundaries[0],boundaries[1],padding=0.0,update=True)
+            xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
+            boundary_range = np.abs(xRange[0] - xRange[1])
+            slider_steps = int(audio_range/boundary_range)*100
+            
+            self.waveformSlider.setMaximum(slider_steps)
+            self.waveformSlider_2.setMaximum(slider_steps)
+            mid = (xRange[0]+xRange[1])/2
+            slider_location = int(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
+            self.waveformSlider.setValue(slider_location)
+            self.waveformSlider_2.setValue(slider_location)
         else:
             x1, x2 = self.waveformPlotWidget.getViewBox().viewRange()[0]
             mid = (x1+x2)/2
-            print("mittelpunkt",mid)
+            
             if direction == "in":
-
                 self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=s)
             elif direction == "out":
                 self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=1/s)
             self.update_plot()
+            xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
+            boundary_range = np.abs(xRange[0] - xRange[1])
+            slider_steps = int(audio_range/boundary_range)*100
+            print(slider_steps)
+            self.waveformSlider.setMaximum(slider_steps)
+            self.waveformSlider_2.setMaximum(slider_steps)
+            mid = (xRange[0]+xRange[1])/2
+            slider_location = round(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
+            self.waveformSlider.setValue(slider_location)
+            self.waveformSlider_2.setValue(slider_location)
 
 
     def update_plot(self):
@@ -815,15 +835,15 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
 
 
-    def update_slider(self):
-        left_boundary, right_boundary = self.waveformPlotWidget.getViewBox().viewRange()[0]
-        minrange, maxrange = self.data.audio.time.values[0]-0.1, self.data.audio.time.values[-1]+0.1
-        data_range = np.abs(minrange - maxrange)
-        viewbox_range = np.abs(left_boundary - right_boundary)
-        num_steps = data_range / viewbox_range
-        num_steps = int(num_steps)
-        self.waveformSlider.setMaximum(num_steps)
-        self.waveformSlider_2.setMaximum(num_steps)
+    #def update_slider(self):
+    #    left_boundary, right_boundary = self.waveformPlotWidget.getViewBox().viewRange()[0]
+    #    minrange, maxrange = self.data.audio.time.values[0]-0.1, self.data.audio.time.values[-1]+0.1
+    #    data_range = np.abs(minrange - maxrange)
+    #    viewbox_range = np.abs(left_boundary - right_boundary)
+    #    num_steps = data_range / viewbox_range
+    #    num_steps = int(num_steps)
+    #    self.waveformSlider.setMaximum(num_steps)
+    #    self.waveformSlider_2.setMaximum(num_steps)
 
     def initialize_ema_axes(self,plotWidget):
 

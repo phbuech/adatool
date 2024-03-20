@@ -15,21 +15,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFormLayout,
-    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLayout, QLineEdit, QProgressBar,
-    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
-    QTableWidget, QTableWidgetItem, QTreeWidget, QTreeWidgetItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QLayout, QLineEdit, QProgressBar, QPushButton,
+    QRadioButton, QSizePolicy, QSpacerItem, QTableWidget,
+    QTableWidgetItem, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+    QWidget)
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(946, 687)
-        self.gridLayout_2 = QGridLayout(Form)
+class Ui_MEASUREMENTS(object):
+    def setupUi(self, MEASUREMENTS):
+        if not MEASUREMENTS.objectName():
+            MEASUREMENTS.setObjectName(u"MEASUREMENTS")
+        MEASUREMENTS.resize(946, 687)
+        self.gridLayout_2 = QGridLayout(MEASUREMENTS)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.progressBar = QProgressBar(Form)
+        self.progressBar = QProgressBar(MEASUREMENTS)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setValue(0)
 
@@ -39,7 +39,7 @@ class Ui_Form(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.selectionTreeWidget = QTreeWidget(Form)
+        self.selectionTreeWidget = QTreeWidget(MEASUREMENTS)
         __qtreewidgetitem = QTreeWidgetItem()
         __qtreewidgetitem.setText(0, u"1");
         self.selectionTreeWidget.setHeaderItem(__qtreewidgetitem)
@@ -52,12 +52,12 @@ class Ui_Form(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.addTargetButton = QPushButton(Form)
+        self.addTargetButton = QPushButton(MEASUREMENTS)
         self.addTargetButton.setObjectName(u"addTargetButton")
 
         self.horizontalLayout_2.addWidget(self.addTargetButton)
 
-        self.removeTargetButton = QPushButton(Form)
+        self.removeTargetButton = QPushButton(MEASUREMENTS)
         self.removeTargetButton.setObjectName(u"removeTargetButton")
 
         self.horizontalLayout_2.addWidget(self.removeTargetButton)
@@ -67,12 +67,12 @@ class Ui_Form(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.addSegmentButton = QPushButton(Form)
+        self.addSegmentButton = QPushButton(MEASUREMENTS)
         self.addSegmentButton.setObjectName(u"addSegmentButton")
 
         self.horizontalLayout.addWidget(self.addSegmentButton)
 
-        self.removeSegmentButton = QPushButton(Form)
+        self.removeSegmentButton = QPushButton(MEASUREMENTS)
         self.removeSegmentButton.setObjectName(u"removeSegmentButton")
 
         self.horizontalLayout.addWidget(self.removeSegmentButton)
@@ -86,7 +86,7 @@ class Ui_Form(object):
 
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
 
-        self.runMeasurementsButton = QPushButton(Form)
+        self.runMeasurementsButton = QPushButton(MEASUREMENTS)
         self.runMeasurementsButton.setObjectName(u"runMeasurementsButton")
 
         self.gridLayout_2.addWidget(self.runMeasurementsButton, 2, 0, 1, 1)
@@ -99,7 +99,7 @@ class Ui_Form(object):
         self.horizontalLayout_3.setSpacing(4)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.label = QLabel(Form)
+        self.label = QLabel(MEASUREMENTS)
         self.label.setObjectName(u"label")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -109,7 +109,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_3.addWidget(self.label)
 
-        self.line = QFrame(Form)
+        self.line = QFrame(MEASUREMENTS)
         self.line.setObjectName(u"line")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
@@ -126,92 +126,92 @@ class Ui_Form(object):
 
         self.gridLayout_3 = QGridLayout()
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.landmarkAllocationComboBox_5 = QComboBox(Form)
+        self.landmarkAllocationComboBox_5 = QComboBox(MEASUREMENTS)
         self.landmarkAllocationComboBox_5.setObjectName(u"landmarkAllocationComboBox_5")
 
         self.gridLayout_3.addWidget(self.landmarkAllocationComboBox_5, 4, 1, 1, 1)
 
-        self.landmarkLineEdit_4 = QLineEdit(Form)
+        self.landmarkLineEdit_4 = QLineEdit(MEASUREMENTS)
         self.landmarkLineEdit_4.setObjectName(u"landmarkLineEdit_4")
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_4, 3, 2, 1, 1)
 
-        self.landmarkAllocationComboBox_1 = QComboBox(Form)
+        self.landmarkAllocationComboBox_1 = QComboBox(MEASUREMENTS)
         self.landmarkAllocationComboBox_1.setObjectName(u"landmarkAllocationComboBox_1")
 
         self.gridLayout_3.addWidget(self.landmarkAllocationComboBox_1, 0, 1, 1, 1)
 
-        self.landmarkCheckBox_2 = QCheckBox(Form)
+        self.landmarkCheckBox_2 = QCheckBox(MEASUREMENTS)
         self.landmarkCheckBox_2.setObjectName(u"landmarkCheckBox_2")
 
         self.gridLayout_3.addWidget(self.landmarkCheckBox_2, 1, 0, 1, 1)
 
-        self.landmarkAllocationComboBox_2 = QComboBox(Form)
+        self.landmarkAllocationComboBox_2 = QComboBox(MEASUREMENTS)
         self.landmarkAllocationComboBox_2.setObjectName(u"landmarkAllocationComboBox_2")
 
         self.gridLayout_3.addWidget(self.landmarkAllocationComboBox_2, 1, 1, 1, 1)
 
-        self.landmarkCheckBox_1 = QCheckBox(Form)
+        self.landmarkCheckBox_1 = QCheckBox(MEASUREMENTS)
         self.landmarkCheckBox_1.setObjectName(u"landmarkCheckBox_1")
 
         self.gridLayout_3.addWidget(self.landmarkCheckBox_1, 0, 0, 1, 1)
 
-        self.landmarkAllocationComboBox_4 = QComboBox(Form)
+        self.landmarkAllocationComboBox_4 = QComboBox(MEASUREMENTS)
         self.landmarkAllocationComboBox_4.setObjectName(u"landmarkAllocationComboBox_4")
 
         self.gridLayout_3.addWidget(self.landmarkAllocationComboBox_4, 3, 1, 1, 1)
 
-        self.landmarkLineEdit_3 = QLineEdit(Form)
+        self.landmarkLineEdit_3 = QLineEdit(MEASUREMENTS)
         self.landmarkLineEdit_3.setObjectName(u"landmarkLineEdit_3")
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_3, 2, 2, 1, 1)
 
-        self.landmarkCheckBox_5 = QCheckBox(Form)
+        self.landmarkCheckBox_5 = QCheckBox(MEASUREMENTS)
         self.landmarkCheckBox_5.setObjectName(u"landmarkCheckBox_5")
 
         self.gridLayout_3.addWidget(self.landmarkCheckBox_5, 4, 0, 1, 1)
 
-        self.landmarkLineEdit_5 = QLineEdit(Form)
+        self.landmarkLineEdit_5 = QLineEdit(MEASUREMENTS)
         self.landmarkLineEdit_5.setObjectName(u"landmarkLineEdit_5")
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_5, 4, 2, 1, 1)
 
-        self.landmarkAllocationComboBox_6 = QComboBox(Form)
+        self.landmarkAllocationComboBox_6 = QComboBox(MEASUREMENTS)
         self.landmarkAllocationComboBox_6.setObjectName(u"landmarkAllocationComboBox_6")
 
         self.gridLayout_3.addWidget(self.landmarkAllocationComboBox_6, 5, 1, 1, 1)
 
-        self.landmarkCheckbox_3 = QCheckBox(Form)
-        self.landmarkCheckbox_3.setObjectName(u"landmarkCheckbox_3")
+        self.landmarkCheckBox_3 = QCheckBox(MEASUREMENTS)
+        self.landmarkCheckBox_3.setObjectName(u"landmarkCheckBox_3")
 
-        self.gridLayout_3.addWidget(self.landmarkCheckbox_3, 2, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.landmarkCheckBox_3, 2, 0, 1, 1)
 
-        self.landmarkLineEdit_2 = QLineEdit(Form)
+        self.landmarkLineEdit_2 = QLineEdit(MEASUREMENTS)
         self.landmarkLineEdit_2.setObjectName(u"landmarkLineEdit_2")
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_2, 1, 2, 1, 1)
 
-        self.landmarkCheckBox_4 = QCheckBox(Form)
+        self.landmarkCheckBox_4 = QCheckBox(MEASUREMENTS)
         self.landmarkCheckBox_4.setObjectName(u"landmarkCheckBox_4")
 
         self.gridLayout_3.addWidget(self.landmarkCheckBox_4, 3, 0, 1, 1)
 
-        self.landmarkLineEdit_1 = QLineEdit(Form)
+        self.landmarkLineEdit_1 = QLineEdit(MEASUREMENTS)
         self.landmarkLineEdit_1.setObjectName(u"landmarkLineEdit_1")
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_1, 0, 2, 1, 1)
 
-        self.landmarkCheckBox_6 = QCheckBox(Form)
+        self.landmarkCheckBox_6 = QCheckBox(MEASUREMENTS)
         self.landmarkCheckBox_6.setObjectName(u"landmarkCheckBox_6")
 
         self.gridLayout_3.addWidget(self.landmarkCheckBox_6, 5, 0, 1, 1)
 
-        self.landmarkAllocationComboBox_3 = QComboBox(Form)
+        self.landmarkAllocationComboBox_3 = QComboBox(MEASUREMENTS)
         self.landmarkAllocationComboBox_3.setObjectName(u"landmarkAllocationComboBox_3")
 
         self.gridLayout_3.addWidget(self.landmarkAllocationComboBox_3, 2, 1, 1, 1)
 
-        self.landmarkLineEdit_6 = QLineEdit(Form)
+        self.landmarkLineEdit_6 = QLineEdit(MEASUREMENTS)
         self.landmarkLineEdit_6.setObjectName(u"landmarkLineEdit_6")
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_6, 5, 2, 1, 1)
@@ -226,7 +226,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_2)
 
-        self.line_2 = QFrame(Form)
+        self.line_2 = QFrame(MEASUREMENTS)
         self.line_2.setObjectName(u"line_2")
         self.line_2.setFrameShape(QFrame.VLine)
         self.line_2.setFrameShadow(QFrame.Sunken)
@@ -237,7 +237,7 @@ class Ui_Form(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_2 = QLabel(Form)
+        self.label_2 = QLabel(MEASUREMENTS)
         self.label_2.setObjectName(u"label_2")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
@@ -247,7 +247,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_6.addWidget(self.label_2)
 
-        self.line_3 = QFrame(Form)
+        self.line_3 = QFrame(MEASUREMENTS)
         self.line_3.setObjectName(u"line_3")
         sizePolicy1.setHeightForWidth(self.line_3.sizePolicy().hasHeightForWidth())
         self.line_3.setSizePolicy(sizePolicy1)
@@ -259,19 +259,19 @@ class Ui_Form(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_6)
 
-        self.tableWidget = QTableWidget(Form)
-        self.tableWidget.setObjectName(u"tableWidget")
+        self.measurementsTableWidget = QTableWidget(MEASUREMENTS)
+        self.measurementsTableWidget.setObjectName(u"measurementsTableWidget")
 
-        self.verticalLayout_3.addWidget(self.tableWidget)
+        self.verticalLayout_3.addWidget(self.measurementsTableWidget)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.addMeasurementButton = QPushButton(Form)
+        self.addMeasurementButton = QPushButton(MEASUREMENTS)
         self.addMeasurementButton.setObjectName(u"addMeasurementButton")
 
         self.horizontalLayout_5.addWidget(self.addMeasurementButton)
 
-        self.removeMeasurementButton = QPushButton(Form)
+        self.removeMeasurementButton = QPushButton(MEASUREMENTS)
         self.removeMeasurementButton.setObjectName(u"removeMeasurementButton")
 
         self.horizontalLayout_5.addWidget(self.removeMeasurementButton)
@@ -279,22 +279,22 @@ class Ui_Form(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
 
-        self.formLayout_2 = QFormLayout()
-        self.formLayout_2.setObjectName(u"formLayout_2")
-        self.massSpringParametersRadioButton = QRadioButton(Form)
+        self.gridLayout_4 = QGridLayout()
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.massSpringParametersRadioButton = QRadioButton(MEASUREMENTS)
         self.massSpringParametersRadioButton.setObjectName(u"massSpringParametersRadioButton")
         self.massSpringParametersRadioButton.setChecked(True)
 
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.massSpringParametersRadioButton)
+        self.gridLayout_4.addWidget(self.massSpringParametersRadioButton, 0, 0, 1, 1)
 
-        self.trajectoriesRadioButton = QRadioButton(Form)
+        self.trajectoriesRadioButton = QRadioButton(MEASUREMENTS)
         self.trajectoriesRadioButton.setObjectName(u"trajectoriesRadioButton")
         self.trajectoriesRadioButton.setChecked(False)
 
-        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.trajectoriesRadioButton)
+        self.gridLayout_4.addWidget(self.trajectoriesRadioButton, 0, 1, 1, 1)
 
 
-        self.verticalLayout_3.addLayout(self.formLayout_2)
+        self.verticalLayout_3.addLayout(self.gridLayout_4)
 
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_3)
@@ -302,36 +302,36 @@ class Ui_Form(object):
 
         self.gridLayout_2.addLayout(self.horizontalLayout_4, 1, 0, 1, 1)
 
-        self.storeMeasurementsButton = QPushButton(Form)
+        self.storeMeasurementsButton = QPushButton(MEASUREMENTS)
         self.storeMeasurementsButton.setObjectName(u"storeMeasurementsButton")
 
         self.gridLayout_2.addWidget(self.storeMeasurementsButton, 4, 0, 1, 1)
 
 
-        self.retranslateUi(Form)
+        self.retranslateUi(MEASUREMENTS)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(MEASUREMENTS)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.addTargetButton.setText(QCoreApplication.translate("Form", u"add target", None))
-        self.removeTargetButton.setText(QCoreApplication.translate("Form", u"remove target", None))
-        self.addSegmentButton.setText(QCoreApplication.translate("Form", u"add segment", None))
-        self.removeSegmentButton.setText(QCoreApplication.translate("Form", u"remove segment", None))
-        self.runMeasurementsButton.setText(QCoreApplication.translate("Form", u"conduct measurements", None))
-        self.label.setText(QCoreApplication.translate("Form", u"LANDMARK ALLOCATION", None))
+    def retranslateUi(self, MEASUREMENTS):
+        MEASUREMENTS.setWindowTitle(QCoreApplication.translate("MEASUREMENTS", u"Form", None))
+        self.addTargetButton.setText(QCoreApplication.translate("MEASUREMENTS", u"add target", None))
+        self.removeTargetButton.setText(QCoreApplication.translate("MEASUREMENTS", u"remove target", None))
+        self.addSegmentButton.setText(QCoreApplication.translate("MEASUREMENTS", u"add segment", None))
+        self.removeSegmentButton.setText(QCoreApplication.translate("MEASUREMENTS", u"remove segment", None))
+        self.runMeasurementsButton.setText(QCoreApplication.translate("MEASUREMENTS", u"conduct measurements", None))
+        self.label.setText(QCoreApplication.translate("MEASUREMENTS", u"LANDMARK ALLOCATION", None))
         self.landmarkCheckBox_2.setText("")
         self.landmarkCheckBox_1.setText("")
         self.landmarkCheckBox_5.setText("")
-        self.landmarkCheckbox_3.setText("")
+        self.landmarkCheckBox_3.setText("")
         self.landmarkCheckBox_4.setText("")
         self.landmarkCheckBox_6.setText("")
-        self.label_2.setText(QCoreApplication.translate("Form", u"MEASUREMENTS", None))
-        self.addMeasurementButton.setText(QCoreApplication.translate("Form", u"add meaurement", None))
-        self.removeMeasurementButton.setText(QCoreApplication.translate("Form", u"remove measurement", None))
-        self.massSpringParametersRadioButton.setText(QCoreApplication.translate("Form", u"mass-spring parameters", None))
-        self.trajectoriesRadioButton.setText(QCoreApplication.translate("Form", u"trajectories", None))
-        self.storeMeasurementsButton.setText(QCoreApplication.translate("Form", u"store measurements", None))
+        self.label_2.setText(QCoreApplication.translate("MEASUREMENTS", u"MEASUREMENTS", None))
+        self.addMeasurementButton.setText(QCoreApplication.translate("MEASUREMENTS", u"add measurement", None))
+        self.removeMeasurementButton.setText(QCoreApplication.translate("MEASUREMENTS", u"remove measurement", None))
+        self.massSpringParametersRadioButton.setText(QCoreApplication.translate("MEASUREMENTS", u"mass-spring parameters", None))
+        self.trajectoriesRadioButton.setText(QCoreApplication.translate("MEASUREMENTS", u"trajectories", None))
+        self.storeMeasurementsButton.setText(QCoreApplication.translate("MEASUREMENTS", u"store measurements", None))
     # retranslateUi
 

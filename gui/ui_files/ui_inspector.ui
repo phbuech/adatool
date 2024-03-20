@@ -39,10 +39,13 @@
           <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
+          <enum>QFrame::Raised</enum>
          </property>
          <property name="lineWidth">
-          <number>1</number>
+          <number>10</number>
+         </property>
+         <property name="midLineWidth">
+          <number>5</number>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -99,7 +102,7 @@
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>100</height>
+               <height>0</height>
               </size>
              </property>
              <property name="maximumSize">
@@ -121,7 +124,10 @@
                 </size>
                </property>
                <property name="maximum">
-                <number>200</number>
+                <number>1</number>
+               </property>
+               <property name="sliderPosition">
+                <number>1</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -280,7 +286,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>500</width>
+               <width>100</width>
                <height>20</height>
               </size>
              </property>
@@ -295,6 +301,15 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth">
+          <number>10</number>
+         </property>
+         <property name="midLineWidth">
+          <number>5</number>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -571,7 +586,7 @@
               </size>
              </property>
              <property name="maximum">
-              <number>200</number>
+              <number>1</number>
              </property>
              <property name="singleStep">
               <number>1</number>
@@ -1091,7 +1106,7 @@
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>500</width>
+               <width>100</width>
                <height>20</height>
               </size>
              </property>
