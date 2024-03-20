@@ -149,6 +149,6 @@ def collect_landmark_detection_info(treeWidget):
             tmp["method"] =  treeWidget.itemWidget(segment_item,6).currentText()
             tmp["windowed"] = treeWidget.itemWidget(segment_item,7).isChecked()
             tmp["padding"] = np.float64(segment_item.text(8))
-            segments[j+1] = tmp
+            segments[j+2] = tmp
         info[i] = segments
     return info

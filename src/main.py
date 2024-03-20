@@ -100,10 +100,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         tiers_to_transmit = []
         file_keys = list(self.files.keys())
         for file_key in file_keys:
-            tmp_tiers = self.files[file_key].annotation["tierName"].unique()
-            for i in range(len(tmp_tiers)):
-                if tmp_tiers[i] not in tiers_to_transmit:
-                    tiers_to_transmit.append(tmp_tiers[i])
+            if self.files[file_key].annotation is not None:
+                tmp_tiers = self.files[file_key].annotation["tierName"].unique()
+                for i in range(len(tmp_tiers)):
+                    if tmp_tiers[i] not in tiers_to_transmit:
+                        tiers_to_transmit.append(tmp_tiers[i])
         
         self.lm_detect = landmark_detection.landmark_detection_window(transmittedFiles=self.files,
                                                                  transmittedTiers=tiers_to_transmit,
@@ -247,9 +248,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         filenames = landmark_dataframe["Filename"].unique()
         for filename in filenames:
             tmp_landmarks = landmark_dataframe[landmark_dataframe["Filename"] == filename].reset_index(drop=True)
-            tmp_landmarks = tmp_landmarks[["tierName","tmin","tmax","label"]]
-            print(tmp_landmarks)
-            self.files[filename].annotation = pd.concat([self.files[filename].annotation,tmp_landmarks])
+            if len(tmp_landmarks) != 0:
+                tmp_landmarks = tmp_landmarks[["tierName","tmin","tmax","label"]]
+                tiers = tmp_landmarks["tierName"].unique()
+                self.files[filename].annotation = self.files[filename].annotation[self.files[filename].annotation["tierName"].isin(tiers) == False].reset_index(drop=True)
+                self.files[filename].annotation = pd.concat([self.files[filename].annotation,tmp_landmarks])
 
     @Slot(object)
     def on_inspector_store(self,landmarks):
@@ -278,14 +281,12 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         number_of_rows = self.channelTable.rowCount()
         #add combobox for channel selection
         selected_data_item = self.dataList.selectedItems()
-        print(selected_data_item)
         if not selected_data_item:
             pass
         else:
             self.channelTable.insertRow(number_of_rows)
             selected_data_item_name = selected_data_item[0].text()
             channel_options = self.files[selected_data_item_name].ema.channels.values + 1
-            print(channel_options)
             comboBox = QComboBox()
             for i in range(len(channel_options)) : comboBox.addItem(str(channel_options[i]))
             self.channelTable.setCellWidget(number_of_rows,0,comboBox)

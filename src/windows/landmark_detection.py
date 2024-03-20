@@ -80,7 +80,7 @@ class landmark_detection_window(QWidget, Ui_LM_DETECT):
 
     def run_landmark_detection(self):
         info = icoll.collect_landmark_detection_info(self.selectionTreeWidget)
-        landmarks, protocol, processed_segments = lbd.automatic_landmark_detection(files=self.files,info=info,channel_dict=self.channel_dict,pbar=self.progressBar)
+        landmarks, protocol, processed_segments = ldb.automatic_landmark_detection(files=self.files,info=info,channel_dict=self.channel_dict,pbar=self.progressBar)
         self.detectedLandmarks = landmarks
         self.progressBar.setValue(len(self.files))
         if processed_segments > 0:
@@ -144,7 +144,6 @@ class landmark_detection_window(QWidget, Ui_LM_DETECT):
             item_index = self.selectionTreeWidget.indexOfTopLevelItem(selected_item)
             root.removeChild(selected_item)
             number_of_targets = self.selectionTreeWidget.topLevelItemCount()
-            print(number_of_targets)
             for i in range(number_of_targets):
                 item = self.selectionTreeWidget.topLevelItem(i)
                 item.setText(0,str(i+1))
