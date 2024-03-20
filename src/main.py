@@ -129,10 +129,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         tier_names = []
         file_keys = list(self.files.keys())
         for file_key in file_keys:
-            tiers = self.files[file_key].annotation["tierName"].unique()
-            for tier in tiers:
-                if tier not in tier_names:
-                    tier_names.append(tier)
+            if self.files[file_key].annotation is not None:
+                tiers = self.files[file_key].annotation["tierName"].unique()
+                for tier in tiers:
+                    if tier not in tier_names:
+                        tier_names.append(tier)
         number_of_rows = self.tierList.rowCount()
         self.tierList.insertRow(number_of_rows)
         comboBox = QComboBox()
@@ -144,17 +145,36 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
         directory = QFileDialog.getExistingDirectory(caption="select folder") + "/"
         number_of_files = self.dataList.count()
+        progressDialog = QProgressDialog("Save files",None,0,number_of_files)
+        progressDialog.setWindowModality(Qt.WindowModal)
+        progressDialog.setMaximum(number_of_files)
+        progressDialog.setValue(0)
+        progressDialog.setMinimumDuration(0)
+        progressDialog.show()
         if fmt == "netcdf":
             for i in range(number_of_files):
                 fname = self.dataList.item(i).text()
                 self.files[fname].ema.to_netcdf(directory+fname+".nc")
+                progressDialog.setValue(i)
         elif fmt == "csv":
-            for i in range(number_of_files):
+            channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
+            channel_names = list(channel_allocation_dict.keys())
+            for file_index in range(number_of_files):
                 cols = ["Time"]
-                fname = self.dataList.item(i).text()
-                file = self.files[fname].ema.channels
-                print(file)
+                fname = self.dataList.item(file_index).text()
+                channels = self.files[fname].ema.channels.values
+                dimensions = self.files[fname].ema.dimensions.values[:-2]
+                for i in range(len(channel_names)):
+                    for j in range(len(dimensions)):
+                        cols.append(str(channel_names[i])+"_"+str(dimensions[j]))
                 df = pd.DataFrame(columns=cols)
+                
+                df["Time"] = self.files[fname].ema.time.values
+                for i in range(len(channel_names)):
+                    for j in range(len(dimensions)):
+                        df[str(channel_names[i])+"_"+str(dimensions[j])] = self.files[fname].ema.sel(channels=channel_allocation_dict[channel_names[i]]).sel(dimensions=dimensions[j]).ema.values
+                df.to_csv(directory+fname+".csv",sep=",",encoding="utf8",index=False)
+                progressDialog.setValue(file_index)
 
 
 
@@ -337,4 +357,4 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
-sys.exit(app.exec_())
+sys.exit(app.exec())

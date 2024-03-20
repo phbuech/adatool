@@ -6,6 +6,10 @@ import scipy as sp
 import chardet
 import pandas as pd
 
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+from PySide6.QtCore import *
+
 class dataContainer:
     """
         class for the data. Consists of 
@@ -29,6 +33,15 @@ def read_data(file_urls,file_dict):
     files = np.array([files[i].split(".") for i in range(len(files))])
     fnames = np.unique(files[:,0])
     suffixes = np.unique(files[:,1])
+
+    #create progres dialog
+    progressDialog = QProgressDialog("loading files",None,0,len(files))
+    progressDialog.setWindowTitle("Loading files...")
+    progressDialog.setWindowModality(Qt.WindowModal)
+    progressDialog.setMaximum(len(files))
+    progressDialog.setValue(0)
+    progressDialog.setMinimumDuration(0)
+    progressDialog.show()
     for fname_idx in range(len(fnames)):
         fname = fnames[fname_idx]
         tmp_data = dataContainer()
@@ -44,8 +57,11 @@ def read_data(file_urls,file_dict):
                 except:
                     tmp_data.audio = None
             if suffixes[suffix_idx] in ["TextGrid"]:
-                tmp_data.annotation = read_TextGrid(main_path + fname + "." + suffixes[suffix_idx])
-    
+                try:
+                    tmp_data.annotation = read_TextGrid(main_path + fname + "." + suffixes[suffix_idx])
+                except:
+                    tmp_data.annotation = None
+        progressDialog.setValue(fname_idx)
         file_dict[fname] = tmp_data
     
     return file_dict
