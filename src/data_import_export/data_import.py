@@ -24,7 +24,7 @@ class dataContainer:
         self.audio = audio
         self.annotation = annotation
 
-def read_data(file_urls,file_dict):
+def read_data(file_urls,file_dict,ema_format,audio_format,annotation_format):
     #get main path:
     main_path = "/".join(file_urls[0][0].toLocalFile().split("/")[:-1]) + "/"
     #get file names
@@ -48,7 +48,8 @@ def read_data(file_urls,file_dict):
         for suffix_idx in range(len(suffixes)):
             if suffixes[suffix_idx] == "pos":
                 try:
-                    tmp_data.ema = read_AG50x(main_path + fname + "."+suffixes[suffix_idx])
+                    if ema_format == "AG50x":
+                        tmp_data.ema = read_AG50x(main_path + fname + "."+suffixes[suffix_idx])
                 except:
                     tmp_data.ema = None
             if suffixes[suffix_idx] in ["wav","WAV"]:

@@ -376,7 +376,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         ema_format = emaFormatComboBox.currentText()
         audio_format = audioFormatComboBox.currentText()
         annotation_format = annotationFormatComboBox.currentText()
-        self.files = din.read_data(file_urls = file_urls, file_dict = self.files)
+        self.files = din.read_data(file_urls = file_urls, 
+                                   file_dict = self.files, 
+                                   ema_format = ema_format, 
+                                   audio_format = audio_format, 
+                                   annotation_format = annotation_format)
         filenames = list(self.files.keys())
         
         for i in range(len(filenames)):

@@ -100,13 +100,28 @@
                 <string>TextGrid</string>
                </property>
               </item>
+              <item>
+               <property name="text">
+                <string>json</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>csv</string>
+               </property>
+              </item>
              </widget>
             </item>
             <item row="1" column="0">
              <widget class="QComboBox" name="emaFormatComboBox">
               <item>
                <property name="text">
-                <string>pos (Carstens)</string>
+                <string>AG50x</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>netcdf</string>
                </property>
               </item>
              </widget>
@@ -116,6 +131,16 @@
               <item>
                <property name="text">
                 <string>wav</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>mp3</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>ogg</string>
                </property>
               </item>
              </widget>
@@ -731,13 +756,6 @@
          </layout>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="testButton">
-        <property name="text">
-         <string>test</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </item>

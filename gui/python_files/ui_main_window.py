@@ -115,17 +115,22 @@ class Ui_MainWindow(object):
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.annotationFormatComboBox = QComboBox(self.centralwidget)
         self.annotationFormatComboBox.addItem("")
+        self.annotationFormatComboBox.addItem("")
+        self.annotationFormatComboBox.addItem("")
         self.annotationFormatComboBox.setObjectName(u"annotationFormatComboBox")
 
         self.gridLayout_8.addWidget(self.annotationFormatComboBox, 1, 2, 1, 1)
 
         self.emaFormatComboBox = QComboBox(self.centralwidget)
         self.emaFormatComboBox.addItem("")
+        self.emaFormatComboBox.addItem("")
         self.emaFormatComboBox.setObjectName(u"emaFormatComboBox")
 
         self.gridLayout_8.addWidget(self.emaFormatComboBox, 1, 0, 1, 1)
 
         self.audioFormatComboBox = QComboBox(self.centralwidget)
+        self.audioFormatComboBox.addItem("")
+        self.audioFormatComboBox.addItem("")
         self.audioFormatComboBox.addItem("")
         self.audioFormatComboBox.setObjectName(u"audioFormatComboBox")
 
@@ -611,11 +616,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addLayout(self.verticalLayout_13)
 
-        self.testButton = QPushButton(self.centralwidget)
-        self.testButton.setObjectName(u"testButton")
-
-        self.verticalLayout_8.addWidget(self.testButton)
-
 
         self.gridLayout_2.addLayout(self.verticalLayout_8, 0, 4, 1, 1)
 
@@ -665,10 +665,15 @@ class Ui_MainWindow(object):
         self.comboBox_4.setItemText(0, QCoreApplication.translate("MainWindow", u"EMA", None))
 
         self.annotationFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"TextGrid", None))
+        self.annotationFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"json", None))
+        self.annotationFormatComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"csv", None))
 
-        self.emaFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"pos (Carstens)", None))
+        self.emaFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"AG50x", None))
+        self.emaFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"netcdf", None))
 
         self.audioFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"wav", None))
+        self.audioFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"mp3", None))
+        self.audioFormatComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"ogg", None))
 
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"EMA", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"AUDIO", None))
@@ -713,7 +718,6 @@ class Ui_MainWindow(object):
         self.movingAverageInput.setText(QCoreApplication.translate("MainWindow", u"10", None))
         self.bwLowPassCutoffInput.setText(QCoreApplication.translate("MainWindow", u"20", None))
         self.bwLowPassOrderInput.setText(QCoreApplication.translate("MainWindow", u"5", None))
-        self.testButton.setText(QCoreApplication.translate("MainWindow", u"test", None))
         self.menuFiles.setTitle(QCoreApplication.translate("MainWindow", u"Files", None))
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.menuexport.setTitle(QCoreApplication.translate("MainWindow", u"Export", None))
