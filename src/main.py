@@ -14,6 +14,7 @@ from PySide6.QtUiTools import QUiLoader
 #add gui folder to sys.path
 absolute_path = os.path.dirname(__file__)
 main_path = "/".join(absolute_path.split("/")[:-1])
+home_path = "~"+"/".join(absolute_path.split("/")[:3])+"/"
 # add path for gui files
 sys.path.insert(1,main_path+ "/gui/python_files/")
 # add path for data import and export scripts
@@ -31,6 +32,7 @@ import filter_application
 
 import landmark_detection
 import inspector
+import inspector2D
 import pandas as pd
 
 import warnings
@@ -105,8 +107,23 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 for i in range(len(tmp_tiers)):
                     if tmp_tiers[i] not in tiers_to_transmit:
                         tiers_to_transmit.append(tmp_tiers[i])
+
+        # filter data
+        files_to_transmit = self.files.copy()
+        file_keys = list(files_to_transmit.keys())
+        file_options_keys = list(self.filterOptions.keys())
+        for file_key in file_keys:
+            for filter_key in file_options_keys:
+                if self.filterOptions[filter_key].isChecked():
+                    if filter_key == "MAfilter":
+                        window_size = int(self.movingAverageInput.text())
+                        files_to_transmit[file_key].ema = filter_application.filter_data(dataset=files_to_transmit[file_key].ema,filter_type="mean",window=window_size)
+                    elif filter_key == "BWLPfilter":
+                        cutoff = int(self.bwLowPassCutoffInput.text())
+                        order = int(self.bwLowPassOrderInput.text())
+                        files_to_transmit[file_key].ema = filter_application.filter_data(dataset=files_to_transmit[file_key].ema,filter_type="butter",cutoff=15,order=5)
         
-        self.lm_detect = landmark_detection.landmark_detection_window(transmittedFiles=self.files,
+        self.lm_detect = landmark_detection.landmark_detection_window(transmittedFiles=files_to_transmit,
                                                                  transmittedTiers=tiers_to_transmit,
                                                                  transmittedChannelAllocation=channel_allocation_dict)
         self.lm_detect.setWindowTitle("landmark detection")
@@ -195,32 +212,48 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
 
     def openInspectorWindow(self):
-        
         selected_files = self.dataList.selectedItems()
         clicked_data_item_name = selected_files[0].text()
         data = self.files[clicked_data_item_name]
-        
-        data.ema = filter_application.filter_data(dataset=data.ema,filter_type="butter",cutoff=15,order=5)
+        file_options_keys = list(self.filterOptions.keys())
+        for filter_key in file_options_keys:
+            if self.filterOptions[filter_key].isChecked():
+                if filter_key == "MAfilter":
+                    window_size = int(self.movingAverageInput.text())
+                    data.ema = filter_application.filter_data(dataset=data.ema,filter_type="mean",window=window_size)
+                elif filter_key == "BWLPfilter":
+                    cutoff = int(self.bwLowPassCutoffInput.text())
+                    order = int(self.bwLowPassOrderInput.text())
+                    data.ema = filter_application.filter_data(dataset=data.ema,filter_type="butter",cutoff=15,order=5)
 
         if self.tierList.rowCount() != 0:
             tier_list_to_transmit = self.collect_articulatory_landmarks()
         else:
             tier_list_to_transmit = []
-        if len(selected_files) != 0:
-            channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
-            self.insp = inspector.inspector_window(transmittedData=data,transmittedChannelAllocation=channel_allocation_dict,transmittedTierList=tier_list_to_transmit) 
-            self.insp.setWindowTitle(clicked_data_item_name)
-            self.insp.submitLandmarks.connect(self.on_inspector_store)
-            self.insp.show()
+        channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
+        self.insp = inspector.inspector_window(transmittedData=data,transmittedChannelAllocation=channel_allocation_dict,transmittedTierList=tier_list_to_transmit) 
+        self.insp.setWindowTitle(clicked_data_item_name)
+        self.insp.submitLandmarks.connect(self.on_inspector_store)
+        self.insp.show()
     
     def openInspector2DWindow(self):
         selected_files = self.dataList.selectedItems()
         clicked_data_item_name = selected_files[0].text()
         data = self.files[clicked_data_item_name]
-        data.ema = filter_application.filter_data(dataset=data.ema,filter_type="butter",cutoff=15,order=5)
+        file_options_keys = list(self.filterOptions.keys())
+        for filter_key in file_options_keys:
+            if self.filterOptions[filter_key].isChecked():
+                if filter_key == "MAfilter":
+                    window_size = int(self.movingAveragInput)
+                    data.ema = filter_application.filter_data(dataset=data.ema,filter_type="mean",window=window_size)
+                elif filter_key == "BWLPfilter":
+                    cutoff = int(self.bwLowPassCutoffInput.text())
+                    order = int(self.bwLowPassOrderInput)
+                    data.ema = filter_application.filter_data(dataset=data.ema,filter_type="butter",cutoff=15,order=5)
         if len(selected_files) != 0:
             channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
             self.insp2D = inspector2D.inspector2D_window(data,channel_allocation_dict) 
+            self.insp2D.setWindowTitle(clicked_data_item_name)
             self.insp2D.show()
 
     #def openInspector3DWindow(self):
@@ -260,7 +293,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         clicked_data_item_name = selected_files[0].text()
         previous_annotation = self.files[clicked_data_item_name].annotation
         new_tiers = landmarks["tierName"].unique()
-        porevious_annotation = previous_annotation[previous_annotation["tierName"].isin(new_tiers) == False].reset_index(drop=True)
+        landmark_tiers = self.collect_articulatory_landmarks()
+        porevious_annotation = previous_annotation[np.logical_and(previous_annotation["tierName"].isin(new_tiers) == False,previous_annotation["tierName"].isin(landmark_tiers) == False)].reset_index(drop=True)
         updated_annotation = pd.concat([previous_annotation,landmarks]).reset_index(drop=True)
         self.files[clicked_data_item_name].annotation = updated_annotation
         tier_names = updated_annotation["tierName"].unique()
@@ -357,5 +391,6 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
 app = QApplication(sys.argv)
 w = MainWindow()
+w.setWindowTitle("ADA")
 w.show()
 sys.exit(app.exec())

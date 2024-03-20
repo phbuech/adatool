@@ -20,7 +20,7 @@ def butter_lowpass_filter(data, cutoff_freq, nyq_freq, order):
     y = signal.filtfilt(b, a, data)
     return y
 
-def filter_data(dataset,cutoff,order,filter_type=None):
+def filter_data(dataset,cutoff=None,order=None,window=None,filter_type=None):
     tmp_data = dataset.ema.values.copy()
 
     if filter_type == "butter":
@@ -32,7 +32,12 @@ def filter_data(dataset,cutoff,order,filter_type=None):
                                                     nyq_freq = dataset.attrs["samplerate"]/2,
                                                     order = order                             
                                                     )
-
+    elif filter_type == "mean":
+        for i in range(tmp_data.shape[1]):
+            for j in range(tmp_data.shape[2]):
+                tmp_data[:,i,j] = mean_filter(data = tmp_data[:,i,j],
+                                            N = window
+                                            )
     filtered_dataset = xr.Dataset(
                                     data_vars=dict(
                                                     ema=(["time","channels","dimensions"],tmp_data)

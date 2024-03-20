@@ -93,7 +93,6 @@ def automatic_landmark_detection(files,info,channel_dict,pbar):
             tmp_annotation  = tmp_annotation[tmp_annotation["tierName"] == target_tier].reset_index(drop=True)
             for segment_annotation_index in range(len(tmp_annotation)):
                 for target_index in range(len(info)):
-                    print(info)
                     segment_labels = np.array([info[target_index][ii+1]["label"] for ii in range(len(info[target_index]))])
                     annotation_labels = tmp_annotation["label"][segment_annotation_index:segment_annotation_index+len(segment_labels)].to_numpy()
                     if np.array_equal(annotation_labels,segment_labels):

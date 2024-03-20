@@ -600,12 +600,8 @@ class Ui_INSPECTOR(object):
 
         self.gridLayout_3.addWidget(self.emaPanel1TierNameLineEdit, 1, 2, 1, 1)
 
-        self.emaPanel2DisplayLandmarksCheckBox = QCheckBox(self.layoutWidget_4)
-        self.emaPanel2DisplayLandmarksCheckBox.setObjectName(u"emaPanel2DisplayLandmarksCheckBox")
-
-        self.gridLayout_3.addWidget(self.emaPanel2DisplayLandmarksCheckBox, 2, 0, 1, 1)
-
         self.emaPanel3SelectTierComboBox = QComboBox(self.layoutWidget_4)
+        self.emaPanel3SelectTierComboBox.addItem("")
         self.emaPanel3SelectTierComboBox.setObjectName(u"emaPanel3SelectTierComboBox")
         sizePolicy3.setHeightForWidth(self.emaPanel3SelectTierComboBox.sizePolicy().hasHeightForWidth())
         self.emaPanel3SelectTierComboBox.setSizePolicy(sizePolicy3)
@@ -614,17 +610,13 @@ class Ui_INSPECTOR(object):
         self.gridLayout_3.addWidget(self.emaPanel3SelectTierComboBox, 3, 1, 1, 1)
 
         self.emaPanel2SelectTierComboBox = QComboBox(self.layoutWidget_4)
+        self.emaPanel2SelectTierComboBox.addItem("")
         self.emaPanel2SelectTierComboBox.setObjectName(u"emaPanel2SelectTierComboBox")
         sizePolicy5.setHeightForWidth(self.emaPanel2SelectTierComboBox.sizePolicy().hasHeightForWidth())
         self.emaPanel2SelectTierComboBox.setSizePolicy(sizePolicy5)
         self.emaPanel2SelectTierComboBox.setMinimumSize(QSize(150, 0))
 
         self.gridLayout_3.addWidget(self.emaPanel2SelectTierComboBox, 2, 1, 1, 1)
-
-        self.emaPanel3DisplayLandmarksCheckBox = QCheckBox(self.layoutWidget_4)
-        self.emaPanel3DisplayLandmarksCheckBox.setObjectName(u"emaPanel3DisplayLandmarksCheckBox")
-
-        self.gridLayout_3.addWidget(self.emaPanel3DisplayLandmarksCheckBox, 3, 0, 1, 1)
 
         self.label_10 = QLabel(self.layoutWidget_4)
         self.label_10.setObjectName(u"label_10")
@@ -634,21 +626,13 @@ class Ui_INSPECTOR(object):
         self.gridLayout_3.addWidget(self.label_10, 0, 0, 1, 1)
 
         self.emaPanel1SelectTierComboBox = QComboBox(self.layoutWidget_4)
+        self.emaPanel1SelectTierComboBox.addItem("")
         self.emaPanel1SelectTierComboBox.setObjectName(u"emaPanel1SelectTierComboBox")
         sizePolicy3.setHeightForWidth(self.emaPanel1SelectTierComboBox.sizePolicy().hasHeightForWidth())
         self.emaPanel1SelectTierComboBox.setSizePolicy(sizePolicy3)
         self.emaPanel1SelectTierComboBox.setMinimumSize(QSize(150, 0))
 
         self.gridLayout_3.addWidget(self.emaPanel1SelectTierComboBox, 1, 1, 1, 1)
-
-        self.emaPanel1DisplayLandmarksCheckBox = QCheckBox(self.layoutWidget_4)
-        self.emaPanel1DisplayLandmarksCheckBox.setObjectName(u"emaPanel1DisplayLandmarksCheckBox")
-        sizePolicy5.setHeightForWidth(self.emaPanel1DisplayLandmarksCheckBox.sizePolicy().hasHeightForWidth())
-        self.emaPanel1DisplayLandmarksCheckBox.setSizePolicy(sizePolicy5)
-        self.emaPanel1DisplayLandmarksCheckBox.setContextMenuPolicy(Qt.DefaultContextMenu)
-        self.emaPanel1DisplayLandmarksCheckBox.setLayoutDirection(Qt.LeftToRight)
-
-        self.gridLayout_3.addWidget(self.emaPanel1DisplayLandmarksCheckBox, 1, 0, 1, 1)
 
         self.label_15 = QLabel(self.layoutWidget_4)
         self.label_15.setObjectName(u"label_15")
@@ -687,6 +671,28 @@ class Ui_INSPECTOR(object):
         self.emaAllTiersComboBox.setObjectName(u"emaAllTiersComboBox")
 
         self.gridLayout_3.addWidget(self.emaAllTiersComboBox, 4, 1, 1, 1)
+
+        self.emaPanel1DisplayLandmarksPushButton = QPushButton(self.layoutWidget_4)
+        self.emaPanel1DisplayLandmarksPushButton.setObjectName(u"emaPanel1DisplayLandmarksPushButton")
+        sizePolicy5.setHeightForWidth(self.emaPanel1DisplayLandmarksPushButton.sizePolicy().hasHeightForWidth())
+        self.emaPanel1DisplayLandmarksPushButton.setSizePolicy(sizePolicy5)
+        self.emaPanel1DisplayLandmarksPushButton.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.emaPanel1DisplayLandmarksPushButton.setLayoutDirection(Qt.LeftToRight)
+        self.emaPanel1DisplayLandmarksPushButton.setCheckable(True)
+
+        self.gridLayout_3.addWidget(self.emaPanel1DisplayLandmarksPushButton, 1, 0, 1, 1)
+
+        self.emaPanel2DisplayLandmarksPushButton = QPushButton(self.layoutWidget_4)
+        self.emaPanel2DisplayLandmarksPushButton.setObjectName(u"emaPanel2DisplayLandmarksPushButton")
+        self.emaPanel2DisplayLandmarksPushButton.setCheckable(True)
+
+        self.gridLayout_3.addWidget(self.emaPanel2DisplayLandmarksPushButton, 2, 0, 1, 1)
+
+        self.emaPanel3DisplayLandmarksPushButton = QPushButton(self.layoutWidget_4)
+        self.emaPanel3DisplayLandmarksPushButton.setObjectName(u"emaPanel3DisplayLandmarksPushButton")
+        self.emaPanel3DisplayLandmarksPushButton.setCheckable(True)
+
+        self.gridLayout_3.addWidget(self.emaPanel3DisplayLandmarksPushButton, 3, 0, 1, 1)
 
 
         self.EMA_CONTROL_LAYOUT.addLayout(self.gridLayout_3)
@@ -760,13 +766,19 @@ class Ui_INSPECTOR(object):
 
         self.label_6.setText(QCoreApplication.translate("INSPECTOR", u"detection algorithm:", None))
         self.label_17.setText(QCoreApplication.translate("INSPECTOR", u"LANDMARK TIER CONTROLS", None))
-        self.emaPanel2DisplayLandmarksCheckBox.setText(QCoreApplication.translate("INSPECTOR", u"2", None))
-        self.emaPanel3DisplayLandmarksCheckBox.setText(QCoreApplication.translate("INSPECTOR", u"3", None))
+        self.emaPanel3SelectTierComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"new", None))
+
+        self.emaPanel2SelectTierComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"new", None))
+
         self.label_10.setText(QCoreApplication.translate("INSPECTOR", u"show", None))
-        self.emaPanel1DisplayLandmarksCheckBox.setText(QCoreApplication.translate("INSPECTOR", u"1", None))
+        self.emaPanel1SelectTierComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"new", None))
+
         self.label_15.setText(QCoreApplication.translate("INSPECTOR", u"edit tier name", None))
         self.label_14.setText(QCoreApplication.translate("INSPECTOR", u"tier", None))
         self.removeTierButton.setText(QCoreApplication.translate("INSPECTOR", u"remove", None))
+        self.emaPanel1DisplayLandmarksPushButton.setText(QCoreApplication.translate("INSPECTOR", u"1", None))
+        self.emaPanel2DisplayLandmarksPushButton.setText(QCoreApplication.translate("INSPECTOR", u"2", None))
+        self.emaPanel3DisplayLandmarksPushButton.setText(QCoreApplication.translate("INSPECTOR", u"3", None))
         self.storeLandmarksButton.setText(QCoreApplication.translate("INSPECTOR", u"store", None))
     # retranslateUi
 

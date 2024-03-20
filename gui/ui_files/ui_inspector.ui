@@ -321,7 +321,7 @@
           <number>20</number>
          </property>
          <property name="childrenCollapsible">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <widget class="QWidget" name="layoutWidget_3">
           <layout class="QVBoxLayout" name="EMA_PANEL_LAYOUT">
@@ -937,13 +937,6 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QCheckBox" name="emaPanel2DisplayLandmarksCheckBox">
-               <property name="text">
-                <string>2</string>
-               </property>
-              </widget>
-             </item>
              <item row="3" column="1">
               <widget class="QComboBox" name="emaPanel3SelectTierComboBox">
                <property name="sizePolicy">
@@ -958,6 +951,11 @@
                  <height>0</height>
                 </size>
                </property>
+               <item>
+                <property name="text">
+                 <string>new</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item row="2" column="1">
@@ -974,13 +972,11 @@
                  <height>0</height>
                 </size>
                </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QCheckBox" name="emaPanel3DisplayLandmarksCheckBox">
-               <property name="text">
-                <string>3</string>
-               </property>
+               <item>
+                <property name="text">
+                 <string>new</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item row="0" column="0">
@@ -1010,25 +1006,11 @@
                  <height>0</height>
                 </size>
                </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="emaPanel1DisplayLandmarksCheckBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="contextMenuPolicy">
-                <enum>Qt::DefaultContextMenu</enum>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
-               </property>
-               <property name="text">
-                <string>1</string>
-               </property>
+               <item>
+                <property name="text">
+                 <string>new</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item row="0" column="2">
@@ -1086,6 +1068,48 @@
              </item>
              <item row="4" column="1">
               <widget class="QComboBox" name="emaAllTiersComboBox"/>
+             </item>
+             <item row="1" column="0">
+              <widget class="QPushButton" name="emaPanel1DisplayLandmarksPushButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="contextMenuPolicy">
+                <enum>Qt::DefaultContextMenu</enum>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="text">
+                <string>1</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QPushButton" name="emaPanel2DisplayLandmarksPushButton">
+               <property name="text">
+                <string>2</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QPushButton" name="emaPanel3DisplayLandmarksPushButton">
+               <property name="text">
+                <string>3</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>

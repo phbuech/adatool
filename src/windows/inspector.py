@@ -91,7 +91,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         # initialize waveform plot
         self.plot_audio_waveform()
-        self.waveformPlotWidget.setMouseEnabled(x=True,y=False)
+        self.waveformPlotWidget.setMouseEnabled(x=False,y=False)
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].setMouseEnabled(x=False,y=False)
 
         #self.waveformPlotWidget.scene().installEventFilter(self)
@@ -147,7 +147,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.rename_landmarks)
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.remove_landmarks)
 
-        #for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
+        for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
 
         self.addLandmarkButton.clicked.connect(self.activate_landmark_addition)
         self.renameLandmarkButton.clicked.connect(self.activate_landmark_renaming)
@@ -170,9 +170,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].addItem(self.locationLines["emaPlotWidget"+str(i)])
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseMoved.connect(self.mouse_hover)
         self.displayLandmarksCheckBoxes = {
-                                            1 : self.emaPanel1DisplayLandmarksCheckBox,
-                                            2 : self.emaPanel2DisplayLandmarksCheckBox,
-                                            3 : self.emaPanel3DisplayLandmarksCheckBox
+                                            1 : self.emaPanel1DisplayLandmarksPushButton,
+                                            2 : self.emaPanel2DisplayLandmarksPushButton,
+                                            3 : self.emaPanel3DisplayLandmarksPushButton
                                         }
         self.landmarksTierLineEdits = {
                                         1 : self.emaPanel1TierNameLineEdit,
@@ -355,13 +355,15 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
     def display_landmarks(self):
         name = self.sender().objectName() #replace with more efficient naming
-        idx = int(name.replace("emaPanel","").replace("DisplayLandmarksCheckBox",""))
+        idx = int(self.sender().text())
         if self.sender().isChecked() and self.emaLandmarksComboBoxes[idx].currentText() != "":
             current_text = self.emaLandmarksComboBoxes[idx].currentText()
             tmp_landmark_register = self.landmarkRegister[self.landmarkRegister["tierName"] == current_text].reset_index(drop=True)
             plt.add_landmarks_to_pw(self.emaPanelDict[idx]["PlotWidget"],tmp_landmark_register)
+            self.sender().setStyleSheet("background-color: green")
         else:
             plt.remove_landmarks_from_pw(self.emaPanelDict[idx]["PlotWidget"])
+            self.sender().setStyleSheet("background-color: light gray")
 
 
     def landmark_cmbbox_value_changed(self):
@@ -382,10 +384,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
     def store_landmarks(self):
         for i in range(1,4):
             if self.displayLandmarksCheckBoxes[i].isChecked():
-                if self.landmarksTierLineEdits[i].text() != "":
+                if self.landmarksTierLineEdits[i].text() != "" and self.emaLandmarksComboBoxes[i].currentText() == "new":
                     tier_name = self.landmarksTierLineEdits[i].text()
+                    self.landmarksTierLineEdits[i].setText("")
                 else:
-                    tier_name = self.displayLandmarksCheckBoxes[i].currentText()
+                    tier_name = self.emaLandmarksComboBoxes[i].currentText()
 
                 tmp_lm = icoll.collect_landmarks(self.emaPanelDict[i]["PlotWidget"])
                 tmp_landmark_register = pd.DataFrame(columns=["tierName","tmin","tmax","label"])
@@ -415,6 +418,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         for i in range(0,4):
             cmbbox = self.emaLandmarksComboBoxes[i]
             cmbbox.clear()
+            cmbbox.addItem("new")
             for tier_name in tier_names:
                 cmbbox.addItem(tier_name)
                  
@@ -438,20 +442,22 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         if isinstance(item,pg.InfiniteLine):
             position = item.pos()
             #label = item.label.format
-            parent_name = self.sender().parent().objectName()
-            panel_idx = int(list(parent_name)[-1])
-            parent_idx = int(list(parent_name)[-1])
-            ready_to_store = True
-            #if self.emaLandmarksComboBoxes[parent_idx].currentText() != "":
-            #    tier_name = self.emaLandmarksComboBoxes[parent_idx].currentText()
-            #    tier_names = self.landmarkRegister["tierName"].unique()
-            #    positions = [ position[0] == self.landmarkRegister[key][i]["position"] for i in range(len(tier_names))]
-            #    if all(positions):
-            #        ready_to_store = False
-            #if ready_to_store == True:
-            if self.displayLandmarksCheckBoxes[panel_idx].isChecked() == False:
-                self.displayLandmarksCheckBoxes[panel_idx].setChecked(True)
-            self.storeLandmarksButton.setStyleSheet("background-color : red")
+            if position not in self.landmarkRegister["tmin"].to_numpy():
+                parent_name = self.sender().parent().objectName()
+                panel_idx = int(list(parent_name)[-1])
+                parent_idx = int(list(parent_name)[-1])
+                ready_to_store = True
+                #if self.emaLandmarksComboBoxes[parent_idx].currentText() != "":
+                #    tier_name = self.emaLandmarksComboBoxes[parent_idx].currentText()
+                #    tier_names = self.landmarkRegister["tierName"].unique()
+                #    positions = [ position[0] == self.landmarkRegister[key][i]["position"] for i in range(len(tier_names))]
+                #    if all(positions):
+                #        ready_to_store = False
+                #if ready_to_store == True:
+                if self.displayLandmarksCheckBoxes[panel_idx].isChecked() == False:
+                    self.displayLandmarksCheckBoxes[panel_idx].setChecked(True)
+                    self.displayLandmarksCheckBoxes[panel_idx].setStyleSheet("background-color : green")
+                self.storeLandmarksButton.setStyleSheet("background-color : red")
             
 
     
@@ -852,13 +858,13 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         p1 = plotWidget.plotItem
         p1.getViewBox().setXLink(self.waveformPlotWidget)
         p2 = pg.ViewBox()
-        p2.setMouseEnabled(x=True,y=False)
+        p2.setMouseEnabled(x=False,y=False)
         p1.showAxis("right")
         p1.scene().addItem(p2)
         p1.getAxis("right").linkToView(p2)
         p2.setXLink(self.waveformPlotWidget)
         p3 = pg.ViewBox()
-        p3.setMouseEnabled(x=True,y=False)
+        p3.setMouseEnabled(x=False,y=False)
         ax3 = pg.AxisItem("right")
         p1.layout.addItem(ax3,2,3)
         p1.scene().addItem(p3)
