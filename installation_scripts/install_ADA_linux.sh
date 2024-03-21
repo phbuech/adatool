@@ -10,14 +10,34 @@ if [ "$DISPLAY" != "" ]; then
 fi
 
 # put contents of your script here
-echo This script installs a Python distribution [3.11], an environment and the dependencies for ADA using conda.
-echo In order to follow the
-echo Do you want to execute the installation script [y/n]?
+echo "This script installs a Python distribution [3.11], an environment and the dependencies for ADA using conda. Please follow the instructions."
+echo "Do you want to execute the installation script [yes/no]?"
 read reply
 
-if [ $reply == "y"]; do
-    echo The installation script will be executed. Press y in every step.
+if [ $reply == "yes" ]; then
+    echo "The installation script will be executed. Press y in every step."
     read junk
+    echo "Activate conda command"
     source ~/anaconda3/etc/profile.d/conda.sh
-    read junk
+    # from https://stackoverflow.com/questions/70597896/check-if-conda-env-exists-and-create-if-not-in-bash
+    if { conda env list | grep 'ada_env'; } >/dev/null 2>&1; then
+      echo "Environment with the same name found and will be uninstalled. "
+      yes "y" | conda remove --name ada_env --all
+      echo "Environment sucessfully removed."
+
+    else
+      echo "Environment does not exist and will be installed."
+    fi
+    echo "Create desktop icon?"
+    echo "Install ada environment"
+    yes "y" | conda create --name ada_env Python=3.11
+    echo "Activate ada environment"
+    conda activate ada_env
+    yes "y" | conda install -c conda-forge mamba
+    echo "Install dependencies"
+    yes "y" | mamba install -c conda-forge --file requirements.txt
+
 fi
+
+echo "The installation script sucessfully finished. Press any key to exit"
+read junk

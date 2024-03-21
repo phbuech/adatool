@@ -24,7 +24,7 @@ from ui_inspector import Ui_INSPECTOR
 #import inspector_plotting as iplt
 
 
-
+import sounddevice as sd
 import pyqtgraph as pg
 
 #load internal modules
@@ -258,34 +258,14 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
     def play_audio(self):
         if isinstance(self.LinearRegionItemRegister["waveformPlotWidget"],pg.LinearRegionItem):
             x = self.LinearRegionItemRegister["waveformPlotWidget"].getRegion()
-            
-        else:
-            x, _ = self.waveformPlotWidget.getViewBox().viewRange()
 
         xmin = np.abs(self.data.audio.time.values - x[0]).argmin()
         xmax = np.abs(self.data.audio.time.values - x[1]).argmin()
         sound_snippet = self.data.audio.signal.values[xmin:xmax]
-        
-        f = io.BytesIO()
-        #io.wavfile.write(f,self.data.audio.attrs["samplerate"], sound_snippet)
-        buf = QBuffer()
-        buf.setData(f.getvalue())
-        buf.open(QIODevice.ReadWrite)
-        player = QMediaPlayer()
-        player.setMedia(QMediaContent(),buf)
-        audio_output= QAudioOutput()
-        audio_output.setVolume(50)
-        
+        sr = self.data.audio.attrs["samplerate"]
+        sd.play(sound_snippet,sr)
+        print("playes")
 
-        def handle_state_changed(state):
-            if state == QMediaPlayer.PlayingState:
-                print("listen")
-            else:
-                print("not")
-
-        player.stateChanged.connect(handle_state_changed)
-        player.play()
-        buf.close()
 
     def displayAudioAnnotations(self):
         if self.sender().isChecked():

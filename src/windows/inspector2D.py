@@ -35,7 +35,6 @@ import signal_processing as sp
 import landmark_detection_backend as ldb
 
 import sounddevice as sd
-import pyaudio as pya
 from scipy.interpolate import CubicSpline
 
 import warnings
