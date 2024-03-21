@@ -129,9 +129,10 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
             if self.emaControlTable.cellWidget(row_idx,0).isChecked():
                 #self.scatterLabelRegister[channel_name].setScale(size)
                 self.scatterPlotItemRegister[channel_name].setPen(color=color_name,width=size/4)
+            if self.addLabelsPushButton.isChecked():
                 fn = QFont()
                 fn.setBold(True)
-                fn.setPointSize(size)
+                fn.setPointSize(size/2)
                 self.scatterLabelRegister[channel_name].setFont(fn)
 
 
@@ -313,15 +314,17 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
                     
 
 
-    def plotChannel(self):
+    def plotChannel(self,button_index=None):
         button = qApp.focusWidget()
-        index = self.emaControlTable.indexAt(button.pos())
-        channel_name = self.emaControlTable.cellWidget(index.row(),1).currentText()
-        if self.sender().isChecked():
+        index = self.emaControlTable.indexAt(button.pos()).row()
+        if button_index != None:
+            index = button_index
+        channel_name = self.emaControlTable.cellWidget(index,1).currentText()
+        if button.isChecked():
             
             position = self.locationLine.value()
             position_index = np.abs(position - self.data.ema.time.values).argmin()
-            color_name = self.emaControlTable.cellWidget(index.row(),2).currentText()
+            color_name = self.emaControlTable.cellWidget(index,2).currentText()
             channel_index = self.channels[channel_name]
             dim1_name = self.selectDimensionComboBox1.currentText()
             dim2_name = self.selectDimensionComboBox2.currentText()
@@ -339,24 +342,26 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
                                                                 y = [self.dataRegister[channel_name]["dim2"][position_index]]  
                                                             )
             self.curveItemRegister[channel_name] = pg.PlotCurveItem(pen=pg.mkPen(color_name,width=size/4))
-            self.curveItemRegister[channel_name].hide()
+            #self.curveItemRegister[channel_name].hide()
             self.emaPlotWidget1.addItem(self.curveItemRegister[channel_name])
             self.emaPlotWidget1.addItem(self.scatterPlotItemRegister[channel_name])
             
-            self.sender().setStyleSheet("background-color:"+color_name)
-            self.sender().setText("✔")
+            button.setStyleSheet("background-color:"+color_name)
+            button.setText("✔")
             
         else:
             self.emaPlotWidget1.removeItem(self.scatterPlotItemRegister[channel_name])
             self.emaPlotWidget1.removeItem(self.curveItemRegister[channel_name])
             self.emaPlotWidget1.removeItem(self.tongueShapeCurve)
+            if self.addLabelsPushButton.isChecked():
+                self.emaPlotWidget1.removeItem(self.scatterLabelRegister[channel_name])
             if self.plotTongueShapePushButton.isChecked() == False:
                 self.emaPlotWidget1.removeItem(self.tongueShapeCurve)
                 self.tongueShapeCurve = None
             self.scatterPlotItemRegister.pop(channel_name)
             self.dataRegister.pop(channel_name)
-            self.sender().setStyleSheet("background-color: light gray")
-            self.sender().setText("")
+            button.setStyleSheet("background-color: light gray")
+            button.setText("")
 
 
         
@@ -369,7 +374,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         #add plot button
         plot_button = QPushButton(self.emaControlTable)
         plot_button.setCheckable(True)
-        plot_button.clicked.connect(self.plotChannel)
+        plot_button.clicked.connect(lambda: self.plotChannel())
         self.emaControlTable.setCellWidget(number_of_rows,0, plot_button)
 
 
@@ -413,7 +418,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
             current_row = self.emaControlTable.rowCount() -1
         plot_checkbox = self.emaControlTable.cellWidget(current_row,0)
         if plot_checkbox.isChecked():
-            plot_checkbox.click()
+            plot_checkbox.click(button_index=current_row)
         self.emaControlTable.removeRow(current_row)
 
     def displayAudioAnnotations(self):
