@@ -96,7 +96,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.actionexport_landmarks_to_TextGrid.triggered.connect(lambda: self.export_landmarks("TextGrid"))
         self.actionexport_EMA_to_netcdf.triggered.connect(lambda: self.export_data("netcdf"))
         self.actionexport_EMA_to_csv.triggered.connect(lambda: self.export_data("csv"))
-        self.testButton.clicked.connect(self.test_fun)
+        #self.testButton.clicked.connect(self.test_fun)
         self.landmarkDetectionButton.clicked.connect(self.start_landmark_detection)
 
     def start_landmark_detection(self):
@@ -283,11 +283,15 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                     data.ema = filter_application.filter_data(dataset=data.ema,filter_type="mean",window=window_size)
                 elif filter_key == "BWLPfilter":
                     cutoff = int(self.bwLowPassCutoffInput.text())
-                    order = int(self.bwLowPassOrderInput)
+                    order = int(self.bwLowPassOrderInput.text())
                     data.ema = filter_application.filter_data(dataset=data.ema,filter_type="butter",cutoff=15,order=5)
+        if self.tierList.rowCount() != 0:
+            tier_list_to_transmit = self.collect_articulatory_landmarks()
+        else:
+            tier_list_to_transmit = []
         if len(selected_files) != 0:
             channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
-            self.insp2D = inspector2D.inspector2D_window(data,channel_allocation_dict) 
+            self.insp2D = inspector2D.inspector2D_window(data,channel_allocation_dict,tier_list_to_transmit) 
             self.insp2D.setWindowTitle(clicked_data_item_name)
             self.insp2D.show()
 
@@ -373,9 +377,9 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     def addFilesToDataList(self):
         file_urls = QFileDialog().getOpenFileUrls()
         #get main path
-        ema_format = emaFormatComboBox.currentText()
-        audio_format = audioFormatComboBox.currentText()
-        annotation_format = annotationFormatComboBox.currentText()
+        ema_format = self.emaFormatComboBox.currentText()
+        audio_format = self.audioFormatComboBox.currentText()
+        annotation_format = self.annotationFormatComboBox.currentText()
         self.files = din.read_data(file_urls = file_urls, 
                                    file_dict = self.files, 
                                    ema_format = ema_format, 

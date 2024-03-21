@@ -44,13 +44,14 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
 
-    def __init__(self, transmittedData,transmittedChannelAllocation):
+    def __init__(self, transmittedData,transmittedChannelAllocation,transmittedTierList):
         super().__init__()
         self.setupUi(self)
 
         
         self.data = transmittedData
         self.channels = transmittedChannelAllocation
+        self.tierList = transmittedTierList
 
         self.plot_audio_waveform()
         self.waveformPlotWidget.setMouseEnabled(x=False,y=False)
@@ -68,8 +69,10 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         try:
             if self.data.annotation is not None:
                 tiers = self.data.annotation["tierName"].unique()
-                #print(tiers)
-                for i in range(len(tiers)): self.audioAnnotationComboBox.addItem(tiers[i])
+                for i in range(len(tiers)): 
+                    for i in range(len(tiers)): 
+                        if tiers[i] not in self.tierList:
+                            self.audioAnnotationComboBox.addItem(tiers[i])
         except:
             pass
         self.displayAnnotationCheckBox.stateChanged.connect(self.displayAudioAnnotations)
@@ -496,7 +499,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
             xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
             boundary_range = np.abs(xRange[0] - xRange[1])
             slider_steps = int(audio_range/boundary_range)*100
-            print(slider_steps)
+            
             self.waveformSlider.setMaximum(slider_steps)
             
             mid = (xRange[0]+xRange[1])/2

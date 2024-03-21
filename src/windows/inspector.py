@@ -77,8 +77,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         try:
             if self.data.annotation is not None:
                 tiers = self.data.annotation["tierName"].unique()
-                #print(tiers)
-                for i in range(len(tiers)): self.audioAnnotationComboBox.addItem(tiers[i])
+                for i in range(len(tiers)): 
+                    if tiers[i] not in self.tierList:
+                        self.audioAnnotationComboBox.addItem(tiers[i])
         except:
             pass
 
@@ -791,7 +792,6 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
             boundary_range = np.abs(xRange[0] - xRange[1])
             slider_steps = int(audio_range/boundary_range)*100
-            print(slider_steps)
             self.waveformSlider.setMaximum(slider_steps)
             self.waveformSlider_2.setMaximum(slider_steps)
             mid = (xRange[0]+xRange[1])/2
