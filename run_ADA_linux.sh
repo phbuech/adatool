@@ -2,7 +2,8 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/"
 
-source ~/anaconda3/etc/profile.d/conda.sh
+PATH_TO_CONDA=$( locate anaconda3/etc/profile.d/conda.sh )
+source $PATH_TO_CONDA
 conda activate ada_env
-cd $SCRIPT_DIR
-python src/main.py
+PATH_TO_ADA=$( locate adatool/src/main.py )
+python $PATH_TO_ADA

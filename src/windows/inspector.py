@@ -243,7 +243,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             current_row = self.emaControlTable.rowCount() -1
         plot_checkbox = self.emaControlTable.cellWidget(current_row,0)
         if plot_checkbox.isChecked():
-            plot_checkbox.setChecked(False)
+            self.plot_trajectory(button_index=current_row)
         self.emaControlTable.removeRow(current_row)
 
     def change_audio_annotation_tier(self,evt):
@@ -424,10 +424,10 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             position = item.pos()
             #label = item.label.format
             if position not in self.landmarkRegister["tmin"].to_numpy():
-                parent_name = self.sender().parent().objectName()
-                panel_idx = int(list(parent_name)[-1])
-                parent_idx = int(list(parent_name)[-1])
-                ready_to_store = True
+                #parent_name = self.sender().parent().objectName()
+                #panel_idx = int(list(parent_name)[-1])
+                #parent_idx = int(list(parent_name)[-1])
+                #ready_to_store = True
                 #if self.emaLandmarksComboBoxes[parent_idx].currentText() != "":
                 #    tier_name = self.emaLandmarksComboBoxes[parent_idx].currentText()
                 #    tier_names = self.landmarkRegister["tierName"].unique()
@@ -621,20 +621,22 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                     self.LinearRegionItemRegister[self.pw_names[i]] = None
         
 
-    def plot_trajectory(self):
+    def plot_trajectory(self,button_index=None):
         button = qApp.focusWidget()
-        index = self.emaControlTable.indexAt(button.pos())
+        index = self.emaControlTable.indexAt(button.pos()).row()
+        if button_index != None:
+            index = button_index
         is_plotted = False
-        panel_to_plot = self.emaControlTable.cellWidget(index.row(),4).currentText()
+        panel_to_plot = self.emaControlTable.cellWidget(index,4).currentText()
         
         tmp_panel_array = [self.emaControlTable.cellWidget(i,4).currentText() for i in range(self.emaControlTable.rowCount())]
         
         if button.isChecked() and tmp_panel_array.count(panel_to_plot) == 1:
-            channel     = self.emaControlTable.cellWidget(index.row(),1).currentText()
-            dimension   = self.emaControlTable.cellWidget(index.row(),2).currentText()
-            parameter   = self.emaControlTable.cellWidget(index.row(),3).currentText()
-            panel       = self.emaControlTable.cellWidget(index.row(),4).currentText()
-            color       = self.emaControlTable.cellWidget(index.row(),5).currentText()
+            channel     = self.emaControlTable.cellWidget(index,1).currentText()
+            dimension   = self.emaControlTable.cellWidget(index,2).currentText()
+            parameter   = self.emaControlTable.cellWidget(index,3).currentText()
+            panel       = self.emaControlTable.cellWidget(index,4).currentText()
+            color       = self.emaControlTable.cellWidget(index,5).currentText()
             signal, label = sp.get_signal(
                                                 data = self.data.ema,
                                                 channel_dict = self.channels,
@@ -660,7 +662,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         elif tmp_panel_array.count(panel_to_plot) > 1:
             button.setChecked(False)
         else:
-            panel       = self.emaControlTable.cellWidget(index.row(),4).currentText()
+            panel       = self.emaControlTable.cellWidget(index,4).currentText()
             plt.remove_ema_trajectory(panels=self.emaPanelDict,target_panel=panel)
             button.setChecked(False)
             button.setStyleSheet("background-color: light gray")
@@ -718,7 +720,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         plot_button = QPushButton(" ")
         plot_button.setCheckable(True)
-        plot_button.clicked.connect(self.plot_trajectory)
+        plot_button.clicked.connect(lambda: self.plot_trajectory())
         self.emaControlTable.setCellWidget(number_of_rows,0,plot_button)
         
         

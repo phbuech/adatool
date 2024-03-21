@@ -333,7 +333,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         previous_annotation = self.files[clicked_data_item_name].annotation
         new_tiers = landmarks["tierName"].unique()
         landmark_tiers = self.collect_articulatory_landmarks()
-        porevious_annotation = previous_annotation[np.logical_and(previous_annotation["tierName"].isin(new_tiers) == False,previous_annotation["tierName"].isin(landmark_tiers) == False)].reset_index(drop=True)
+        previous_annotation = previous_annotation[np.logical_and(previous_annotation["tierName"].isin(new_tiers) == False,previous_annotation["tierName"].isin(landmark_tiers) == False)].reset_index(drop=True)
         updated_annotation = pd.concat([previous_annotation,landmarks]).reset_index(drop=True)
         self.files[clicked_data_item_name].annotation = updated_annotation
         tier_names = updated_annotation["tierName"].unique()
