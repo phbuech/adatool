@@ -113,9 +113,10 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.emaPanelDict[2]["Panel"].hide()
         self.emaPanelDict[3]["Panel"].hide()
         
-        self.displayEmaPanel1CheckBox.clicked.connect(self.show_ema_panel)
-        self.displayEmaPanel2CheckBox.clicked.connect(self.show_ema_panel)
-        self.displayEmaPanel3CheckBox.clicked.connect(self.show_ema_panel)
+        self.displayEmaPanel1PushButton.clicked.connect(self.show_ema_panel)
+        self.displayEmaPanel1PushButton.setStyleSheet("background-color : green")
+        self.displayEmaPanel2PushButton.clicked.connect(self.show_ema_panel)
+        self.displayEmaPanel3PushButton.clicked.connect(self.show_ema_panel)
 
 
         # initialize zoom buttons
@@ -882,10 +883,12 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         return axes
 
     def show_ema_panel(self):
-        panel_number = int(self.sender().objectName().replace("displayEmaPanel","").replace("CheckBox",""))
+        panel_number = int(self.sender().objectName().replace("displayEmaPanel","").replace("PushButton",""))
         if self.sender().isChecked():
             self.emaPanelDict[panel_number]["Panel"].show()
+            self.sender().setStyleSheet("background-color : green")
         else:
+            self.sender().setStyleSheet("background-color : light gray")
             self.emaPanelDict[panel_number]["Panel"].hide()
 
     def plot_audio_waveform(self):
