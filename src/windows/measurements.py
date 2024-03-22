@@ -303,7 +303,7 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
                 self.selectionTreeWidget.itemWidget(segment_item,2).setCurrentIndex(index)
 
 
-
+"""
 # testing
 
 files = {}
@@ -352,3 +352,4 @@ app = QApplication(sys.argv)
 w = measurements_window(transmittedFiles=files,transmittedTiers=tiers,transmittedChannelAllocation=channels)
 w.show()
 sys.exit(app.exec_())
+"""

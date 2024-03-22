@@ -156,7 +156,7 @@ def automatic_measurements(files,target_info,channel_dict,pbar,landmark_info,mea
                                     df.loc[len(df)] = values
                 elif measurements_info["TYPE"] == "mass-spring parameters":
                     target_index = measurements_parts[measurements_index]["target"]
-                    number_of_segments = len([ for i in range(len(target_info))])
+                    #number_of_segments = len([ for i in range(len(target_info))])
                     target_labels = np.array([target_info[target_index][i]["label"] for i in range(number_of_segments)])
                     current_annotation_labels = segment_annotation["label"][annotation_segment_index:annotation_segment_index+len(target_labels)].to_numpy()
                     if np.array_equal(target_labels,current_annotation_labels):
