@@ -50,7 +50,7 @@ def collect_measurements_info(tableWidget,measurements_type):
     if measurements_type == "mass-spring parameters":
         for i in range(number_of_rows):
             tmp = {}
-            tmp["label"] = tableWidget.cellWidget(i,0).currentText()
+            tmp["target"] = tableWidget.cellWidget(i,0).currentText()
             tmp["landmark"] = tableWidget.cellWidget(i,1).currentText()
             tmp["parameter"] = tableWidget.cellWidget(i,2).currentText()
             measurements_dict["measurements"][i] = tmp
@@ -90,7 +90,7 @@ def collect_landmark_info(treeWidget):
 
             tmp["label"] = segment_item.text(1)
             tmp["tier"] = treeWidget.itemWidget(segment_item,2).currentText()
-            tmp["landmark tier"] = treeWidget.itemWidget(target_item,3).currentText()
+            tmp["landmark tier"] = treeWidget.itemWidget(segment_item,3).currentText()
             tmp["channel"] =  treeWidget.itemWidget(segment_item,4).currentText()
             tmp["dimension"] = treeWidget.itemWidget(segment_item,5).currentText()
             tmp["parameter"] = treeWidget.itemWidget(segment_item,6).currentText()
@@ -135,20 +135,21 @@ def collect_landmark_detection_info(treeWidget):
         tmp["method"] =  treeWidget.itemWidget(target_item,6).currentText()
         tmp["windowed"] = treeWidget.itemWidget(target_item,7).isChecked()
         tmp["padding"] = np.float64(target_item.text(8))
-        segments[i+1] = tmp
+        segments[1] = tmp
         number_of_segments = target_item.childCount()
-        for j in range(number_of_segments):
-            tmp = {}
-            segment_item = target_item.child(j)
+        if number_of_segments != 0:
+            for j in range(number_of_segments):
+                tmp = {}
+                segment_item = target_item.child(j)
 
-            tmp["label"] = segment_item.text(1)
-            tmp["tier"] = treeWidget.itemWidget(segment_item,2).currentText()
-            tmp["channel"] =  treeWidget.itemWidget(segment_item,3).currentText()
-            tmp["dimension"] = treeWidget.itemWidget(segment_item,4).currentText()
-            tmp["parameter"] = treeWidget.itemWidget(segment_item,5).currentText()
-            tmp["method"] =  treeWidget.itemWidget(segment_item,6).currentText()
-            tmp["windowed"] = treeWidget.itemWidget(segment_item,7).isChecked()
-            tmp["padding"] = np.float64(segment_item.text(8))
-            segments[j+2] = tmp
+                tmp["label"] = segment_item.text(1)
+                tmp["tier"] = treeWidget.itemWidget(segment_item,2).currentText()
+                tmp["channel"] =  treeWidget.itemWidget(segment_item,3).currentText()
+                tmp["dimension"] = treeWidget.itemWidget(segment_item,4).currentText()
+                tmp["parameter"] = treeWidget.itemWidget(segment_item,5).currentText()
+                tmp["method"] =  treeWidget.itemWidget(segment_item,6).currentText()
+                tmp["windowed"] = treeWidget.itemWidget(segment_item,7).isChecked()
+                tmp["padding"] = np.float64(segment_item.text(8))
+                segments[j+2] = tmp
         info[i] = segments
     return info

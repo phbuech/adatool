@@ -126,6 +126,7 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
         self.runMeasurementsButton.clicked.connect(self.run_measurements)
         self.storeMeasurementsButton.clicked.connect(self.store_measurements)
         self.storeMeasurementsButton.setEnabled(False)
+        self.progressBar.setMaximum(len(self.files))
 
     def store_measurements(self):
         # code from https://stackoverflow.com/questions/61237159/qt-how-to-save-a-generated-file-by-the-program-into-users-machine
@@ -306,9 +307,9 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
 # testing
 
 files = {}
-posfile = "/home/philipp/test/0005.pos"
-wavfile = "/home/philipp/test/0005.wav"
-tgfile = "/home/philipp/test/0005.TextGrid"
+posfile = "/home/philipp/test2/0005.pos"
+wavfile = "/home/philipp/test2/0005.wav"
+tgfile = "/home/philipp/test2/0005.TextGrid"
 
 dat = data_import.dataContainer()
 dat.ema = data_import.read_AG50x(posfile)
@@ -318,9 +319,9 @@ dat.annotation = data_import.read_TextGrid(tgfile)
 
 files["0005"] = dat
 
-posfile = "/home/philipp/test/0006.pos"
-wavfile = "/home/philipp/test/0006.wav"
-tgfile = "/home/philipp/test/0006.TextGrid"
+posfile = "/home/philipp/test2/0006.pos"
+wavfile = "/home/philipp/test2/0006.wav"
+tgfile = "/home/philipp/test2/0006.TextGrid"
 
 dat = data_import.dataContainer()
 dat.ema = data_import.read_AG50x(posfile)

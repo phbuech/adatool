@@ -34,6 +34,8 @@ import filter_application
 import landmark_detection
 import inspector
 import inspector2D
+import measurements
+
 import pandas as pd
 import json
 
@@ -89,6 +91,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.openInspectorWindowButton.clicked.connect(self.openInspectorWindow)
         self.open2DInspectorWindowButton.clicked.connect(self.openInspector2DWindow)
         #self.open3DInspectorWindowButton.clicked.connect(self.openInspector3DWindow)
+        self.measurementsButton.clicked.connect(self.openMeasurementsWindow)
 
         #add function to QActions of toolbar
         self.actionexport_landmarks_to_csv.triggered.connect(lambda: self.export_landmarks("csv"))
@@ -99,6 +102,38 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         #self.testButton.clicked.connect(self.test_fun)
         self.landmarkDetectionButton.clicked.connect(self.start_landmark_detection)
 
+    def openMeasurementsWindow(self):
+        channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
+        tiers_to_transmit = []
+        file_keys = list(self.files.keys())
+        for file_key in file_keys:
+            if self.files[file_key].annotation is not None:
+                tmp_tiers = self.files[file_key].annotation["tierName"].unique()
+                for i in range(len(tmp_tiers)):
+                    if tmp_tiers[i] not in tiers_to_transmit:
+                        tiers_to_transmit.append(tmp_tiers[i])
+
+        # filter data
+        files_to_transmit = self.files.copy()
+        file_keys = list(files_to_transmit.keys())
+        file_options_keys = list(self.filterOptions.keys())
+        for file_key in file_keys:
+            for filter_key in file_options_keys:
+                if self.filterOptions[filter_key].isChecked():
+                    if filter_key == "MAfilter":
+                        window_size = int(self.movingAverageInput.text())
+                        files_to_transmit[file_key].ema = filter_application.filter_data(dataset=files_to_transmit[file_key].ema,filter_type="mean",window=window_size)
+                    elif filter_key == "BWLPfilter":
+                        cutoff = int(self.bwLowPassCutoffInput.text())
+                        order = int(self.bwLowPassOrderInput.text())
+                        files_to_transmit[file_key].ema = filter_application.filter_data(dataset=files_to_transmit[file_key].ema,filter_type="butter",cutoff=15,order=5)
+        self.measurementsWindow = measurements.measurements_window(transmittedFiles=files_to_transmit,
+                                                                 transmittedTiers=tiers_to_transmit,
+                                                                 transmittedChannelAllocation=channel_allocation_dict)
+        self.measurementsWindow.setWindowTitle("Measurements")
+        #self.measurementsWindow.submitLandmarks.connect(self.on_landmark_detection_store)
+        self.measurementsWindow.show()
+        
     def start_landmark_detection(self):
         channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
         tiers_to_transmit = []
