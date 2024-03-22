@@ -69,9 +69,8 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
             if self.data.annotation is not None:
                 tiers = self.data.annotation["tierName"].unique()
                 for i in range(len(tiers)): 
-                    for i in range(len(tiers)): 
-                        if tiers[i] not in self.tierList:
-                            self.audioAnnotationComboBox.addItem(tiers[i])
+                    if tiers[i] not in self.tierList:
+                        self.audioAnnotationComboBox.addItem(tiers[i])
         except:
             pass
         self.displayAnnotationCheckBox.stateChanged.connect(self.displayAudioAnnotations)
