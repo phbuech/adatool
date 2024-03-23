@@ -1,8 +1,10 @@
+# load external modules
 import os
 import sys
 import io
 import numpy as np
 import pandas as pd
+import scipy as scp
 
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -83,7 +85,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         except:
             pass
 
-        self.displayAnnotationCheckBox.stateChanged.connect(self.displayAudioAnnotations)
+        self.displayAnnotationPushButton.clicked.connect(self.displayAudioAnnotations)
 
         
         self.landmarkRegister = pd.DataFrame(columns=["tierName","tmin","tmax","label"])
@@ -91,7 +93,8 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         #self.temporaryLandmarkRegister = {}
 
         # initialize waveform plot
-        self.plot_audio_waveform()
+        if self.data.audio != None:
+            self.plot_audio_waveform()
         self.waveformPlotWidget.setMouseEnabled(x=False,y=False)
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].setMouseEnabled(x=False,y=False)
 
@@ -107,6 +110,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         # show grids for all plotwidgets
         self.waveformPlotWidget.showGrid(x=True,y=True)        
         #for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].showGrid(x=True,y=True)
+        self.spectrogramFrame.hide()
+        self.showSpectrogramButton.clicked.connect(self.show_spectrogram)
+        self.spectrogramWidget.setMouseEnabled(x=False,y=False)
+        self.plot_spectrogram()
+        self.spectrogramWidget.setXLink(self.waveformPlotWidget)
 
 
         # hide ema panels 2 and 3
@@ -211,7 +219,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         self.waveformSplitter.splitterMoved.connect(self.movingSplitter)
         self.emaSplitter.splitterMoved.connect(self.movingSplitter)
+        self.emaSplitter.setSizes([1000,1])
 
+        self.zoomSelectionButton.clicked.connect(self.zoom_selection)
+        
+        
         # assign ema tiers to comboboxes:
         #if self.data.annotation is not None:
         #    if "ema" in list(self.data.annotation.keys()):
@@ -219,6 +231,26 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         #        for i in range(len(self.emaLandmarksComboBoxes)):
         #            for tier in ema_tiers:
         #                self.emaLandmarksComboBoxes[i+1].addItem(tier)
+
+    def plot_spectrogram(self):
+        f, t, Sxx = scp.signal.spectrogram(x=self.data.audio.signal.values,fs=self.data.audio.attrs["samplerate"])
+        img = pg.ImageItem()
+        tr = QTransform()
+        
+        tr.scale(t[-1]/np.size(Sxx, axis=1),f[-1]/np.size(Sxx, axis=0))
+        img.setTransform(tr)
+        img.setImage(Sxx)
+        
+        self.spectrogramWidget.addItem(img)
+        self.spectrogramWidget.setLimits(xMin=0, xMax=5000, yMin=0, yMax=f[-1])
+
+    def show_spectrogram(self):
+        if self.sender().isChecked():
+            self.spectrogramFrame.show()
+            self.sender().setStyleSheet("background-color : green")
+        else:
+            self.spectrogramFrame.hide()
+            self.sender().setStyleSheet("background-color : light gray")
 
 
     def remove_tier(self):
@@ -248,10 +280,10 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.emaControlTable.removeRow(current_row)
 
     def change_audio_annotation_tier(self,evt):
-        if self.displayAnnotationCheckBox.isChecked():
-            self.displayAnnotationCheckBox.setChecked(False)
-        if self.audioAnnotationComboBox.currentText() != "Text":
-            self.displayAnnotationCheckBox.setChecked(True)
+        if self.displayAnnotationPushButton.isChecked():
+            self.displayAnnotationPushButton.setChecked(False)
+        #if self.audioAnnotationComboBox.currentText() != "Tier":
+        #    self.displayAnnotationPushButton.setChecked(True)
         
         
 
@@ -286,11 +318,17 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                                                     pen         = pg.mkPen("green", width = 2)
                                                                     )
                                 self.waveformPlotWidget.addItem(acoustic_landmark)
+                self.sender().setStyleSheet("background-color : green; color= black")
+                self.sender().setText("✔")
+            else:
+                self.sender().setChecked(False)
         elif self.sender().isChecked() == False:
             item_list = self.waveformPlotWidget.allChildItems()
             for i in range(len(item_list)):
                 if isinstance(item_list[i],pg.InfiniteLine):
                     self.waveformPlotWidget.removeItem(item_list[i])
+            self.sender().setStyleSheet("background-color : light gray")
+            self.sender().setText(" ")
                     
 
     def eventFilter(self,source,evt):
@@ -393,6 +431,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             index = self.emaLandmarksComboBoxes[j+1].findText(tier_names[j],Qt.MatchFixedString)
             self.emaLandmarksComboBoxes[j+1].setCurrentIndex(index)
         self.sender().setStyleSheet("background-color: light gray")
+        msgBox_stored = QMessageBox()
+        msgBox_stored.setIcon(QMessageBox.Information)
+        msgBox_stored.setText("Landmarks stored")
+        msgBox_stored.setStandardButtons(QMessageBox.Ok)
+        msgBox_stored.exec()
 
 
     def update_landmark_comboboxes(self):
@@ -489,7 +532,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             self.remove_landmarks(evt=evt)
         else:
             if self.sender().isChecked():
-                self.sender().setStyleSheet("background-color : red")
+                self.sender().setStyleSheet("background-color : green")
                 if self.addLandmarkButton.isChecked():
                     self.addLandmarkButton.click()
                 if self.renameLandmarkButton.isChecked():
@@ -502,7 +545,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             self.sender().setChecked(False)
         else:
             if self.sender().isChecked():
-                self.sender().setStyleSheet("background-color : red")
+                self.sender().setStyleSheet("background-color : green")
                 if self.removeLandmarkButton.isChecked():
                     self.removeLandmarkButton.click()
                 if self.addLandmarkButton.isChecked():
@@ -562,7 +605,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                 elif parameter == "pos" and detection_algorithm in ["tvel15_xy","tvel15_xz","tvel20_xy","tvel20_yz"]:
                                     dims = list(detection_algorithm.split("_")[1])
                                     tangential_velocity = sp.get_tangential_velocity(data=self.data.ema,channel_index=self.channels[channel],dims=dims)
-                                    landmarks = ldb.detect_landmarks_tvel(time=self.data.ema.time.values,tangential_velocity=tangential_velocity,tmin=tmin,tmax=tmax,factor=0.15)
+                                    if "15" in detection_algorithm:
+                                        factor = 0.15
+                                    elif "20" in detection_algorithm:
+                                        factor = 0.2
+                                    landmarks = ldb.detect_landmarks_tvel(time=self.data.ema.time.values,tangential_velocity=tangential_velocity,tmin=tmin,tmax=tmax,factor=0.2)
                                     landmark_keys = list(landmarks.keys())
                                     for key in landmark_keys:
                                         infinite_line_item = pg.InfiniteLine(
@@ -598,7 +645,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             self.add_landmarks(evt=evt)
         else:
             if self.sender().isChecked():
-                self.sender().setStyleSheet("background-color : red")
+                self.sender().setStyleSheet("background-color : green")
                 if self.removeLandmarkButton.isChecked():
                     self.removeLandmarkButton.click()
                 if self.renameLandmarkButton.isChecked():
@@ -612,8 +659,22 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
 
     def select_region_activation(self):
+        """
+            Signals the activation of the linear region items for the ema panels.
+            If buttons for adding, removing or renaming landmarks are activated, they will be set to False and background color is  reset to light gray.
+            If the select region function is deactivated, LinearRegionItems are removed.
+        """
         if self.sender().isChecked():
-            self.sender().setStyleSheet("background-color : red")
+            self.sender().setStyleSheet("background-color : green")
+            if self.removeLandmarkButton.isChecked():
+                    self.removeLandmarkButton.setChecked(False)
+                    self.removeLandmarkButton.setStyleSheet("background-color : light gray")
+            if self.renameLandmarkButton.isChecked():
+                    self.renameLandmarkButton.setChecked(False)
+                    self.renameLandmarkButton.setStyleSheet("background-color : light gray")
+            if self.addLandmarkButton.isChecked():
+                    self.addLandmarkButton.setChecked(False)    
+                    self.addLandmarkButton.setStyleSheet("background-color : light gray")        
         else:
             self.sender().setStyleSheet("background-color : light gray")
             for i in range(len(self.pw_names)):
@@ -745,10 +806,10 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             self.waveformSlider.setValue(slider_value)
 
     # function for zoom control
-    def zoom(self,direction):
-        s = 0.9
-        audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
-        if isinstance(self.LinearRegionItemRegister["waveformPlotWidget"],pg.LinearRegionItem) and direction == "in":
+
+    def zoom_selection(self):
+        if isinstance(self.LinearRegionItemRegister["waveformPlotWidget"],pg.LinearRegionItem):
+            audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
             boundaries = self.LinearRegionItemRegister["waveformPlotWidget"].getRegion()
             mid = (boundaries[0] + boundaries[1])/2 
             
@@ -758,29 +819,32 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             slider_steps = int(audio_range/boundary_range)*100
             
             self.waveformSlider.setMaximum(slider_steps)
-            self.waveformSlider_2.setMaximum(slider_steps)
             mid = (xRange[0]+xRange[1])/2
             slider_location = int(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
             self.waveformSlider.setValue(slider_location)
             self.waveformSlider_2.setValue(slider_location)
-        else:
-            x1, x2 = self.waveformPlotWidget.getViewBox().viewRange()[0]
-            mid = (x1+x2)/2
-            
-            if direction == "in":
-                self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=s)
-            elif direction == "out":
-                self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=1/s)
-            self.update_plot()
-            xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
-            boundary_range = np.abs(xRange[0] - xRange[1])
-            slider_steps = int(audio_range/boundary_range)*100
-            self.waveformSlider.setMaximum(slider_steps)
-            self.waveformSlider_2.setMaximum(slider_steps)
-            mid = (xRange[0]+xRange[1])/2
-            slider_location = round(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
-            self.waveformSlider.setValue(slider_location)
-            self.waveformSlider_2.setValue(slider_location)
+
+    def zoom(self,direction):
+        s = 0.9
+        audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
+
+        x1, x2 = self.waveformPlotWidget.getViewBox().viewRange()[0]
+        mid = (x1+x2)/2
+        
+        if direction == "in":
+            self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=s)
+        elif direction == "out":
+            self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=1/s)
+        self.update_plot()
+        xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
+        boundary_range = np.abs(xRange[0] - xRange[1])
+        slider_steps = int(audio_range/boundary_range)*100
+        self.waveformSlider.setMaximum(slider_steps)
+        self.waveformSlider_2.setMaximum(slider_steps)
+        mid = (xRange[0]+xRange[1])/2
+        slider_location = round(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
+        self.waveformSlider.setValue(slider_location)
+        self.waveformSlider_2.setValue(slider_location)
 
 
     def update_plot(self):
@@ -902,11 +966,12 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                         )
 
 
-"""
+
 ### for testing
-posfile = "/home/philipp/test/0005.pos"
-wavfile = "/home/philipp/test/0005.wav"
-tgfile = "/home/philipp/test/0005.TextGrid"
+path = "/home/philipp/test/"
+posfile = path + "0005.pos"
+wavfile = path + "0005.wav"
+tgfile = path + "0005.TextGrid"
 
 dat = data_import.dataContainer()
 dat.ema = data_import.read_AG50x(posfile)
@@ -926,4 +991,4 @@ app = QApplication(sys.argv)
 w = inspector_window(dat,channels,tier_list)
 w.show()
 sys.exit(app.exec_())
-"""
+

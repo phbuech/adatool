@@ -105,6 +105,7 @@ class Ui_INSPECTOR2D(object):
         self.verticalLayout_3.addWidget(self.waveformPlotWidget)
 
         self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setSpacing(2)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.waveformSlider = QScrollBar(self.layoutWidget_3)
         self.waveformSlider.setObjectName(u"waveformSlider")
@@ -115,10 +116,21 @@ class Ui_INSPECTOR2D(object):
         self.verticalLayout_5.addWidget(self.waveformSlider)
 
         self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setSpacing(2)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.zoomAllButton = QPushButton(self.layoutWidget_3)
+        self.zoomAllButton.setObjectName(u"zoomAllButton")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.zoomAllButton.sizePolicy().hasHeightForWidth())
+        self.zoomAllButton.setSizePolicy(sizePolicy4)
+
+        self.horizontalLayout_4.addWidget(self.zoomAllButton)
+
         self.zoomInButton = QPushButton(self.layoutWidget_3)
         self.zoomInButton.setObjectName(u"zoomInButton")
-        self.zoomInButton.setMaximumSize(QSize(16777215, 25))
+        self.zoomInButton.setMaximumSize(QSize(16777215, 16777215))
 
         self.horizontalLayout_4.addWidget(self.zoomInButton)
 
@@ -126,23 +138,24 @@ class Ui_INSPECTOR2D(object):
         self.zoomOutButton.setObjectName(u"zoomOutButton")
         sizePolicy.setHeightForWidth(self.zoomOutButton.sizePolicy().hasHeightForWidth())
         self.zoomOutButton.setSizePolicy(sizePolicy)
-        self.zoomOutButton.setMinimumSize(QSize(0, 25))
-        self.zoomOutButton.setMaximumSize(QSize(16777215, 25))
+        self.zoomOutButton.setMinimumSize(QSize(0, 19))
+        self.zoomOutButton.setMaximumSize(QSize(16777215, 16777215))
 
         self.horizontalLayout_4.addWidget(self.zoomOutButton)
+
+        self.zoomSelectionButton = QPushButton(self.layoutWidget_3)
+        self.zoomSelectionButton.setObjectName(u"zoomSelectionButton")
+
+        self.horizontalLayout_4.addWidget(self.zoomSelectionButton)
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_4)
 
         self.PLAY_AUDIO = QPushButton(self.layoutWidget_3)
         self.PLAY_AUDIO.setObjectName(u"PLAY_AUDIO")
-        self.PLAY_AUDIO.setMaximumSize(QSize(16777215, 25))
+        self.PLAY_AUDIO.setMaximumSize(QSize(16777215, 16777215))
 
         self.verticalLayout_5.addWidget(self.PLAY_AUDIO)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer_2)
 
 
         self.verticalLayout_3.addLayout(self.verticalLayout_5)
@@ -157,11 +170,11 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_2 = QLabel(self.verticalLayoutWidget)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy5)
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
@@ -181,22 +194,22 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.displayAnnotationCheckBox = QCheckBox(self.verticalLayoutWidget)
         self.displayAnnotationCheckBox.setObjectName(u"displayAnnotationCheckBox")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.displayAnnotationCheckBox.sizePolicy().hasHeightForWidth())
-        self.displayAnnotationCheckBox.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.displayAnnotationCheckBox.sizePolicy().hasHeightForWidth())
+        self.displayAnnotationCheckBox.setSizePolicy(sizePolicy6)
 
         self.horizontalLayout_5.addWidget(self.displayAnnotationCheckBox)
 
         self.audioAnnotationComboBox = QComboBox(self.verticalLayoutWidget)
         self.audioAnnotationComboBox.addItem("")
         self.audioAnnotationComboBox.setObjectName(u"audioAnnotationComboBox")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.audioAnnotationComboBox.sizePolicy().hasHeightForWidth())
-        self.audioAnnotationComboBox.setSizePolicy(sizePolicy6)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.audioAnnotationComboBox.sizePolicy().hasHeightForWidth())
+        self.audioAnnotationComboBox.setSizePolicy(sizePolicy7)
 
         self.horizontalLayout_5.addWidget(self.audioAnnotationComboBox)
 
@@ -253,29 +266,33 @@ class Ui_INSPECTOR2D(object):
         self.verticalLayoutWidget_2 = QWidget(self.emaSplitter)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.emaPanel1 = QFrame(self.verticalLayoutWidget_2)
         self.emaPanel1.setObjectName(u"emaPanel1")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.MinimumExpanding)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.emaPanel1.sizePolicy().hasHeightForWidth())
-        self.emaPanel1.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.MinimumExpanding)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.emaPanel1.sizePolicy().hasHeightForWidth())
+        self.emaPanel1.setSizePolicy(sizePolicy8)
         self.emaPanel1.setMinimumSize(QSize(0, 50))
         self.emaPanel1.setFrameShape(QFrame.StyledPanel)
         self.emaPanel1.setFrameShadow(QFrame.Raised)
         self.verticalLayout_15 = QVBoxLayout(self.emaPanel1)
+        self.verticalLayout_15.setSpacing(0)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_16 = QVBoxLayout()
+        self.verticalLayout_16.setSpacing(0)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.emaPlotWidget1 = PlotWidget(self.emaPanel1)
         self.emaPlotWidget1.setObjectName(u"emaPlotWidget1")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.emaPlotWidget1.sizePolicy().hasHeightForWidth())
-        self.emaPlotWidget1.setSizePolicy(sizePolicy8)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.emaPlotWidget1.sizePolicy().hasHeightForWidth())
+        self.emaPlotWidget1.setSizePolicy(sizePolicy9)
 
         self.verticalLayout_16.addWidget(self.emaPlotWidget1)
 
@@ -295,8 +312,8 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.label_4 = QLabel(self.layoutWidget_2)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy4.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy5)
 
         self.horizontalLayout_7.addWidget(self.label_4)
 
@@ -343,11 +360,11 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.addChannelToEmaControlTableButton = QPushButton(self.layoutWidget_2)
         self.addChannelToEmaControlTableButton.setObjectName(u"addChannelToEmaControlTableButton")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.addChannelToEmaControlTableButton.sizePolicy().hasHeightForWidth())
-        self.addChannelToEmaControlTableButton.setSizePolicy(sizePolicy9)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.addChannelToEmaControlTableButton.sizePolicy().hasHeightForWidth())
+        self.addChannelToEmaControlTableButton.setSizePolicy(sizePolicy10)
         self.addChannelToEmaControlTableButton.setMinimumSize(QSize(0, 20))
         self.addChannelToEmaControlTableButton.setMaximumSize(QSize(16777215, 20))
 
@@ -355,8 +372,8 @@ class Ui_INSPECTOR2D(object):
 
         self.removeChannelFromEmaControlTableButton = QPushButton(self.layoutWidget_2)
         self.removeChannelFromEmaControlTableButton.setObjectName(u"removeChannelFromEmaControlTableButton")
-        sizePolicy9.setHeightForWidth(self.removeChannelFromEmaControlTableButton.sizePolicy().hasHeightForWidth())
-        self.removeChannelFromEmaControlTableButton.setSizePolicy(sizePolicy9)
+        sizePolicy10.setHeightForWidth(self.removeChannelFromEmaControlTableButton.sizePolicy().hasHeightForWidth())
+        self.removeChannelFromEmaControlTableButton.setSizePolicy(sizePolicy10)
         self.removeChannelFromEmaControlTableButton.setMinimumSize(QSize(0, 20))
         self.removeChannelFromEmaControlTableButton.setMaximumSize(QSize(16777215, 20))
 
@@ -436,8 +453,10 @@ class Ui_INSPECTOR2D(object):
     def retranslateUi(self, INSPECTOR2D):
         INSPECTOR2D.setWindowTitle(QCoreApplication.translate("INSPECTOR2D", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("INSPECTOR2D", u"WAVEFORM", None))
+        self.zoomAllButton.setText(QCoreApplication.translate("INSPECTOR2D", u"all", None))
         self.zoomInButton.setText(QCoreApplication.translate("INSPECTOR2D", u"zoom in", None))
         self.zoomOutButton.setText(QCoreApplication.translate("INSPECTOR2D", u"zoom out", None))
+        self.zoomSelectionButton.setText(QCoreApplication.translate("INSPECTOR2D", u"selection", None))
         self.PLAY_AUDIO.setText(QCoreApplication.translate("INSPECTOR2D", u"play", None))
         self.label_2.setText(QCoreApplication.translate("INSPECTOR2D", u"WAVEFORM LANDMARK CONTROLS", None))
         self.displayAnnotationCheckBox.setText(QCoreApplication.translate("INSPECTOR2D", u"show", None))

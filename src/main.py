@@ -451,8 +451,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             self.emaChannelInfoLabel.setText("NA")
             self.emaSamplerateInfoLabel.setText("NA")
         if clicked_file.audio != None:
-            self.audioDurationInfoLabel.setText(str(clicked_file.audio.attrs["samplerate"]))
-            self.audioSamplerateInfoLabel.setText(str(clicked_file.audio.attrs["duration"].round(2)) + " s")
+            self.audioDurationInfoLabel.setText(str(clicked_file.audio.attrs["duration"].round(2)) + " s")
+            self.audioSamplerateInfoLabel.setText(str(clicked_file.audio.attrs["samplerate"]))
         else:
             self.audioDurationInfoLabel.setText("NA")
             self.audioSamplerateInfoLabel.setText("NA")

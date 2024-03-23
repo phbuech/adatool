@@ -118,6 +118,8 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         self.plotTongueShapePushButton.clicked.connect(self.activate_button)
         self.sizeSlider.valueChanged.connect(self.on_size_change)
 
+        self.zoomSelectionButton.clicked.connect(self.zoom_selection)
+
     def on_size_change(self):
         #change sensor position size
         size = self.sender().value()
@@ -335,7 +337,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
                                                 "time" : self.data.ema.time.values
                                             }
             size = int(self.sizeSlider.value())
-            self.scatterPlotItemRegister[channel_name] = pg.ScatterPlotItem(size=size,pen=pg.mkPen(color_name),brush=pg.mkBrush(color_name))
+            self.scatterPlotItemRegister[channel_name] = pg.ScatterPlotItem(size=size/4,pen=pg.mkPen(color_name),brush=pg.mkBrush(color_name))
             self.scatterPlotItemRegister[channel_name].setData(
                                                                 x = [self.dataRegister[channel_name]["dim1"][position_index]],
                                                                 y = [self.dataRegister[channel_name]["dim2"][position_index]]  
@@ -474,10 +476,9 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         self.waveformSlider.setValue(slider_value)
 
     # function for zoom control
-    def zoom(self,direction):
-        s = 0.9
-        audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
-        if isinstance(self.LinearRegionItem,pg.LinearRegionItem) and direction == "in":
+
+    def zoom_selection(self):
+        if isinstance(self.LinearRegionItem,pg.LinearRegionItem):
             boundaries = self.LinearRegionItem.getRegion()
             mid = (boundaries[0] + boundaries[1])/2 
             
@@ -490,24 +491,28 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
             mid = (xRange[0]+xRange[1])/2
             slider_location = int(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
             self.waveformSlider.setValue(slider_location)
-        else:
-            x1, x2 = self.waveformPlotWidget.getViewBox().viewRange()[0]
-            mid = (x1+x2)/2
-            
-            if direction == "in":
-                self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=s)
-            elif direction == "out":
-                self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=1/s)
-            self.update_plot()
-            xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
-            boundary_range = np.abs(xRange[0] - xRange[1])
-            slider_steps = int(audio_range/boundary_range)*100
-            
-            self.waveformSlider.setMaximum(slider_steps)
-            
-            mid = (xRange[0]+xRange[1])/2
-            slider_location = round(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
-            self.waveformSlider.setValue(slider_location)
+
+
+    def zoom(self,direction):
+        s = 0.9
+        audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
+        x1, x2 = self.waveformPlotWidget.getViewBox().viewRange()[0]
+        mid = (x1+x2)/2
+        
+        if direction == "in":
+            self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=s)
+        elif direction == "out":
+            self.waveformPlotWidget.getViewBox().scaleBy(center=mid,x=1/s)
+        self.update_plot()
+        xRange, _ = self.waveformPlotWidget.getViewBox().viewRange()
+        boundary_range = np.abs(xRange[0] - xRange[1])
+        slider_steps = int(audio_range/boundary_range)*100
+        
+        self.waveformSlider.setMaximum(slider_steps)
+        
+        mid = (xRange[0]+xRange[1])/2
+        slider_location = round(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
+        self.waveformSlider.setValue(slider_location)
             
 
 
