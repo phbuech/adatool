@@ -157,7 +157,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.rename_landmarks)
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.remove_landmarks)
 
-        for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
+        #for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
 
         self.addLandmarkButton.clicked.connect(self.activate_landmark_addition)
         self.renameLandmarkButton.clicked.connect(self.activate_landmark_renaming)
@@ -223,6 +223,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         self.zoomSelectionButton.clicked.connect(self.zoom_selection)
         self.zoomAllButton.clicked.connect(self.zoom_all)
+        self.showSpectrogramButton.click()
         
         
         # assign ema tiers to comboboxes:
@@ -235,6 +236,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
     def plot_spectrogram(self):
         f, t, Sxx = scp.signal.spectrogram(x=self.data.audio.signal.values,fs=self.data.audio.attrs["samplerate"])
+        print(Sxx)
         img = pg.ImageItem()
         tr = QTransform()
         
@@ -243,7 +245,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         img.setImage(Sxx)
         
         self.spectrogramWidget.addItem(img)
-        self.spectrogramWidget.setLimits(xMin=0, xMax=5000, yMin=0, yMax=f[-1])
+        self.spectrogramWidget.setLimits(xMin=0, xMax=t[-1], yMin=0, yMax=8000)
 
     def show_spectrogram(self):
         if self.sender().isChecked():
@@ -975,9 +977,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                         )
 
 
-
+"""
 ### for testing
-path = "/home/philipp/test/"
+path = ""
 posfile = path + "0005.pos"
 wavfile = path + "0005.wav"
 tgfile = path + "0005.TextGrid"
@@ -1000,4 +1002,4 @@ app = QApplication(sys.argv)
 w = inspector_window(dat,channels,tier_list)
 w.show()
 sys.exit(app.exec_())
-
+"""
