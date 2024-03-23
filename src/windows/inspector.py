@@ -222,6 +222,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.emaSplitter.setSizes([1000,1])
 
         self.zoomSelectionButton.clicked.connect(self.zoom_selection)
+        self.zoomAllButton.clicked.connect(self.zoom_all)
         
         
         # assign ema tiers to comboboxes:
@@ -807,6 +808,13 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
     # function for zoom control
 
+    def zoom_all(self):
+        time = self.data.audio.time.values
+        self.waveformPlotWidget.getViewBox().setXRange(time[0],time[-1],padding=0.0,update=True)
+        self.waveformSlider.setMaximum(0)
+        self.waveformSlider_2.setMaximum(0)
+        self.update_plot()
+
     def zoom_selection(self):
         if isinstance(self.LinearRegionItemRegister["waveformPlotWidget"],pg.LinearRegionItem):
             audio_range = np.abs(self.data.audio.time.values[0] - self.data.audio.time.values[-1])
@@ -819,6 +827,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             slider_steps = int(audio_range/boundary_range)*100
             
             self.waveformSlider.setMaximum(slider_steps)
+            self.waveformSlider_2.setMaximum(slider_steps)
             mid = (xRange[0]+xRange[1])/2
             slider_location = int(((mid - 0)*(slider_steps))/(self.data.audio.time.values[-1]))
             self.waveformSlider.setValue(slider_location)

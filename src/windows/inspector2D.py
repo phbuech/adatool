@@ -119,6 +119,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         self.sizeSlider.valueChanged.connect(self.on_size_change)
 
         self.zoomSelectionButton.clicked.connect(self.zoom_selection)
+        self.zoomAllButton.clicked.connect(self.zoom_all)
 
     def on_size_change(self):
         #change sensor position size
@@ -476,6 +477,11 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         self.waveformSlider.setValue(slider_value)
 
     # function for zoom control
+    def zoom_all(self):
+        time = self.data.audio.time.values
+        self.waveformPlotWidget.getViewBox().setXRange(time[0],time[-1],padding=0.0,update=True)
+        self.waveformSlider.setMaximum(0)
+        self.update_plot()
 
     def zoom_selection(self):
         if isinstance(self.LinearRegionItem,pg.LinearRegionItem):
