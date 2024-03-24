@@ -138,6 +138,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
 
         #create 2nd spectrogram axis
         self.specgram_2nd_axis = pg.ViewBox()
+        self.specgram_2nd_axis.setMouseEnabled(x=False,y=False)
         p1 = self.spectrogramWidget
         #p1.showAxis("right")
         p1.scene().addItem(self.specgram_2nd_axis)

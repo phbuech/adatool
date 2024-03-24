@@ -16,10 +16,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QHBoxLayout, QHeaderView, QLabel, QMainWindow,
-    QMenuBar, QPushButton, QScrollBar, QSizePolicy,
-    QSpacerItem, QSplitter, QStatusBar, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+    QHBoxLayout, QHeaderView, QLabel, QLayout,
+    QMainWindow, QMenuBar, QPushButton, QScrollBar,
+    QSizePolicy, QSpacerItem, QSplitter, QStatusBar,
+    QTableWidget, QTableWidgetItem, QToolBox, QVBoxLayout,
+    QWidget)
 
 from pyqtgraph import PlotWidget
 
@@ -268,132 +269,113 @@ class Ui_INSPECTOR2D(object):
 
         self.verticalLayout.addWidget(self.showSpectrogramButton)
 
-        self.horizontalLayout_11 = QHBoxLayout()
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.line_6 = QFrame(self.verticalLayoutWidget)
-        self.line_6.setObjectName(u"line_6")
-        sizePolicy5.setHeightForWidth(self.line_6.sizePolicy().hasHeightForWidth())
-        self.line_6.setSizePolicy(sizePolicy5)
-        self.line_6.setFrameShape(QFrame.HLine)
-        self.line_6.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_11.addWidget(self.line_6)
-
-        self.label_9 = QLabel(self.verticalLayoutWidget)
-        self.label_9.setObjectName(u"label_9")
+        self.toolBox = QToolBox(self.verticalLayoutWidget)
+        self.toolBox.setObjectName(u"toolBox")
+        sizePolicy5.setHeightForWidth(self.toolBox.sizePolicy().hasHeightForWidth())
+        self.toolBox.setSizePolicy(sizePolicy5)
         font = QFont()
-        font.setPointSize(9)
-        self.label_9.setFont(font)
-
-        self.horizontalLayout_11.addWidget(self.label_9)
-
-        self.line_7 = QFrame(self.verticalLayoutWidget)
-        self.line_7.setObjectName(u"line_7")
-        sizePolicy5.setHeightForWidth(self.line_7.sizePolicy().hasHeightForWidth())
-        self.line_7.setSizePolicy(sizePolicy5)
-        self.line_7.setFrameShape(QFrame.HLine)
-        self.line_7.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_11.addWidget(self.line_7)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_11)
-
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.showFundamentalFrequencyButton = QPushButton(self.verticalLayoutWidget)
+        font.setPointSize(8)
+        font.setBold(False)
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        font.setKerning(True)
+        self.toolBox.setFont(font)
+        self.toolBox.setLayoutDirection(Qt.LeftToRight)
+        self.toolBox.setAutoFillBackground(True)
+        self.toolBox.setFrameShadow(QFrame.Plain)
+        self.toolBox.setLineWidth(1)
+        self.toolBox.setMidLineWidth(0)
+        self.page_5 = QWidget()
+        self.page_5.setObjectName(u"page_5")
+        self.page_5.setGeometry(QRect(0, 0, 525, 69))
+        self.horizontalLayout_20 = QHBoxLayout(self.page_5)
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setSpacing(0)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.horizontalLayout_21.setSizeConstraint(QLayout.SetMinimumSize)
+        self.showFundamentalFrequencyButton = QPushButton(self.page_5)
         self.showFundamentalFrequencyButton.setObjectName(u"showFundamentalFrequencyButton")
         sizePolicy7.setHeightForWidth(self.showFundamentalFrequencyButton.sizePolicy().hasHeightForWidth())
         self.showFundamentalFrequencyButton.setSizePolicy(sizePolicy7)
         self.showFundamentalFrequencyButton.setMinimumSize(QSize(75, 0))
+        font1 = QFont()
+        font1.setPointSize(11)
+        font1.setBold(False)
+        font1.setUnderline(False)
+        font1.setStrikeOut(False)
+        font1.setKerning(True)
+        self.showFundamentalFrequencyButton.setFont(font1)
         self.showFundamentalFrequencyButton.setCheckable(True)
 
-        self.horizontalLayout_6.addWidget(self.showFundamentalFrequencyButton)
+        self.horizontalLayout_21.addWidget(self.showFundamentalFrequencyButton)
 
-        self.label_3 = QLabel(self.verticalLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-        sizePolicy6.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy6)
-        self.label_3.setMinimumSize(QSize(50, 0))
-        self.label_3.setAlignment(Qt.AlignCenter)
+        self.label_9 = QLabel(self.page_5)
+        self.label_9.setObjectName(u"label_9")
+        sizePolicy6.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy6)
+        self.label_9.setMinimumSize(QSize(50, 0))
+        self.label_9.setFont(font1)
+        self.label_9.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_6.addWidget(self.label_3)
+        self.horizontalLayout_21.addWidget(self.label_9)
 
-        self.fundamentalFrequencyComboBox = QComboBox(self.verticalLayoutWidget)
+        self.fundamentalFrequencyComboBox = QComboBox(self.page_5)
         self.fundamentalFrequencyComboBox.addItem("")
         self.fundamentalFrequencyComboBox.addItem("")
         self.fundamentalFrequencyComboBox.setObjectName(u"fundamentalFrequencyComboBox")
         sizePolicy5.setHeightForWidth(self.fundamentalFrequencyComboBox.sizePolicy().hasHeightForWidth())
         self.fundamentalFrequencyComboBox.setSizePolicy(sizePolicy5)
+        self.fundamentalFrequencyComboBox.setFont(font1)
 
-        self.horizontalLayout_6.addWidget(self.fundamentalFrequencyComboBox)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_6)
-
-        self.horizontalLayout_13 = QHBoxLayout()
-        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
-        self.line_8 = QFrame(self.verticalLayoutWidget)
-        self.line_8.setObjectName(u"line_8")
-        self.line_8.setFrameShape(QFrame.HLine)
-        self.line_8.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_13.addWidget(self.line_8)
-
-        self.label_10 = QLabel(self.verticalLayoutWidget)
-        self.label_10.setObjectName(u"label_10")
-        sizePolicy.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
-        self.label_10.setSizePolicy(sizePolicy)
-        self.label_10.setFont(font)
-        self.label_10.setFrameShadow(QFrame.Plain)
-        self.label_10.setScaledContents(False)
-        self.label_10.setAlignment(Qt.AlignCenter)
-        self.label_10.setMargin(0)
-
-        self.horizontalLayout_13.addWidget(self.label_10)
-
-        self.line_9 = QFrame(self.verticalLayoutWidget)
-        self.line_9.setObjectName(u"line_9")
-        sizePolicy5.setHeightForWidth(self.line_9.sizePolicy().hasHeightForWidth())
-        self.line_9.setSizePolicy(sizePolicy5)
-        self.line_9.setFrameShape(QFrame.HLine)
-        self.line_9.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_13.addWidget(self.line_9)
+        self.horizontalLayout_21.addWidget(self.fundamentalFrequencyComboBox)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_13)
+        self.horizontalLayout_20.addLayout(self.horizontalLayout_21)
 
-        self.horizontalLayout_14 = QHBoxLayout()
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.showIntensityButton = QPushButton(self.verticalLayoutWidget)
+        self.toolBox.addItem(self.page_5, u"FUNDAMENTAL FREQUENCY")
+        self.page_6 = QWidget()
+        self.page_6.setObjectName(u"page_6")
+        self.page_6.setGeometry(QRect(0, 0, 525, 69))
+        self.horizontalLayout_22 = QHBoxLayout(self.page_6)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.horizontalLayout_23 = QHBoxLayout()
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.showIntensityButton = QPushButton(self.page_6)
         self.showIntensityButton.setObjectName(u"showIntensityButton")
         sizePolicy7.setHeightForWidth(self.showIntensityButton.sizePolicy().hasHeightForWidth())
         self.showIntensityButton.setSizePolicy(sizePolicy7)
         self.showIntensityButton.setMinimumSize(QSize(75, 0))
+        self.showIntensityButton.setFont(font1)
         self.showIntensityButton.setCheckable(True)
 
-        self.horizontalLayout_14.addWidget(self.showIntensityButton)
+        self.horizontalLayout_23.addWidget(self.showIntensityButton)
 
-        self.label_16 = QLabel(self.verticalLayoutWidget)
-        self.label_16.setObjectName(u"label_16")
-        sizePolicy6.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
-        self.label_16.setSizePolicy(sizePolicy6)
-        self.label_16.setMinimumSize(QSize(50, 0))
-        self.label_16.setAlignment(Qt.AlignCenter)
+        self.label_19 = QLabel(self.page_6)
+        self.label_19.setObjectName(u"label_19")
+        sizePolicy6.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
+        self.label_19.setSizePolicy(sizePolicy6)
+        self.label_19.setMinimumSize(QSize(50, 0))
+        self.label_19.setFont(font1)
+        self.label_19.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_14.addWidget(self.label_16)
+        self.horizontalLayout_23.addWidget(self.label_19)
 
-        self.intensityComboBox = QComboBox(self.verticalLayoutWidget)
+        self.intensityComboBox = QComboBox(self.page_6)
         self.intensityComboBox.addItem("")
         self.intensityComboBox.setObjectName(u"intensityComboBox")
         sizePolicy5.setHeightForWidth(self.intensityComboBox.sizePolicy().hasHeightForWidth())
         self.intensityComboBox.setSizePolicy(sizePolicy5)
+        self.intensityComboBox.setFont(font1)
 
-        self.horizontalLayout_14.addWidget(self.intensityComboBox)
+        self.horizontalLayout_23.addWidget(self.intensityComboBox)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_14)
+        self.horizontalLayout_22.addLayout(self.horizontalLayout_23)
+
+        self.toolBox.addItem(self.page_6, u"INTENSITY")
+
+        self.verticalLayout.addWidget(self.toolBox)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -626,6 +608,10 @@ class Ui_INSPECTOR2D(object):
 
         self.retranslateUi(INSPECTOR2D)
 
+        self.toolBox.setCurrentIndex(0)
+        self.toolBox.layout().setSpacing(1)
+
+
         QMetaObject.connectSlotsByName(INSPECTOR2D)
     # setupUi
 
@@ -643,17 +629,17 @@ class Ui_INSPECTOR2D(object):
 
         self.label_8.setText(QCoreApplication.translate("INSPECTOR2D", u"SPECTROGRAM CONTROLS", None))
         self.showSpectrogramButton.setText(QCoreApplication.translate("INSPECTOR2D", u"spectrogram", None))
-        self.label_9.setText(QCoreApplication.translate("INSPECTOR2D", u"FUNDAMENTAL FREQUENCY", None))
         self.showFundamentalFrequencyButton.setText("")
-        self.label_3.setText(QCoreApplication.translate("INSPECTOR2D", u"estimation:", None))
+        self.label_9.setText(QCoreApplication.translate("INSPECTOR2D", u" estimation:", None))
         self.fundamentalFrequencyComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR2D", u"pYin", None))
         self.fundamentalFrequencyComboBox.setItemText(1, QCoreApplication.translate("INSPECTOR2D", u"Yin", None))
 
-        self.label_10.setText(QCoreApplication.translate("INSPECTOR2D", u"INTENSITY", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_5), QCoreApplication.translate("INSPECTOR2D", u"FUNDAMENTAL FREQUENCY", None))
         self.showIntensityButton.setText("")
-        self.label_16.setText(QCoreApplication.translate("INSPECTOR2D", u"estimation:", None))
+        self.label_19.setText(QCoreApplication.translate("INSPECTOR2D", u"estimation:", None))
         self.intensityComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR2D", u"rms", None))
 
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_6), QCoreApplication.translate("INSPECTOR2D", u"INTENSITY", None))
         self.label_6.setText(QCoreApplication.translate("INSPECTOR2D", u"EMA", None))
         self.label_4.setText(QCoreApplication.translate("INSPECTOR2D", u"PLOTTING CONTROLS", None))
         self.label_5.setText(QCoreApplication.translate("INSPECTOR2D", u"dimensions:", None))

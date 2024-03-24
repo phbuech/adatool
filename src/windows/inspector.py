@@ -86,7 +86,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             pass
 
         self.displayAnnotationPushButton.clicked.connect(self.displayAudioAnnotations)
-
+        self.toolBox.setStyleSheet("background-color:dark gray")
         
         self.landmarkRegister = pd.DataFrame(columns=["tierName","tmin","tmax","label"])
         
@@ -249,6 +249,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         #create 2nd spectrogram axis
         self.specgram_2nd_axis = pg.ViewBox()
+        self.specgram_2nd_axis.setMouseEnabled(x=False,y=False)
         p1 = self.spectrogramWidget
         #p1.showAxis("right")
         p1.scene().addItem(self.specgram_2nd_axis)
@@ -648,13 +649,15 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
     def remove_landmarks(self,evt):
         if self.selectRegionButton.isChecked():
             for j in range(len(self.pw_names)):
-                if self.LinearRegionItemRegister[self.pw_names[j]] != None:
-                    boundaries = self.LinearRegionItemRegister[self.pw_names[j]].getRegion()
-                    item_list = self.emaPanelDict[j+1]["PlotWidget"].allChildItems()
-                    for i in range(len(item_list)):
-                        if isinstance(item_list[i],pg.InfiniteLine) and hasattr(item_list[i],"label"):
-                            if item_list[i].value() > boundaries[0] and item_list[i].value() < boundaries[1]:
-                                self.emaPanelDict[j+1]["PlotWidget"].removeItem(item_list[i])
+                if "emaPlotWidget" in self.pw_names[j]:
+                    emaPlotWidget_index = int(list(self.pw_names[j])[-1])
+                    if self.LinearRegionItemRegister[self.pw_names[j]] != None:
+                        boundaries = self.LinearRegionItemRegister[self.pw_names[j]].getRegion()
+                        item_list = self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].allChildItems()
+                        for i in range(len(item_list)):
+                            if isinstance(item_list[i],pg.InfiniteLine) and hasattr(item_list[i],"label"):
+                                if item_list[i].value() > boundaries[0] and item_list[i].value() < boundaries[1]:
+                                    self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].removeItem(item_list[i])
 
         elif self.removeLandmarkButton.isChecked():
             item_list = self.sender().itemsNearEvent(evt)
@@ -700,64 +703,66 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             # make landmark detection
             detection_algorithm = self.selectLandmarkDetectionComboBox.currentText()
             for i in range(len(self.pw_names)):
-                if self.LinearRegionItemRegister[self.pw_names[i]] != None:
-                    tmin, tmax = self.LinearRegionItemRegister[self.pw_names[i]].getRegion()
-                    for j in range(self.emaControlTable.rowCount()):
-                        panel_name = self.emaControlTable.cellWidget(j,4).currentText()
-                        parameter = self.emaControlTable.cellWidget(j,3).currentText()
-                        if panel_name == str(i+1)+"a":
-                            plot_checkbox = self.emaControlTable.cellWidget(j,0)
-                            if plot_checkbox.isChecked():
-                                channel     = self.emaControlTable.cellWidget(j,1).currentText()
-                                dimension   = self.emaControlTable.cellWidget(j,2).currentText()
-                                parameter   = self.emaControlTable.cellWidget(j,3).currentText()
-                                panel       = self.emaControlTable.cellWidget(j,4).currentText()
-                                color       = self.emaControlTable.cellWidget(j,5).currentText()
-                                if parameter in ["pos","eucl2D","eucl3D"] and detection_algorithm in ["vel20","vel15"]:
-                                    
+                if "emaPlotWidget" in self.pw_names[i]:
+                    emaPlotWidget_index = int(list(self.pw_names[i])[-1])
+                    if self.LinearRegionItemRegister[self.pw_names[i]] != None:
+                        tmin, tmax = self.LinearRegionItemRegister[self.pw_names[i]].getRegion()
+                        for j in range(self.emaControlTable.rowCount()):
+                            panel_name = self.emaControlTable.cellWidget(j,4).currentText()
+                            parameter = self.emaControlTable.cellWidget(j,3).currentText()
+                            if panel_name == str(emaPlotWidget_index)+"a":
+                                plot_checkbox = self.emaControlTable.cellWidget(j,0)
+                                if plot_checkbox.isChecked():
+                                    channel     = self.emaControlTable.cellWidget(j,1).currentText()
+                                    dimension   = self.emaControlTable.cellWidget(j,2).currentText()
+                                    parameter   = self.emaControlTable.cellWidget(j,3).currentText()
+                                    panel       = self.emaControlTable.cellWidget(j,4).currentText()
+                                    color       = self.emaControlTable.cellWidget(j,5).currentText()
+                                    if parameter in ["pos","eucl2D","eucl3D"] and detection_algorithm in ["vel20","vel15"]:
+                                        
 
-                                    signal, _ = sp.get_signal(
-                                                    data = self.data.ema,
-                                                    channel_dict = self.channels,
-                                                    target_channel = channel,
-                                                    target_dimension = dimension,
-                                                    target_parameter = parameter,
-                                                    )
-                                    
-                                    velocity = sp.derivation(signal,ema_fs=self.data.ema.attrs["samplerate"],time=self.data.ema.time.values,order=1)
-                                    if detection_algorithm == "vel20":
-                                        landmarks = ldb.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.2)
-                                    elif detection_algorithm == "vel15":
-                                        landmarks = ldb.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.15)
-                                    landmark_keys = list(landmarks.keys())
-                                    for key in landmark_keys:
-                                        infinite_line_item = pg.InfiniteLine(
-                                                                                pos = tmin + landmarks[key],
-                                                                                label = key,
-                                                                                movable = True,
-                                                                                pen = pg.mkPen("green",width=5),
-                                                                                labelOpts={"position":0.95}
-                                                                                )
-                                        self.emaPanelDict[i+1]["PlotWidget"].addItem(infinite_line_item)
+                                        signal, _ = sp.get_signal(
+                                                        data = self.data.ema,
+                                                        channel_dict = self.channels,
+                                                        target_channel = channel,
+                                                        target_dimension = dimension,
+                                                        target_parameter = parameter,
+                                                        )
+                                        
+                                        velocity = sp.derivation(signal,ema_fs=self.data.ema.attrs["samplerate"],time=self.data.ema.time.values,order=1)
+                                        if detection_algorithm == "vel20":
+                                            landmarks = ldb.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.2)
+                                        elif detection_algorithm == "vel15":
+                                            landmarks = ldb.detect_landmarks_vel(time=self.data.ema.time.values,velocity=velocity,tmin=tmin,tmax=tmax,factor=0.15)
+                                        landmark_keys = list(landmarks.keys())
+                                        for key in landmark_keys:
+                                            infinite_line_item = pg.InfiniteLine(
+                                                                                    pos = tmin + landmarks[key],
+                                                                                    label = key,
+                                                                                    movable = True,
+                                                                                    pen = pg.mkPen("green",width=5),
+                                                                                    labelOpts={"position":0.95}
+                                                                                    )
+                                            self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].addItem(infinite_line_item)
 
-                                elif parameter == "pos" and detection_algorithm in ["tvel15_xy","tvel15_xz","tvel20_xy","tvel20_yz"]:
-                                    dims = list(detection_algorithm.split("_")[1])
-                                    tangential_velocity = sp.get_tangential_velocity(data=self.data.ema,channel_index=self.channels[channel],dims=dims)
-                                    if "15" in detection_algorithm:
-                                        factor = 0.15
-                                    elif "20" in detection_algorithm:
-                                        factor = 0.2
-                                    landmarks = ldb.detect_landmarks_tvel(time=self.data.ema.time.values,tangential_velocity=tangential_velocity,tmin=tmin,tmax=tmax,factor=0.2)
-                                    landmark_keys = list(landmarks.keys())
-                                    for key in landmark_keys:
-                                        infinite_line_item = pg.InfiniteLine(
-                                                                                pos = landmarks[key],
-                                                                                label = key,
-                                                                                movable = True,
-                                                                                pen = pg.mkPen("green",width=5),
-                                                                                labelOpts={"position":0.95}
-                                                                                )
-                                        self.emaPanelDict[i+1]["PlotWidget"].addItem(infinite_line_item)
+                                    elif parameter == "pos" and detection_algorithm in ["tvel15_xy","tvel15_xz","tvel20_xy","tvel20_yz"]:
+                                        dims = list(detection_algorithm.split("_")[1])
+                                        tangential_velocity = sp.get_tangential_velocity(data=self.data.ema,channel_index=self.channels[channel],dims=dims)
+                                        if "15" in detection_algorithm:
+                                            factor = 0.15
+                                        elif "20" in detection_algorithm:
+                                            factor = 0.2
+                                        landmarks = ldb.detect_landmarks_tvel(time=self.data.ema.time.values,tangential_velocity=tangential_velocity,tmin=tmin,tmax=tmax,factor=0.2)
+                                        landmark_keys = list(landmarks.keys())
+                                        for key in landmark_keys:
+                                            infinite_line_item = pg.InfiniteLine(
+                                                                                    pos = landmarks[key],
+                                                                                    label = key,
+                                                                                    movable = True,
+                                                                                    pen = pg.mkPen("green",width=5),
+                                                                                    labelOpts={"position":0.95}
+                                                                                    )
+                                            self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].addItem(infinite_line_item)
 
         elif self.addLandmarkButton.isChecked():
             vb = self.sender().parent().getViewBox()
@@ -816,9 +821,11 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         else:
             self.sender().setStyleSheet("background-color : light gray")
             for i in range(len(self.pw_names)):
-                if self.LinearRegionItemRegister[self.pw_names[i]] != None:
-                    self.emaPanelDict[i+1]["PlotWidget"].removeItem(self.LinearRegionItemRegister[self.pw_names[i]])
-                    self.LinearRegionItemRegister[self.pw_names[i]] = None
+                if "emaPlotWidget" in self.pw_names[i]:
+                    emaPlotWidget_index = int(list(self.pw_names[i])[-1])
+                    if self.LinearRegionItemRegister[self.pw_names[i]] != None:
+                        self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].removeItem(self.LinearRegionItemRegister[self.pw_names[i]])
+                        self.LinearRegionItemRegister[self.pw_names[i]] = None
         
 
     def plot_trajectory(self,button_index=None):
@@ -1113,7 +1120,6 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         font = QFont("Helvetica",8)
         self.waveformPlotWidget.getAxis("left").setLabel(text="Amplitude",color="white")
         self.waveformPlotWidget.getAxis("left").label.setFont(font)
-
 
 """
 ### for testing
