@@ -283,7 +283,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         #collect tongue shape
         number_of_rows = self.emaControlTable.rowCount()
         for i in range(number_of_rows):
-            item = self.emaControlTable.cellWidget(i,3).findChild(QCheckBox)
+            item = self.emaControlTable.cellWidget(i,3)
             if item.isChecked():
                 channel_name = self.emaControlTable.cellWidget(i,1).currentText()
                 self.tongueSensorRegister[channel_name] = True
@@ -535,16 +535,18 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         #plot item
         # https://stackoverflow.com/questions/56102229/how-to-remove-label-from-dynamically-generated-check-box-in-pyqt5
         
-        widget = QWidget()
-        checkBoxItem = QCheckBox()
-        checkBoxItem.setCheckState(Qt.Unchecked)
-        layoutH = QHBoxLayout(widget)
-        layoutH.addWidget(checkBoxItem)
-        layoutH.setAlignment(Qt.AlignCenter)
-        layoutH.setContentsMargins(0,0,0,0)
-        self.emaControlTable.setCellWidget(number_of_rows,3,widget)
-        self.emaControlTable.setItem(number_of_rows,3,"")
-        #checkBoxItem.stateChanged.connect(self.plot_trajectory)
+        tongue_button = QPushButton(self.emaControlTable)
+        tongue_button.setCheckable(True)
+        tongue_button.clicked.connect(self.activate_istongue)
+        self.emaControlTable.setCellWidget(number_of_rows,3,tongue_button)
+
+    def activate_istongue(self):
+        if self.sender().isChecked():
+            self.sender().setText("✔")
+            self.sender().setStyleSheet("background-color : green")
+        else:
+            self.sender().setText("")
+            self.sender().setStyleSheet("background-color : light gray")
 
     def color_selection(self):
         self.sender().setStyleSheet("background-color:"+self.sender().currentText()+"; color: black")
