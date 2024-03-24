@@ -157,7 +157,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.rename_landmarks)
         for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseClicked.connect(self.remove_landmarks)
 
-        #for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
+        for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigItemAdded.connect(self.item_added)
 
         self.addLandmarkButton.clicked.connect(self.activate_landmark_addition)
         self.renameLandmarkButton.clicked.connect(self.activate_landmark_renaming)
@@ -170,15 +170,32 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                             "emaPlotWidget2" : None,
                                             "emaPlotWidget3" : None
                                         }
-        self.pw_names = ["emaPlotWidget1","emaPlotWidget2","emaPlotWidget3"]
+        self.pw_names = ["waveformPlotWidget","spectrogramWidget","emaPlotWidget1","emaPlotWidget2","emaPlotWidget3"]
 
+        # initialize line for mouse cursor location
         self.locationLines = {
-                                "emaPlotWidget1" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=1)),
-                                "emaPlotWidget2" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=1)),
-                                "emaPlotWidget3" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=1))
+                                "waveformPlotWidget": pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=0.5)),
+                                "spectrogramWidget" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=0.5)),
+                                "emaPlotWidget1" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=0.5)),
+                                "emaPlotWidget2" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=0.5)),
+                                "emaPlotWidget3" : pg.InfiniteLine(pos=0,movable=False,pen=pg.mkPen("white",width=0.5))
                             }
-        for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].addItem(self.locationLines["emaPlotWidget"+str(i)])
-        for i in range(1,4): self.emaPanelDict[i]["PlotWidget"].scene().sigMouseMoved.connect(self.mouse_hover)
+         
+        for pw_name in self.pw_names: 
+                if "emaPlotWidget" in pw_name:
+                    emaPlotWidget_index = int(list(pw_name)[-1])    
+                    self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].addItem(self.locationLines[pw_name])
+                    self.emaPanelDict[emaPlotWidget_index]["PlotWidget"].scene().sigMouseMoved.connect(self.mouse_hover)
+                elif "waveformPlotWidget" == pw_name:
+                    self.waveformPlotWidget.addItem(self.locationLines["waveformPlotWidget"])
+                    self.waveformPlotWidget.scene().sigMouseMoved.connect(self.mouse_hover)
+                elif "spectrogramWidget" == pw_name:
+                    self.spectrogramWidget.addItem(self.locationLines["spectrogramWidget"])
+                    self.spectrogramWidget.scene().sigMouseMoved.connect(self.mouse_hover)
+
+        self.scatterItemRegister = {}
+        self.scatterLabelRegister = {}
+
         self.displayLandmarksCheckBoxes = {
                                             1 : self.emaPanel1DisplayLandmarksPushButton,
                                             2 : self.emaPanel2DisplayLandmarksPushButton,
@@ -292,6 +309,13 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         if self.showIntensityButton.isChecked() == False:
             if self.sender().isChecked():
                 #calculate f0
+                self.sender().setStyleSheet("background-color : red")
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle("running f0 estimation")
+                msgBox.setText("estimate f0 ...\nwait until the red button is green.\nPress Ok to continue.")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec()
                 audio_signal = self.data.audio.signal.values
                 time = self.data.audio.time.values
                 if self.fundamentalFrequencyComboBox.currentText() == "pYin":
@@ -407,7 +431,6 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         sound_snippet = self.data.audio.signal.values[xmin:xmax]
         sr = self.data.audio.attrs["samplerate"]
         sd.play(sound_snippet,sr)
-        print("playes")
 
 
     def displayAudioAnnotations(self):
@@ -435,35 +458,22 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         elif self.sender().isChecked() == False:
             item_list = self.waveformPlotWidget.allChildItems()
             for i in range(len(item_list)):
-                if isinstance(item_list[i],pg.InfiniteLine):
+                if isinstance(item_list[i],pg.InfiniteLine) and item_list[i] != self.locationLines["waveformPlotWidget"]:
                     self.waveformPlotWidget.removeItem(item_list[i])
             self.sender().setStyleSheet("background-color : light gray")
             self.sender().setText(" ")
-
-
-
-    #def mouse_hover(self,evt):
-    #    if self.addLandmarkButton.isChecked() or self.renameLandmarkButton.isChecked() or self.removeLandmarkButton.isChecked() or self.selectRegionButton.isChecked():
-    #        oname = self.sender().parent().objectName()
-    #        scene_coords = evt
-    #        vb = self.sender().parent().getViewBox()
-    #        if self.sender().parent().sceneBoundingRect().contains(scene_coords):
-    #            self.locationLines[oname].show()
-    #            mouse_loc = vb.mapSceneToView(scene_coords)
-    #            self.locationLines[oname].setValue(mouse_loc)     
+  
 
     def eventFilter(self,source,evt):
        
-        if source == self and evt.type() == QEvent.Type.HoverMove:
-            pos = self.mapToParent(evt.pos())
-            w = qApp.widgetAt(pos)
-            parent_widget_name = w.parentWidget().objectName()
-            mouse_position = w.parentWidget().getViewBox().mapSceneToView(evt.pos())
-            for pw_name in self.pw_names: self.locationLines[pw_name].setValue(mouse_position)
-            #if parent_widget_name in self.pw_names:
-            #    self.locationLines[parent_widget_name].show()
-            #else:
-            #    for pw_name in self.pw_names: self.locationLines[pw_name].hide()
+        #if source == self and evt.type() == QEvent.Type.HoverMove:
+        #    pos = self.mapToParent(evt.pos())
+        #    w = qApp.widgetAt(pos)
+        #    parent_widget_name = w.parentWidget().objectName()
+        #    if parent_widget_name in self.pw_names:
+        #        self.locationLines[parent_widget_name].show()
+        #    else:
+        #        for pw_name in self.pw_names: self.locationLines[pw_name].hide()
         
         if source == self and evt.type() == QEvent.MouseButtonPress:
             pos = self.mapToParent(evt.pos())
@@ -500,13 +510,14 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
     def display_landmarks(self):
         name = self.sender().objectName() #replace with more efficient naming
         idx = int(self.sender().text())
-        if self.sender().isChecked() and self.emaLandmarksComboBoxes[idx].currentText() != "":
+        if self.sender().isChecked() and self.emaLandmarksComboBoxes[idx].currentText() != "new":
             current_text = self.emaLandmarksComboBoxes[idx].currentText()
             tmp_landmark_register = self.landmarkRegister[self.landmarkRegister["tierName"] == current_text].reset_index(drop=True)
             plt.add_landmarks_to_pw(self.emaPanelDict[idx]["PlotWidget"],tmp_landmark_register)
             self.sender().setStyleSheet("background-color: green")
         else:
             plt.remove_landmarks_from_pw(self.emaPanelDict[idx]["PlotWidget"])
+            self.sender().setChecked(False)
             self.sender().setStyleSheet("background-color: light gray")
 
 
@@ -575,38 +586,41 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
             
     def mouse_hover(self,evt):
-        if self.addLandmarkButton.isChecked() or self.renameLandmarkButton.isChecked() or self.removeLandmarkButton.isChecked() or self.selectRegionButton.isChecked():
-            oname = self.sender().parent().objectName()
-            scene_coords = evt
-            vb = self.sender().parent().getViewBox()
-            if self.sender().parent().sceneBoundingRect().contains(scene_coords):
-                self.locationLines[oname].show()
+        #if self.addLandmarkButton.isChecked() or self.renameLandmarkButton.isChecked() or self.removeLandmarkButton.isChecked() or self.selectRegionButton.isChecked():
+        oname = self.sender().parent().objectName()
+        scene_coords = evt
+        vb = self.sender().parent().getViewBox()
+        if self.sender().parent().sceneBoundingRect().contains(scene_coords):
+            for pw_name in self.pw_names:
+                self.locationLines[pw_name].show()
                 mouse_loc = vb.mapSceneToView(scene_coords)
-                self.locationLines[oname].setValue(mouse_loc)
-        
-
-        
+                self.locationLines[pw_name].setValue(mouse_loc)
 
     def item_added(self,item):
         if isinstance(item,pg.InfiniteLine):
-            position = item.pos()
-            #label = item.label.format
-            if position not in self.landmarkRegister["tmin"].to_numpy():
-                #parent_name = self.sender().parent().objectName()
-                #panel_idx = int(list(parent_name)[-1])
-                #parent_idx = int(list(parent_name)[-1])
-                #ready_to_store = True
-                #if self.emaLandmarksComboBoxes[parent_idx].currentText() != "":
-                #    tier_name = self.emaLandmarksComboBoxes[parent_idx].currentText()
-                #    tier_names = self.landmarkRegister["tierName"].unique()
-                #    positions = [ position[0] == self.landmarkRegister[key][i]["position"] for i in range(len(tier_names))]
-                #    if all(positions):
-                #        ready_to_store = False
-                #if ready_to_store == True:
-                if self.displayLandmarksCheckBoxes[panel_idx].isChecked() == False:
-                    self.displayLandmarksCheckBoxes[panel_idx].setChecked(True)
-                    self.displayLandmarksCheckBoxes[panel_idx].setStyleSheet("background-color : green")
-                self.storeLandmarksButton.setStyleSheet("background-color : red")
+            parent_name = self.sender().parent().objectName()
+            panel_idx = int(list(parent_name)[-1])
+            self.displayLandmarksCheckBoxes[panel_idx].setChecked(True)
+            self.displayLandmarksCheckBoxes[panel_idx].setStyleSheet("background-color : green")
+            
+            #position = item.pos()
+            ##label = item.label.format
+            #if position not in self.landmarkRegister["tmin"].to_numpy():
+            #    #parent_name = self.sender().parent().objectName()
+            #    #panel_idx = int(list(parent_name)[-1])
+            #    #parent_idx = int(list(parent_name)[-1])
+            #    #ready_to_store = True
+            #    #if self.emaLandmarksComboBoxes[parent_idx].currentText() != "":
+            #    #    tier_name = self.emaLandmarksComboBoxes[parent_idx].currentText()
+            #    #    tier_names = self.landmarkRegister["tierName"].unique()
+            #    #    positions = [ position[0] == self.landmarkRegister[key][i]["position"] for i in range(len(tier_names))]
+            #    #    if all(positions):
+            #    #        ready_to_store = False
+            #    #if ready_to_store == True:
+            #    if self.displayLandmarksCheckBoxes[panel_idx].isChecked() == False:
+            #        self.displayLandmarksCheckBoxes[panel_idx].setChecked(True)
+            #        self.displayLandmarksCheckBoxes[panel_idx].setStyleSheet("background-color : green")
+            #    self.storeLandmarksButton.setStyleSheet("background-color : red")
             
 
     
@@ -1103,7 +1117,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
 """
 ### for testing
-path = "/home/philipp/test/"
+path = ""
 posfile = path + "0005.pos"
 wavfile = path + "0005.wav"
 tgfile = path + "0005.TextGrid"

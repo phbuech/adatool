@@ -187,6 +187,13 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         if self.showIntensityButton.isChecked() == False:
             if self.sender().isChecked():
                 #calculate f0
+                self.sender().setStyleSheet("background-color : red")
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle("running f0 estimation")
+                msgBox.setText("estimate f0 ...\nwait until the red button is green.\nPress Ok to continue.")
+                msgBox.setStandardButtons(QMessageBox.Ok)
+                msgBox.exec()
                 audio_signal = self.data.audio.signal.values
                 time = self.data.audio.time.values
                 if self.fundamentalFrequencyComboBox.currentText() == "pYin":
