@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
-    QMainWindow, QMenuBar, QPushButton, QScrollBar,
-    QSizePolicy, QSpacerItem, QSplitter, QStatusBar,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QMainWindow,
+    QMenuBar, QPushButton, QScrollBar, QSizePolicy,
+    QSpacerItem, QSplitter, QStatusBar, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 
 from pyqtgraph import PlotWidget
 
@@ -90,6 +90,7 @@ class Ui_INSPECTOR2D(object):
         self.layoutWidget_3 = QWidget(self.waveformSplitter)
         self.layoutWidget_3.setObjectName(u"layoutWidget_3")
         self.verticalLayout_3 = QVBoxLayout(self.layoutWidget_3)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.waveformPlotWidget = PlotWidget(self.layoutWidget_3)
@@ -103,6 +104,29 @@ class Ui_INSPECTOR2D(object):
         self.waveformPlotWidget.setMaximumSize(QSize(16777215, 16777215))
 
         self.verticalLayout_3.addWidget(self.waveformPlotWidget)
+
+        self.spectrogramFrame = QFrame(self.layoutWidget_3)
+        self.spectrogramFrame.setObjectName(u"spectrogramFrame")
+        self.spectrogramFrame.setFrameShape(QFrame.StyledPanel)
+        self.spectrogramFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.spectrogramFrame)
+        self.horizontalLayout_12.setSpacing(0)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.spectrogramWidget = PlotWidget(self.spectrogramFrame)
+        self.spectrogramWidget.setObjectName(u"spectrogramWidget")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.spectrogramWidget.sizePolicy().hasHeightForWidth())
+        self.spectrogramWidget.setSizePolicy(sizePolicy4)
+        self.spectrogramWidget.setMinimumSize(QSize(0, 0))
+        self.spectrogramWidget.setMaximumSize(QSize(16777215, 16777215))
+
+        self.horizontalLayout_12.addWidget(self.spectrogramWidget)
+
+
+        self.verticalLayout_3.addWidget(self.spectrogramFrame)
 
         self.verticalLayout_5 = QVBoxLayout()
         self.verticalLayout_5.setSpacing(2)
@@ -120,19 +144,13 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.zoomAllButton = QPushButton(self.layoutWidget_3)
         self.zoomAllButton.setObjectName(u"zoomAllButton")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.zoomAllButton.sizePolicy().hasHeightForWidth())
-        self.zoomAllButton.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.zoomAllButton.sizePolicy().hasHeightForWidth())
+        self.zoomAllButton.setSizePolicy(sizePolicy5)
 
         self.horizontalLayout_4.addWidget(self.zoomAllButton)
-
-        self.zoomInButton = QPushButton(self.layoutWidget_3)
-        self.zoomInButton.setObjectName(u"zoomInButton")
-        self.zoomInButton.setMaximumSize(QSize(16777215, 16777215))
-
-        self.horizontalLayout_4.addWidget(self.zoomInButton)
 
         self.zoomOutButton = QPushButton(self.layoutWidget_3)
         self.zoomOutButton.setObjectName(u"zoomOutButton")
@@ -142,6 +160,12 @@ class Ui_INSPECTOR2D(object):
         self.zoomOutButton.setMaximumSize(QSize(16777215, 16777215))
 
         self.horizontalLayout_4.addWidget(self.zoomOutButton)
+
+        self.zoomInButton = QPushButton(self.layoutWidget_3)
+        self.zoomInButton.setObjectName(u"zoomInButton")
+        self.zoomInButton.setMaximumSize(QSize(16777215, 16777215))
+
+        self.horizontalLayout_4.addWidget(self.zoomInButton)
 
         self.zoomSelectionButton = QPushButton(self.layoutWidget_3)
         self.zoomSelectionButton.setObjectName(u"zoomSelectionButton")
@@ -170,11 +194,11 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_2 = QLabel(self.verticalLayoutWidget)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy6)
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
@@ -192,29 +216,184 @@ class Ui_INSPECTOR2D(object):
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.displayAnnotationCheckBox = QCheckBox(self.verticalLayoutWidget)
-        self.displayAnnotationCheckBox.setObjectName(u"displayAnnotationCheckBox")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.displayAnnotationCheckBox.sizePolicy().hasHeightForWidth())
-        self.displayAnnotationCheckBox.setSizePolicy(sizePolicy6)
+        self.displayAnnotationPushButton = QPushButton(self.verticalLayoutWidget)
+        self.displayAnnotationPushButton.setObjectName(u"displayAnnotationPushButton")
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.displayAnnotationPushButton.sizePolicy().hasHeightForWidth())
+        self.displayAnnotationPushButton.setSizePolicy(sizePolicy7)
+        self.displayAnnotationPushButton.setCheckable(True)
 
-        self.horizontalLayout_5.addWidget(self.displayAnnotationCheckBox)
+        self.horizontalLayout_5.addWidget(self.displayAnnotationPushButton)
 
         self.audioAnnotationComboBox = QComboBox(self.verticalLayoutWidget)
         self.audioAnnotationComboBox.addItem("")
         self.audioAnnotationComboBox.setObjectName(u"audioAnnotationComboBox")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.audioAnnotationComboBox.sizePolicy().hasHeightForWidth())
-        self.audioAnnotationComboBox.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.audioAnnotationComboBox.sizePolicy().hasHeightForWidth())
+        self.audioAnnotationComboBox.setSizePolicy(sizePolicy8)
 
         self.horizontalLayout_5.addWidget(self.audioAnnotationComboBox)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_5)
+
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.label_8 = QLabel(self.verticalLayoutWidget)
+        self.label_8.setObjectName(u"label_8")
+        sizePolicy6.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy6)
+
+        self.horizontalLayout_10.addWidget(self.label_8)
+
+        self.line_4 = QFrame(self.verticalLayoutWidget)
+        self.line_4.setObjectName(u"line_4")
+        sizePolicy.setHeightForWidth(self.line_4.sizePolicy().hasHeightForWidth())
+        self.line_4.setSizePolicy(sizePolicy)
+        self.line_4.setFrameShape(QFrame.HLine)
+        self.line_4.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_10.addWidget(self.line_4)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_10)
+
+        self.showSpectrogramButton = QPushButton(self.verticalLayoutWidget)
+        self.showSpectrogramButton.setObjectName(u"showSpectrogramButton")
+        self.showSpectrogramButton.setCheckable(True)
+
+        self.verticalLayout.addWidget(self.showSpectrogramButton)
+
+        self.horizontalLayout_11 = QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.line_6 = QFrame(self.verticalLayoutWidget)
+        self.line_6.setObjectName(u"line_6")
+        sizePolicy5.setHeightForWidth(self.line_6.sizePolicy().hasHeightForWidth())
+        self.line_6.setSizePolicy(sizePolicy5)
+        self.line_6.setFrameShape(QFrame.HLine)
+        self.line_6.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_11.addWidget(self.line_6)
+
+        self.label_9 = QLabel(self.verticalLayoutWidget)
+        self.label_9.setObjectName(u"label_9")
+        font = QFont()
+        font.setPointSize(9)
+        self.label_9.setFont(font)
+
+        self.horizontalLayout_11.addWidget(self.label_9)
+
+        self.line_7 = QFrame(self.verticalLayoutWidget)
+        self.line_7.setObjectName(u"line_7")
+        sizePolicy5.setHeightForWidth(self.line_7.sizePolicy().hasHeightForWidth())
+        self.line_7.setSizePolicy(sizePolicy5)
+        self.line_7.setFrameShape(QFrame.HLine)
+        self.line_7.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_11.addWidget(self.line_7)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_11)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.showFundamentalFrequencyButton = QPushButton(self.verticalLayoutWidget)
+        self.showFundamentalFrequencyButton.setObjectName(u"showFundamentalFrequencyButton")
+        sizePolicy7.setHeightForWidth(self.showFundamentalFrequencyButton.sizePolicy().hasHeightForWidth())
+        self.showFundamentalFrequencyButton.setSizePolicy(sizePolicy7)
+        self.showFundamentalFrequencyButton.setMinimumSize(QSize(75, 0))
+        self.showFundamentalFrequencyButton.setCheckable(True)
+
+        self.horizontalLayout_6.addWidget(self.showFundamentalFrequencyButton)
+
+        self.label_3 = QLabel(self.verticalLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
+        sizePolicy6.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy6)
+        self.label_3.setMinimumSize(QSize(50, 0))
+        self.label_3.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_6.addWidget(self.label_3)
+
+        self.fundamentalFrequencyComboBox = QComboBox(self.verticalLayoutWidget)
+        self.fundamentalFrequencyComboBox.addItem("")
+        self.fundamentalFrequencyComboBox.addItem("")
+        self.fundamentalFrequencyComboBox.setObjectName(u"fundamentalFrequencyComboBox")
+        sizePolicy5.setHeightForWidth(self.fundamentalFrequencyComboBox.sizePolicy().hasHeightForWidth())
+        self.fundamentalFrequencyComboBox.setSizePolicy(sizePolicy5)
+
+        self.horizontalLayout_6.addWidget(self.fundamentalFrequencyComboBox)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_6)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.line_8 = QFrame(self.verticalLayoutWidget)
+        self.line_8.setObjectName(u"line_8")
+        self.line_8.setFrameShape(QFrame.HLine)
+        self.line_8.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_13.addWidget(self.line_8)
+
+        self.label_10 = QLabel(self.verticalLayoutWidget)
+        self.label_10.setObjectName(u"label_10")
+        sizePolicy.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
+        self.label_10.setSizePolicy(sizePolicy)
+        self.label_10.setFont(font)
+        self.label_10.setFrameShadow(QFrame.Plain)
+        self.label_10.setScaledContents(False)
+        self.label_10.setAlignment(Qt.AlignCenter)
+        self.label_10.setMargin(0)
+
+        self.horizontalLayout_13.addWidget(self.label_10)
+
+        self.line_9 = QFrame(self.verticalLayoutWidget)
+        self.line_9.setObjectName(u"line_9")
+        sizePolicy5.setHeightForWidth(self.line_9.sizePolicy().hasHeightForWidth())
+        self.line_9.setSizePolicy(sizePolicy5)
+        self.line_9.setFrameShape(QFrame.HLine)
+        self.line_9.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_13.addWidget(self.line_9)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_13)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.showIntensityButton = QPushButton(self.verticalLayoutWidget)
+        self.showIntensityButton.setObjectName(u"showIntensityButton")
+        sizePolicy7.setHeightForWidth(self.showIntensityButton.sizePolicy().hasHeightForWidth())
+        self.showIntensityButton.setSizePolicy(sizePolicy7)
+        self.showIntensityButton.setMinimumSize(QSize(75, 0))
+        self.showIntensityButton.setCheckable(True)
+
+        self.horizontalLayout_14.addWidget(self.showIntensityButton)
+
+        self.label_16 = QLabel(self.verticalLayoutWidget)
+        self.label_16.setObjectName(u"label_16")
+        sizePolicy6.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
+        self.label_16.setSizePolicy(sizePolicy6)
+        self.label_16.setMinimumSize(QSize(50, 0))
+        self.label_16.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_14.addWidget(self.label_16)
+
+        self.intensityComboBox = QComboBox(self.verticalLayoutWidget)
+        self.intensityComboBox.addItem("")
+        self.intensityComboBox.setObjectName(u"intensityComboBox")
+        sizePolicy5.setHeightForWidth(self.intensityComboBox.sizePolicy().hasHeightForWidth())
+        self.intensityComboBox.setSizePolicy(sizePolicy5)
+
+        self.horizontalLayout_14.addWidget(self.intensityComboBox)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_14)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -271,11 +450,11 @@ class Ui_INSPECTOR2D(object):
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.emaPanel1 = QFrame(self.verticalLayoutWidget_2)
         self.emaPanel1.setObjectName(u"emaPanel1")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.MinimumExpanding)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.emaPanel1.sizePolicy().hasHeightForWidth())
-        self.emaPanel1.setSizePolicy(sizePolicy8)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.MinimumExpanding)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.emaPanel1.sizePolicy().hasHeightForWidth())
+        self.emaPanel1.setSizePolicy(sizePolicy9)
         self.emaPanel1.setMinimumSize(QSize(0, 50))
         self.emaPanel1.setFrameShape(QFrame.StyledPanel)
         self.emaPanel1.setFrameShadow(QFrame.Raised)
@@ -288,11 +467,11 @@ class Ui_INSPECTOR2D(object):
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.emaPlotWidget1 = PlotWidget(self.emaPanel1)
         self.emaPlotWidget1.setObjectName(u"emaPlotWidget1")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.emaPlotWidget1.sizePolicy().hasHeightForWidth())
-        self.emaPlotWidget1.setSizePolicy(sizePolicy9)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.emaPlotWidget1.sizePolicy().hasHeightForWidth())
+        self.emaPlotWidget1.setSizePolicy(sizePolicy10)
 
         self.verticalLayout_16.addWidget(self.emaPlotWidget1)
 
@@ -312,8 +491,8 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.label_4 = QLabel(self.layoutWidget_2)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy5.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy5)
+        sizePolicy6.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy6)
 
         self.horizontalLayout_7.addWidget(self.label_4)
 
@@ -360,11 +539,11 @@ class Ui_INSPECTOR2D(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.addChannelToEmaControlTableButton = QPushButton(self.layoutWidget_2)
         self.addChannelToEmaControlTableButton.setObjectName(u"addChannelToEmaControlTableButton")
-        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
-        sizePolicy10.setHorizontalStretch(0)
-        sizePolicy10.setVerticalStretch(0)
-        sizePolicy10.setHeightForWidth(self.addChannelToEmaControlTableButton.sizePolicy().hasHeightForWidth())
-        self.addChannelToEmaControlTableButton.setSizePolicy(sizePolicy10)
+        sizePolicy11 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
+        sizePolicy11.setHorizontalStretch(0)
+        sizePolicy11.setVerticalStretch(0)
+        sizePolicy11.setHeightForWidth(self.addChannelToEmaControlTableButton.sizePolicy().hasHeightForWidth())
+        self.addChannelToEmaControlTableButton.setSizePolicy(sizePolicy11)
         self.addChannelToEmaControlTableButton.setMinimumSize(QSize(0, 20))
         self.addChannelToEmaControlTableButton.setMaximumSize(QSize(16777215, 20))
 
@@ -372,8 +551,8 @@ class Ui_INSPECTOR2D(object):
 
         self.removeChannelFromEmaControlTableButton = QPushButton(self.layoutWidget_2)
         self.removeChannelFromEmaControlTableButton.setObjectName(u"removeChannelFromEmaControlTableButton")
-        sizePolicy10.setHeightForWidth(self.removeChannelFromEmaControlTableButton.sizePolicy().hasHeightForWidth())
-        self.removeChannelFromEmaControlTableButton.setSizePolicy(sizePolicy10)
+        sizePolicy11.setHeightForWidth(self.removeChannelFromEmaControlTableButton.sizePolicy().hasHeightForWidth())
+        self.removeChannelFromEmaControlTableButton.setSizePolicy(sizePolicy11)
         self.removeChannelFromEmaControlTableButton.setMinimumSize(QSize(0, 20))
         self.removeChannelFromEmaControlTableButton.setMaximumSize(QSize(16777215, 20))
 
@@ -454,13 +633,26 @@ class Ui_INSPECTOR2D(object):
         INSPECTOR2D.setWindowTitle(QCoreApplication.translate("INSPECTOR2D", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("INSPECTOR2D", u"WAVEFORM", None))
         self.zoomAllButton.setText(QCoreApplication.translate("INSPECTOR2D", u"all", None))
-        self.zoomInButton.setText(QCoreApplication.translate("INSPECTOR2D", u"zoom in", None))
         self.zoomOutButton.setText(QCoreApplication.translate("INSPECTOR2D", u"zoom out", None))
+        self.zoomInButton.setText(QCoreApplication.translate("INSPECTOR2D", u"zoom in", None))
         self.zoomSelectionButton.setText(QCoreApplication.translate("INSPECTOR2D", u"selection", None))
         self.PLAY_AUDIO.setText(QCoreApplication.translate("INSPECTOR2D", u"play", None))
-        self.label_2.setText(QCoreApplication.translate("INSPECTOR2D", u"WAVEFORM LANDMARK CONTROLS", None))
-        self.displayAnnotationCheckBox.setText(QCoreApplication.translate("INSPECTOR2D", u"show", None))
+        self.label_2.setText(QCoreApplication.translate("INSPECTOR2D", u"WAVEFORM CONTROLS", None))
+        self.displayAnnotationPushButton.setText("")
         self.audioAnnotationComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR2D", u"Tiers", None))
+
+        self.label_8.setText(QCoreApplication.translate("INSPECTOR2D", u"SPECTROGRAM CONTROLS", None))
+        self.showSpectrogramButton.setText(QCoreApplication.translate("INSPECTOR2D", u"spectrogram", None))
+        self.label_9.setText(QCoreApplication.translate("INSPECTOR2D", u"FUNDAMENTAL FREQUENCY", None))
+        self.showFundamentalFrequencyButton.setText("")
+        self.label_3.setText(QCoreApplication.translate("INSPECTOR2D", u"estimation:", None))
+        self.fundamentalFrequencyComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR2D", u"pYin", None))
+        self.fundamentalFrequencyComboBox.setItemText(1, QCoreApplication.translate("INSPECTOR2D", u"Yin", None))
+
+        self.label_10.setText(QCoreApplication.translate("INSPECTOR2D", u"INTENSITY", None))
+        self.showIntensityButton.setText("")
+        self.label_16.setText(QCoreApplication.translate("INSPECTOR2D", u"estimation:", None))
+        self.intensityComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR2D", u"rms", None))
 
         self.label_6.setText(QCoreApplication.translate("INSPECTOR2D", u"EMA", None))
         self.label_4.setText(QCoreApplication.translate("INSPECTOR2D", u"PLOTTING CONTROLS", None))

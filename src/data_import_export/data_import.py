@@ -46,7 +46,6 @@ def read_data(file_urls,file_dict,ema_format,audio_format,annotation_format):
     for fname_idx in range(len(fnames)):
         fname = fnames[fname_idx]
         tmp_data = dataContainer()
-        print("load")
         if ema_format == "AG50x":
             try:
                 tmp_data.ema = read_AG50x(main_path + fname + ".pos")
