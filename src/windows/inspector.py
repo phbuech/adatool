@@ -224,6 +224,27 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.zoomSelectionButton.clicked.connect(self.zoom_selection)
         self.zoomAllButton.clicked.connect(self.zoom_all)
         self.showSpectrogramButton.click()
+        self.showFundamentalFrequencyButton.clicked.connect(self.plot_fundamental_frequency)
+        self.showIntensityButton.clicked.connect(self.plot_intensity)
+        self.showFundamentalFrequencyButton.setText(" ")
+        self.showIntensityButton.setText(" ")
+        self.displayAnnotationPushButton.setText(" ")
+
+        #create 2nd spectrogram axis
+        self.specgram_2nd_axis = pg.ViewBox()
+        p1 = self.spectrogramWidget
+        #p1.showAxis("right")
+        p1.scene().addItem(self.specgram_2nd_axis)
+        p1.getAxis("right").linkToView(self.specgram_2nd_axis)
+        self.specgram_2nd_axis.setXLink(p1)
+        
+        def updateViews():
+            self.specgram_2nd_axis.setGeometry(p1.getViewBox().sceneBoundingRect())
+            self.specgram_2nd_axis.linkedViewChanged(p1.getViewBox(),self.specgram_2nd_axis.XAxis)
+        updateViews()
+        p1.getViewBox().sigResized.connect(updateViews)
+
+        
         
         
         # assign ema tiers to comboboxes:
@@ -234,18 +255,104 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         #            for tier in ema_tiers:
         #                self.emaLandmarksComboBoxes[i+1].addItem(tier)
 
+    def plot_intensity(self):
+        if self.showFundamentalFrequencyButton.isChecked() == False:
+            if self.sender().isChecked():
+                audio_signal = self.data.audio.signal.values
+                time = self.data.audio.time.values
+                intensity = sp.calculate_rms(input_signal=audio_signal)
+                intensity = 20*np.log10((intensity/np.min(intensity)))
+                intensity_curve = pg.PlotCurveItem(pen=pg.mkPen(color="yellow",width=3))
+                t = np.linspace(0,time[-1],len(intensity))
+                intensity_curve.setData(t,intensity)
+                ymin, ymax = np.nanmin(intensity), np.nanmax(intensity)
+                self.spectrogramWidget.showAxis("right")
+                self.specgram_2nd_axis.addItem(intensity_curve)
+                self.specgram_2nd_axis.setRange(yRange=[ymin,ymax])
+                self.specgram_2nd_axis.setZValue(1)
+                font = QFont("Helvetica",8)
+                self.spectrogramWidget.getAxis("right").setLabel(text="rms amplitude",color="yellow")
+                self.spectrogramWidget.getAxis("right").label.setFont(font)
+                self.sender().setStyleSheet("background-color : green")
+                self.sender().setText("✔")
+            else:
+                self.spectrogramWidget.hideAxis("right")
+                #remove f0 plot curve
+                item_list = self.specgram_2nd_axis.allChildItems()
+                for i in range(len(item_list)):
+                    if isinstance(item_list[i],pg.PlotCurveItem):
+                        self.specgram_2nd_axis.removeItem(item_list[i])
+                self.sender().setStyleSheet("background-color : light gray")
+                self.sender().setText(" ")
+        else:
+            self.sender().setChecked(False)
+
+
+    def plot_fundamental_frequency(self):
+        if self.showIntensityButton.isChecked() == False:
+            if self.sender().isChecked():
+                #calculate f0
+                audio_signal = self.data.audio.signal.values
+                time = self.data.audio.time.values
+                if self.fundamentalFrequencyComboBox.currentText() == "pYin":
+                    f0 = sp.calculate_f0_pyin(input_signal=audio_signal,time=time,fs=self.data.audio.attrs["samplerate"])
+                elif self.fundamentalFrequencyComboBox.currentText() == "Yin":
+                    f0 = sp.calculate_f0_yin(input_signal=audio_signal,time=time,fs=self.data.audio.attrs["samplerate"])
+                ymin, ymax = np.nanmin(f0),np.nanmax(f0)
+                f0 = np.nan_to_num(f0)
+                #initialize second y axis
+                
+                t = np.linspace(0,time[-1],len(f0))
+                f0_curve = pg.PlotCurveItem(pen=pg.mkPen(color="blue",width=3))
+                f0_curve.setData(t,f0)
+                self.spectrogramWidget.showAxis("right")
+                self.specgram_2nd_axis.addItem(f0_curve)
+                self.specgram_2nd_axis.setRange(yRange=[ymin,ymax])
+                self.specgram_2nd_axis.setZValue(1)
+                font = QFont("Helvetica",8)
+                self.spectrogramWidget.getAxis("right").setLabel(text="f0 (Hz)",color="blue")
+                self.spectrogramWidget.getAxis("right").label.setFont(font)
+                self.sender().setStyleSheet("background-color : green")
+                self.sender().setText("✔")
+                #self.f0_vb.addItem(f0_curve)
+            else:
+                self.spectrogramWidget.hideAxis("right")
+                #remove f0 plot curve
+                item_list = self.specgram_2nd_axis.allChildItems()
+                for i in range(len(item_list)):
+                    if isinstance(item_list[i],pg.PlotCurveItem):
+                        self.specgram_2nd_axis.removeItem(item_list[i])
+                self.sender().setStyleSheet("background-color : light gray")
+                self.sender().setText(" ")
+        else:
+            self.sender().setChecked(False)
+
+
     def plot_spectrogram(self):
-        f, t, Sxx = scp.signal.spectrogram(x=self.data.audio.signal.values,fs=self.data.audio.attrs["samplerate"])
-        print(Sxx)
+        pg.setConfigOptions(imageAxisOrder='row-major')
+        #remove spectrogram
+        window_size = int(self.data.audio.attrs["samplerate"]*0.005)
+        time_step = int(self.data.audio.attrs["samplerate"]*0.001)
+        fs = self.data.audio.attrs["samplerate"]
+
+        win = scp.signal.windows.hamming(window_size,sym=True)
+        #win = scp.signal.windows.gaussian(window_size,std=50,sym=True)
+        SFT = scp.signal.ShortTimeFFT(win,hop=time_step,fs=1/fs,mfft=2048)
+        Sxx = SFT.spectrogram(self.data.audio.signal.values,detr="constant")
+        Sxx = 10 * np.log10(Sxx)
         img = pg.ImageItem()
         tr = QTransform()
-        
-        tr.scale(t[-1]/np.size(Sxx, axis=1),f[-1]/np.size(Sxx, axis=0))
+        tr.scale(self.data.audio.time.values[-1]/np.size(Sxx, axis=1),(fs/2)/np.size(Sxx, axis=0))
         img.setTransform(tr)
-        img.setImage(Sxx)
+        img.setImage(image=Sxx,autoLevels=False)
+        img.setLevels([Sxx.max()-70,Sxx.max()])
+        img.setColorMap("inferno")
         
-        self.spectrogramWidget.addItem(img)
-        self.spectrogramWidget.setLimits(xMin=0, xMax=t[-1], yMin=0, yMax=8000)
+        self.spectrogramWidget.getViewBox().addItem(img)
+        font = QFont("Helvetica",8)
+        self.spectrogramWidget.getAxis("left").setLabel(text="Frequency (Hz)",color="white")
+        self.spectrogramWidget.getAxis("left").label.setFont(font)
+        self.spectrogramWidget.setLimits(xMin=0, xMax=self.data.audio.time.values[-1], yMin=0, yMax=6500)
 
     def show_spectrogram(self):
         if self.sender().isChecked():
@@ -332,7 +439,18 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                     self.waveformPlotWidget.removeItem(item_list[i])
             self.sender().setStyleSheet("background-color : light gray")
             self.sender().setText(" ")
-                    
+
+
+
+    #def mouse_hover(self,evt):
+    #    if self.addLandmarkButton.isChecked() or self.renameLandmarkButton.isChecked() or self.removeLandmarkButton.isChecked() or self.selectRegionButton.isChecked():
+    #        oname = self.sender().parent().objectName()
+    #        scene_coords = evt
+    #        vb = self.sender().parent().getViewBox()
+    #        if self.sender().parent().sceneBoundingRect().contains(scene_coords):
+    #            self.locationLines[oname].show()
+    #            mouse_loc = vb.mapSceneToView(scene_coords)
+    #            self.locationLines[oname].setValue(mouse_loc)     
 
     def eventFilter(self,source,evt):
        
@@ -340,10 +458,13 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
             pos = self.mapToParent(evt.pos())
             w = qApp.widgetAt(pos)
             parent_widget_name = w.parentWidget().objectName()
-            if parent_widget_name in self.pw_names:
-                self.locationLines[parent_widget_name].show()
-            else:
-                for pw_name in self.pw_names: self.locationLines[pw_name].hide()
+            mouse_position = w.parentWidget().getViewBox().mapSceneToView(evt.pos())
+            for pw_name in self.pw_names: self.locationLines[pw_name].setValue(mouse_position)
+            #if parent_widget_name in self.pw_names:
+            #    self.locationLines[parent_widget_name].show()
+            #else:
+            #    for pw_name in self.pw_names: self.locationLines[pw_name].hide()
+        
         if source == self and evt.type() == QEvent.MouseButtonPress:
             pos = self.mapToParent(evt.pos())
             w = qApp.widgetAt(pos)
@@ -975,11 +1096,14 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                                             xMin = self.data.audio.time.values[0],
                                             xMax = self.data.audio.time.values[-1]
                                         )
+        font = QFont("Helvetica",8)
+        self.waveformPlotWidget.getAxis("left").setLabel(text="Amplitude",color="white")
+        self.waveformPlotWidget.getAxis("left").label.setFont(font)
 
 
 """
 ### for testing
-path = ""
+path = "/home/philipp/test/"
 posfile = path + "0005.pos"
 wavfile = path + "0005.wav"
 tgfile = path + "0005.TextGrid"

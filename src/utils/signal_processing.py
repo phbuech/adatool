@@ -2,10 +2,12 @@ import os
 import numpy as np
 import xarray as xr
 
+import scipy
 from scipy.io import wavfile
 import chardet
 import pyqtgraph as pg
 from scipy import signal
+import librosa
 
 import pandas as pd
 
@@ -16,6 +18,32 @@ from PySide6.QtMultimedia import *
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+
+def calculate_rms(input_signal):
+    intensity = librosa.feature.rms(y=input_signal)
+    return intensity[0]
+
+def calculate_f0_pyin(input_signal,time,fs):
+    resampled_signal = signal.resample(x=input_signal,num=int(time[-1]/(1/8000)))
+    f0, voiced_flag, voiced_prob = librosa.pyin(y=resampled_signal,
+                                                fmin=65,
+                                                fmax=1000,
+                                                sr=8000,
+                                                frame_length=int(8000*0.04),
+                                                win_length=int(8000*0.02),
+                                                hop_length=int(8000*0.01))
+    return f0
+
+def calculate_f0_yin(input_signal,time,fs):
+    resampled_signal = signal.resample(x=input_signal,num=int(time[-1]/(1/8000)))
+    f0 = librosa.yin(y=resampled_signal,
+                     fmin=65,
+                     fmax=700,
+                     sr=8000,
+                     frame_length=int(8000*0.04),
+                     win_length=int(8000*0.02),
+                     hop_length=int(8000*0.01))
+    return f0
 
 def mean_filter(data,N):
     return np.convolve(data,np.ones(N)/N,mode="same")

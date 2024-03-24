@@ -136,12 +136,6 @@ class Ui_INSPECTOR(object):
 
         self.horizontalLayout_3.addWidget(self.zoomAllButton)
 
-        self.zoomInButton = QPushButton(self.layoutWidget)
-        self.zoomInButton.setObjectName(u"zoomInButton")
-        self.zoomInButton.setMaximumSize(QSize(16777215, 16777215))
-
-        self.horizontalLayout_3.addWidget(self.zoomInButton)
-
         self.zoomOutButton = QPushButton(self.layoutWidget)
         self.zoomOutButton.setObjectName(u"zoomOutButton")
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
@@ -153,6 +147,12 @@ class Ui_INSPECTOR(object):
         self.zoomOutButton.setMaximumSize(QSize(16777215, 16777215))
 
         self.horizontalLayout_3.addWidget(self.zoomOutButton)
+
+        self.zoomInButton = QPushButton(self.layoutWidget)
+        self.zoomInButton.setObjectName(u"zoomInButton")
+        self.zoomInButton.setMaximumSize(QSize(16777215, 16777215))
+
+        self.horizontalLayout_3.addWidget(self.zoomInButton)
 
         self.zoomSelectionButton = QPushButton(self.layoutWidget)
         self.zoomSelectionButton.setObjectName(u"zoomSelectionButton")
@@ -215,7 +215,7 @@ class Ui_INSPECTOR(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.displayAnnotationPushButton.sizePolicy().hasHeightForWidth())
         self.displayAnnotationPushButton.setSizePolicy(sizePolicy5)
-        self.displayAnnotationPushButton.setMinimumSize(QSize(20, 0))
+        self.displayAnnotationPushButton.setMinimumSize(QSize(75, 0))
         self.displayAnnotationPushButton.setCheckable(True)
 
         self.horizontalLayout_5.addWidget(self.displayAnnotationPushButton)
@@ -265,6 +265,8 @@ class Ui_INSPECTOR(object):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.line_4 = QFrame(self.layoutWidget_2)
         self.line_4.setObjectName(u"line_4")
+        sizePolicy6.setHeightForWidth(self.line_4.sizePolicy().hasHeightForWidth())
+        self.line_4.setSizePolicy(sizePolicy6)
         self.line_4.setFrameShape(QFrame.HLine)
         self.line_4.setFrameShadow(QFrame.Sunken)
 
@@ -280,6 +282,8 @@ class Ui_INSPECTOR(object):
 
         self.line_5 = QFrame(self.layoutWidget_2)
         self.line_5.setObjectName(u"line_5")
+        sizePolicy6.setHeightForWidth(self.line_5.sizePolicy().hasHeightForWidth())
+        self.line_5.setSizePolicy(sizePolicy6)
         self.line_5.setFrameShape(QFrame.HLine)
         self.line_5.setFrameShadow(QFrame.Sunken)
 
@@ -294,18 +298,16 @@ class Ui_INSPECTOR(object):
         self.showFundamentalFrequencyButton.setObjectName(u"showFundamentalFrequencyButton")
         sizePolicy5.setHeightForWidth(self.showFundamentalFrequencyButton.sizePolicy().hasHeightForWidth())
         self.showFundamentalFrequencyButton.setSizePolicy(sizePolicy5)
-        self.showFundamentalFrequencyButton.setMinimumSize(QSize(20, 0))
+        self.showFundamentalFrequencyButton.setMinimumSize(QSize(75, 0))
         self.showFundamentalFrequencyButton.setCheckable(True)
 
         self.horizontalLayout_6.addWidget(self.showFundamentalFrequencyButton)
 
         self.label_3 = QLabel(self.layoutWidget_2)
         self.label_3.setObjectName(u"label_3")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy7)
+        sizePolicy4.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy4)
+        self.label_3.setMinimumSize(QSize(50, 0))
         self.label_3.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_6.addWidget(self.label_3)
@@ -333,12 +335,20 @@ class Ui_INSPECTOR(object):
 
         self.label_9 = QLabel(self.layoutWidget_2)
         self.label_9.setObjectName(u"label_9")
+        sizePolicy3.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy3)
         self.label_9.setFont(font)
+        self.label_9.setFrameShadow(QFrame.Plain)
+        self.label_9.setScaledContents(False)
+        self.label_9.setAlignment(Qt.AlignCenter)
+        self.label_9.setMargin(0)
 
         self.horizontalLayout_13.addWidget(self.label_9)
 
         self.line_8 = QFrame(self.layoutWidget_2)
         self.line_8.setObjectName(u"line_8")
+        sizePolicy6.setHeightForWidth(self.line_8.sizePolicy().hasHeightForWidth())
+        self.line_8.setSizePolicy(sizePolicy6)
         self.line_8.setFrameShape(QFrame.HLine)
         self.line_8.setFrameShadow(QFrame.Sunken)
 
@@ -346,6 +356,37 @@ class Ui_INSPECTOR(object):
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_13)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.showIntensityButton = QPushButton(self.layoutWidget_2)
+        self.showIntensityButton.setObjectName(u"showIntensityButton")
+        sizePolicy5.setHeightForWidth(self.showIntensityButton.sizePolicy().hasHeightForWidth())
+        self.showIntensityButton.setSizePolicy(sizePolicy5)
+        self.showIntensityButton.setMinimumSize(QSize(75, 0))
+        self.showIntensityButton.setCheckable(True)
+
+        self.horizontalLayout_14.addWidget(self.showIntensityButton)
+
+        self.label_16 = QLabel(self.layoutWidget_2)
+        self.label_16.setObjectName(u"label_16")
+        sizePolicy4.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
+        self.label_16.setSizePolicy(sizePolicy4)
+        self.label_16.setMinimumSize(QSize(50, 0))
+        self.label_16.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_14.addWidget(self.label_16)
+
+        self.intensityComboBox = QComboBox(self.layoutWidget_2)
+        self.intensityComboBox.addItem("")
+        self.intensityComboBox.setObjectName(u"intensityComboBox")
+        sizePolicy6.setHeightForWidth(self.intensityComboBox.sizePolicy().hasHeightForWidth())
+        self.intensityComboBox.setSizePolicy(sizePolicy6)
+
+        self.horizontalLayout_14.addWidget(self.intensityComboBox)
+
+
+        self.verticalLayout_6.addLayout(self.horizontalLayout_14)
 
         self.verticalSpacer = QSpacerItem(20, 200, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -355,6 +396,9 @@ class Ui_INSPECTOR(object):
         self.splitter.addWidget(self.waveformSplitter)
         self.emaSplitter = QSplitter(self.splitter)
         self.emaSplitter.setObjectName(u"emaSplitter")
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
         sizePolicy7.setHeightForWidth(self.emaSplitter.sizePolicy().hasHeightForWidth())
         self.emaSplitter.setSizePolicy(sizePolicy7)
         self.emaSplitter.setFrameShadow(QFrame.Raised)
@@ -901,8 +945,8 @@ class Ui_INSPECTOR(object):
         INSPECTOR.setWindowTitle(QCoreApplication.translate("INSPECTOR", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("INSPECTOR", u"WAVEFORM", None))
         self.zoomAllButton.setText(QCoreApplication.translate("INSPECTOR", u"all", None))
-        self.zoomInButton.setText(QCoreApplication.translate("INSPECTOR", u"zoom in", None))
         self.zoomOutButton.setText(QCoreApplication.translate("INSPECTOR", u"zoom out", None))
+        self.zoomInButton.setText(QCoreApplication.translate("INSPECTOR", u"zoom in", None))
         self.zoomSelectionButton.setText(QCoreApplication.translate("INSPECTOR", u"selection", None))
         self.PLAY_AUDIO.setText(QCoreApplication.translate("INSPECTOR", u"play", None))
         self.label_2.setText(QCoreApplication.translate("INSPECTOR", u"WAVEFORM CONTROLS", None))
@@ -913,11 +957,15 @@ class Ui_INSPECTOR(object):
         self.showSpectrogramButton.setText(QCoreApplication.translate("INSPECTOR", u"spectrogram", None))
         self.label_8.setText(QCoreApplication.translate("INSPECTOR", u"FUNDAMENTAL FREQUENCY", None))
         self.showFundamentalFrequencyButton.setText("")
-        self.label_3.setText(QCoreApplication.translate("INSPECTOR", u"f0", None))
-        self.fundamentalFrequencyComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"Yin", None))
-        self.fundamentalFrequencyComboBox.setItemText(1, QCoreApplication.translate("INSPECTOR", u"pYin", None))
+        self.label_3.setText(QCoreApplication.translate("INSPECTOR", u"estimation:", None))
+        self.fundamentalFrequencyComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"pYin", None))
+        self.fundamentalFrequencyComboBox.setItemText(1, QCoreApplication.translate("INSPECTOR", u"Yin", None))
 
-        self.label_9.setText(QCoreApplication.translate("INSPECTOR", u"FORMANTS", None))
+        self.label_9.setText(QCoreApplication.translate("INSPECTOR", u"INTENSITY", None))
+        self.showIntensityButton.setText("")
+        self.label_16.setText(QCoreApplication.translate("INSPECTOR", u"estimation:", None))
+        self.intensityComboBox.setItemText(0, QCoreApplication.translate("INSPECTOR", u"rms", None))
+
         self.label_11.setText(QCoreApplication.translate("INSPECTOR", u"PANEL 1", None))
         self.label_12.setText(QCoreApplication.translate("INSPECTOR", u"PANEL 2", None))
         self.label_13.setText(QCoreApplication.translate("INSPECTOR", u"PANEL 3", None))
