@@ -4,6 +4,7 @@ import os
 import sys
 
 import numpy as np
+import platform
 
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -11,19 +12,31 @@ from PySide6.QtCore import *
 
 from PySide6.QtUiTools import QUiLoader
 
+
 #add gui folder to sys.path
 absolute_path = os.path.dirname(__file__)
-main_path = "/".join(absolute_path.split("/")[:-1])
-home_path = "~"+"/".join(absolute_path.split("/")[:3])+"/"
+
+
+pform = platform.platform()
+if "win" in pform or "Win" in pform:
+    slash = "\\"
+    main_path = slash.join(absolute_path.split(slash)[:-1])
+    home_path = slash.join(absolute_path.split(slash)[:3]) + slash
+else:
+    slash = "/"
+    main_path = slash.join(absolute_path.split(slash)[:-1])
+    home_path = "~" + slash.join(absolute_path.split(slash)[:3]) + slash
+
+
 # add path for gui files
-sys.path.insert(1,main_path+ "/gui/python_files/")
+sys.path.insert(1,main_path + slash + "gui" + slash + "python_files" + slash)
 # add path for data import and export scripts
-sys.path.insert(1,main_path+ "/src/data_import_export/")
+sys.path.insert(1,main_path + slash + "src" + slash + "data_import_export" + slash)
 # add path for inspector windows
-sys.path.insert(1,main_path+ "/src/windows/")
+sys.path.insert(1,main_path + slash + "src" + slash + "windows" + slash)
 
 # add path for utils
-sys.path.insert(1,main_path+ "/src/utils/")
+sys.path.insert(1,main_path + slash + "src" + slash + "utils" + slash)
 
 
 from ui_main_window import Ui_MainWindow
@@ -198,7 +211,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
     def export_data(self, fmt):
 
-        directory = QFileDialog.getExistingDirectory(caption="select folder") + "/"
+        directory = QFileDialog.getExistingDirectory(caption="select folder") + slash
         number_of_files = self.dataList.count()
         progressDialog = QProgressDialog("Save files",None,0,number_of_files)
         progressDialog.setWindowModality(Qt.WindowModal)
@@ -235,7 +248,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
     def export_landmarks(self, fmt):
 
-        directory = QFileDialog.getExistingDirectory(caption="select folder") + "/"
+        directory = QFileDialog.getExistingDirectory(caption="select folder") + slash
         landmark_tier_names = tier_list_to_transmit = self.collect_articulatory_landmarks()
         number_of_files = self.dataList.count()
         
@@ -419,7 +432,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                                    file_dict = self.files, 
                                    ema_format = ema_format, 
                                    audio_format = audio_format, 
-                                   annotation_format = annotation_format)
+                                   annotation_format = annotation_format,
+                                   slash = slash)
         filenames = list(self.files.keys())
         
         for i in range(len(filenames)):

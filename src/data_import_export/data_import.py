@@ -25,11 +25,11 @@ class dataContainer:
         self.audio = audio
         self.annotation = annotation
 
-def read_data(file_urls,file_dict,ema_format,audio_format,annotation_format):
+def read_data(file_urls,file_dict,ema_format,audio_format,annotation_format,slash):
     #get main path:
-    main_path = "/".join(file_urls[0][0].toLocalFile().split("/")[:-1]) + "/"
+    main_path = slash.join(file_urls[0][0].toLocalFile().replace("/",slash).split(slash)[:-1]) + slash
     #get file names
-    files = [file_urls[0][i].toLocalFile().split("/")[-1] for i in range(len(file_urls[0]))]
+    files = [file_urls[0][i].toLocalFile().replace("/",slash).split(slash)[-1] for i in range(len(file_urls[0]))]
     #extract filenames and suffixes
     files = np.array([files[i].split(".") for i in range(len(files))])
     fnames = np.unique(files[:,0])
@@ -89,7 +89,6 @@ def read_data(file_urls,file_dict,ema_format,audio_format,annotation_format):
         
         progressDialog.setValue(fname_idx)
         file_dict[fname] = tmp_data
-    
     return file_dict
 
 def read_netcdf(path_to_nc_file):
