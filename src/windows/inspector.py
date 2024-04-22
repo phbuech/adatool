@@ -375,6 +375,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
                     f0 = sp.calculate_f0_pyin(input_signal=audio_signal,time=time,fs=self.data.audio.attrs["samplerate"])
                 elif self.fundamentalFrequencyComboBox.currentText() == "Yin":
                     f0 = sp.calculate_f0_yin(input_signal=audio_signal,time=time,fs=self.data.audio.attrs["samplerate"])
+                f0[f0>700]=np.nan
                 ymin, ymax = np.nanmin(f0),np.nanmax(f0)
                 f0 = np.nan_to_num(f0)
                 #initialize second y axis
@@ -406,30 +407,31 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
 
     def plot_spectrogram(self):
-        pg.setConfigOptions(imageAxisOrder='row-major')
-        #remove spectrogram
-        window_size = int(self.data.audio.attrs["samplerate"]*0.005)
-        time_step = int(self.data.audio.attrs["samplerate"]*0.001)
-        fs = self.data.audio.attrs["samplerate"]
+        if self.data.audio.time[-1] < 300:
+            pg.setConfigOptions(imageAxisOrder='row-major')
+            
+            window_size = int(self.data.audio.attrs["samplerate"]*0.005)
+            time_step = int(self.data.audio.attrs["samplerate"]*0.001)
+            fs = self.data.audio.attrs["samplerate"]
 
-        win = scp.signal.windows.hamming(window_size,sym=True)
-        #win = scp.signal.windows.gaussian(window_size,std=50,sym=True)
-        SFT = scp.signal.ShortTimeFFT(win,hop=time_step,fs=1/fs,mfft=2048)
-        Sxx = SFT.spectrogram(self.data.audio.signal.values,detr="constant")
-        Sxx = 10 * np.log10(Sxx)
-        img = pg.ImageItem()
-        tr = QTransform()
-        tr.scale(self.data.audio.time.values[-1]/np.size(Sxx, axis=1),(fs/2)/np.size(Sxx, axis=0))
-        img.setTransform(tr)
-        img.setImage(image=Sxx,autoLevels=False)
-        img.setLevels([Sxx.max()-70,Sxx.max()])
-        img.setColorMap("inferno")
-        
-        self.spectrogramWidget.getViewBox().addItem(img)
-        font = QFont("Helvetica",8)
-        self.spectrogramWidget.getAxis("left").setLabel(text="Frequency (Hz)",color="white")
-        self.spectrogramWidget.getAxis("left").label.setFont(font)
-        self.spectrogramWidget.setLimits(xMin=0, xMax=self.data.audio.time.values[-1], yMin=0, yMax=6500)
+            win = scp.signal.windows.hamming(window_size,sym=True)
+            #win = scp.signal.windows.gaussian(window_size,std=50,sym=True)
+            SFT = scp.signal.ShortTimeFFT(win,hop=time_step,fs=1/fs,mfft=2048)
+            Sxx = SFT.spectrogram(self.data.audio.signal.values,detr="constant")
+            Sxx = 10 * np.log10(Sxx)
+            img = pg.ImageItem()
+            tr = QTransform()
+            tr.scale(self.data.audio.time.values[-1]/np.size(Sxx, axis=1),(fs/2)/np.size(Sxx, axis=0))
+            img.setTransform(tr)
+            img.setImage(image=Sxx,autoLevels=False)
+            img.setLevels([Sxx.max()-70,Sxx.max()])
+            img.setColorMap("inferno")
+            
+            self.spectrogramWidget.getViewBox().addItem(img)
+            font = QFont("Helvetica",8)
+            self.spectrogramWidget.getAxis("left").setLabel(text="Frequency (Hz)",color="white")
+            self.spectrogramWidget.getAxis("left").label.setFont(font)
+            self.spectrogramWidget.setLimits(xMin=0, xMax=self.data.audio.time.values[-1], yMin=0, yMax=6500)
 
     def show_spectrogram(self):
         if self.sender().isChecked():
