@@ -15,11 +15,12 @@ echo "Do you want to execute the installation script [yes/no]?"
 read reply
 
 if [ $reply == "yes" ]; then
-    echo "The installation script will be executed. Press y in every step."
+    echo "The installation script will be executed. Press any key to continue."
     read junk
     echo "Activate conda command"
     PATH_TO_CONDA=$( locate anaconda3/etc/profile.d/conda.sh )
     source $PATH_TO_CONDA
+    conda init --all
     # from https://stackoverflow.com/questions/70597896/check-if-conda-env-exists-and-create-if-not-in-bash
     if { conda env list | grep 'ada_env'; } >/dev/null 2>&1; then
       echo "Environment with the same name found and will be uninstalled. "
