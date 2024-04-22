@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_measurements.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -101,7 +101,7 @@ class Ui_MEASUREMENTS(object):
         self.horizontalLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.label = QLabel(MEASUREMENTS)
         self.label.setObjectName(u"label")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -111,7 +111,7 @@ class Ui_MEASUREMENTS(object):
 
         self.line = QFrame(MEASUREMENTS)
         self.line.setObjectName(u"line")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.line.sizePolicy().hasHeightForWidth())
@@ -216,7 +216,7 @@ class Ui_MEASUREMENTS(object):
 
         self.gridLayout_3.addWidget(self.landmarkLineEdit_6, 5, 2, 1, 1)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout_3.addItem(self.verticalSpacer, 6, 2, 1, 1)
 
@@ -239,7 +239,7 @@ class Ui_MEASUREMENTS(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.label_2 = QLabel(MEASUREMENTS)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -320,7 +320,7 @@ class Ui_MEASUREMENTS(object):
         self.addSegmentButton.setText(QCoreApplication.translate("MEASUREMENTS", u"add segment", None))
         self.removeSegmentButton.setText(QCoreApplication.translate("MEASUREMENTS", u"remove segment", None))
         self.runMeasurementsButton.setText(QCoreApplication.translate("MEASUREMENTS", u"conduct measurements", None))
-        self.label.setText(QCoreApplication.translate("MEASUREMENTS", u"LANDMARK ALLOCATION", None))
+        self.label.setText(QCoreApplication.translate("MEASUREMENTS", u"LANDMARK NAME SPECIFICATION", None))
         self.landmarkCheckBox_2.setText("")
         self.landmarkCheckBox_1.setText("")
         self.landmarkCheckBox_5.setText("")

@@ -111,7 +111,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>LANDMARK ALLOCATION</string>
+            <string>LANDMARK NAME SPECIFICATION</string>
            </property>
           </widget>
          </item>

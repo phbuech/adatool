@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1497, 1067)
+        MainWindow.resize(1227, 1067)
         sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -53,6 +53,81 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
+        self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_9 = QLabel(self.centralwidget)
+        self.label_9.setObjectName(u"label_9")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout_5.addWidget(self.label_9)
+
+        self.line_3 = QFrame(self.centralwidget)
+        self.line_3.setObjectName(u"line_3")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.line_3.sizePolicy().hasHeightForWidth())
+        self.line_3.setSizePolicy(sizePolicy2)
+        self.line_3.setFrameShape(QFrame.HLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_5.addWidget(self.line_3)
+
+
+        self.verticalLayout_5.addLayout(self.horizontalLayout_5)
+
+        self.gridLayout_5 = QGridLayout()
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.annotationTierNumberInfoLabel = QLabel(self.centralwidget)
+        self.annotationTierNumberInfoLabel.setObjectName(u"annotationTierNumberInfoLabel")
+        self.annotationTierNumberInfoLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+
+        self.gridLayout_5.addWidget(self.annotationTierNumberInfoLabel, 0, 1, 1, 1)
+
+        self.label_16 = QLabel(self.centralwidget)
+        self.label_16.setObjectName(u"label_16")
+
+        self.gridLayout_5.addWidget(self.label_16, 0, 0, 1, 1)
+
+
+        self.verticalLayout_5.addLayout(self.gridLayout_5)
+
+        self.verticalLayout_15 = QVBoxLayout()
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.tierList = QTableWidget(self.centralwidget)
+        self.tierList.setObjectName(u"tierList")
+
+        self.verticalLayout_15.addWidget(self.tierList)
+
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.addTierNameToTierListButton = QPushButton(self.centralwidget)
+        self.addTierNameToTierListButton.setObjectName(u"addTierNameToTierListButton")
+        self.addTierNameToTierListButton.setEnabled(True)
+
+        self.horizontalLayout_12.addWidget(self.addTierNameToTierListButton)
+
+        self.removeTierNameFromTierListButton = QPushButton(self.centralwidget)
+        self.removeTierNameFromTierListButton.setObjectName(u"removeTierNameFromTierListButton")
+        self.removeTierNameFromTierListButton.setEnabled(True)
+
+        self.horizontalLayout_12.addWidget(self.removeTierNameFromTierListButton)
+
+
+        self.verticalLayout_15.addLayout(self.horizontalLayout_12)
+
+
+        self.verticalLayout_5.addLayout(self.verticalLayout_15)
+
+
+        self.gridLayout.addLayout(self.verticalLayout_5, 1, 1, 1, 1)
+
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.dataList = QListWidget(self.centralwidget)
@@ -88,19 +163,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy1)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy3)
 
         self.horizontalLayout.addWidget(self.label_6)
 
         self.line_9 = QFrame(self.centralwidget)
         self.line_9.setObjectName(u"line_9")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.line_9.sizePolicy().hasHeightForWidth())
         self.line_9.setSizePolicy(sizePolicy2)
         self.line_9.setFrameShape(QFrame.HLine)
@@ -119,6 +191,29 @@ class Ui_MainWindow(object):
 
         self.gridLayout_8 = QGridLayout()
         self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.label_8 = QLabel(self.centralwidget)
+        self.label_8.setObjectName(u"label_8")
+
+        self.gridLayout_8.addWidget(self.label_8, 0, 0, 1, 1)
+
+        self.audioFormatComboBox = QComboBox(self.centralwidget)
+        self.audioFormatComboBox.addItem("")
+        self.audioFormatComboBox.addItem("")
+        self.audioFormatComboBox.addItem("")
+        self.audioFormatComboBox.setObjectName(u"audioFormatComboBox")
+
+        self.gridLayout_8.addWidget(self.audioFormatComboBox, 1, 1, 1, 1)
+
+        self.label_13 = QLabel(self.centralwidget)
+        self.label_13.setObjectName(u"label_13")
+
+        self.gridLayout_8.addWidget(self.label_13, 0, 2, 1, 1)
+
+        self.label_11 = QLabel(self.centralwidget)
+        self.label_11.setObjectName(u"label_11")
+
+        self.gridLayout_8.addWidget(self.label_11, 0, 1, 1, 1)
+
         self.annotationFormatComboBox = QComboBox(self.centralwidget)
         self.annotationFormatComboBox.addItem("")
         self.annotationFormatComboBox.addItem("")
@@ -133,29 +228,6 @@ class Ui_MainWindow(object):
         self.emaFormatComboBox.setObjectName(u"emaFormatComboBox")
 
         self.gridLayout_8.addWidget(self.emaFormatComboBox, 1, 0, 1, 1)
-
-        self.audioFormatComboBox = QComboBox(self.centralwidget)
-        self.audioFormatComboBox.addItem("")
-        self.audioFormatComboBox.addItem("")
-        self.audioFormatComboBox.addItem("")
-        self.audioFormatComboBox.setObjectName(u"audioFormatComboBox")
-
-        self.gridLayout_8.addWidget(self.audioFormatComboBox, 1, 1, 1, 1)
-
-        self.label_8 = QLabel(self.centralwidget)
-        self.label_8.setObjectName(u"label_8")
-
-        self.gridLayout_8.addWidget(self.label_8, 0, 0, 1, 1)
-
-        self.label_11 = QLabel(self.centralwidget)
-        self.label_11.setObjectName(u"label_11")
-
-        self.gridLayout_8.addWidget(self.label_11, 0, 1, 1, 1)
-
-        self.label_13 = QLabel(self.centralwidget)
-        self.label_13.setObjectName(u"label_13")
-
-        self.gridLayout_8.addWidget(self.label_13, 0, 2, 1, 1)
 
 
         self.verticalLayout_14.addLayout(self.gridLayout_8)
@@ -191,11 +263,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy3)
+        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy1)
 
         self.horizontalLayout_3.addWidget(self.label)
 
@@ -256,18 +325,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.gridLayout_3)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_3.addItem(self.verticalSpacer)
-
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy3.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy3)
+        sizePolicy1.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy1)
 
         self.horizontalLayout_4.addWidget(self.label_2)
 
@@ -318,75 +383,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.verticalLayout_3)
 
-        self.verticalLayout_5 = QVBoxLayout()
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_9 = QLabel(self.centralwidget)
-        self.label_9.setObjectName(u"label_9")
-        sizePolicy3.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy3)
-
-        self.horizontalLayout_5.addWidget(self.label_9)
-
-        self.line_3 = QFrame(self.centralwidget)
-        self.line_3.setObjectName(u"line_3")
-        sizePolicy2.setHeightForWidth(self.line_3.sizePolicy().hasHeightForWidth())
-        self.line_3.setSizePolicy(sizePolicy2)
-        self.line_3.setFrameShape(QFrame.HLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_5.addWidget(self.line_3)
-
-
-        self.verticalLayout_5.addLayout(self.horizontalLayout_5)
-
-        self.gridLayout_5 = QGridLayout()
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.annotationTierNumberInfoLabel = QLabel(self.centralwidget)
-        self.annotationTierNumberInfoLabel.setObjectName(u"annotationTierNumberInfoLabel")
-        self.annotationTierNumberInfoLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-
-        self.gridLayout_5.addWidget(self.annotationTierNumberInfoLabel, 0, 1, 1, 1)
-
-        self.label_16 = QLabel(self.centralwidget)
-        self.label_16.setObjectName(u"label_16")
-
-        self.gridLayout_5.addWidget(self.label_16, 0, 0, 1, 1)
-
-
-        self.verticalLayout_5.addLayout(self.gridLayout_5)
-
-        self.verticalLayout_15 = QVBoxLayout()
-        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.tierList = QTableWidget(self.centralwidget)
-        self.tierList.setObjectName(u"tierList")
-
-        self.verticalLayout_15.addWidget(self.tierList)
-
-        self.horizontalLayout_12 = QHBoxLayout()
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.addTierNameToTierListButton = QPushButton(self.centralwidget)
-        self.addTierNameToTierListButton.setObjectName(u"addTierNameToTierListButton")
-        self.addTierNameToTierListButton.setEnabled(True)
-
-        self.horizontalLayout_12.addWidget(self.addTierNameToTierListButton)
-
-        self.removeTierNameFromTierListButton = QPushButton(self.centralwidget)
-        self.removeTierNameFromTierListButton.setObjectName(u"removeTierNameFromTierListButton")
-        self.removeTierNameFromTierListButton.setEnabled(True)
-
-        self.horizontalLayout_12.addWidget(self.removeTierNameFromTierListButton)
-
-
-        self.verticalLayout_15.addLayout(self.horizontalLayout_12)
-
-
-        self.verticalLayout_5.addLayout(self.verticalLayout_15)
-
-
-        self.verticalLayout_2.addLayout(self.verticalLayout_5)
-
 
         self.gridLayout_2.addLayout(self.verticalLayout_2, 0, 2, 1, 1)
 
@@ -426,8 +422,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.label_18 = QLabel(self.centralwidget)
         self.label_18.setObjectName(u"label_18")
-        sizePolicy3.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
-        self.label_18.setSizePolicy(sizePolicy3)
+        sizePolicy1.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
+        self.label_18.setSizePolicy(sizePolicy1)
 
         self.horizontalLayout_6.addWidget(self.label_18)
 
@@ -474,8 +470,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_19 = QLabel(self.centralwidget)
         self.label_19.setObjectName(u"label_19")
-        sizePolicy3.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
-        self.label_19.setSizePolicy(sizePolicy3)
+        sizePolicy1.setHeightForWidth(self.label_19.sizePolicy().hasHeightForWidth())
+        self.label_19.setSizePolicy(sizePolicy1)
 
         self.horizontalLayout_8.addWidget(self.label_19)
 
@@ -561,8 +557,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.label_20 = QLabel(self.centralwidget)
         self.label_20.setObjectName(u"label_20")
-        sizePolicy3.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
-        self.label_20.setSizePolicy(sizePolicy3)
+        sizePolicy1.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
+        self.label_20.setSizePolicy(sizePolicy1)
 
         self.horizontalLayout_10.addWidget(self.label_20)
 
@@ -628,7 +624,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1497, 34))
+        self.menubar.setGeometry(QRect(0, 0, 1227, 34))
         self.menuFiles = QMenu(self.menubar)
         self.menuFiles.setObjectName(u"menuFiles")
         self.menuSettings = QMenu(self.menubar)
@@ -665,12 +661,24 @@ class Ui_MainWindow(object):
         self.actionexport_landmarks_to_TextGrid.setText(QCoreApplication.translate("MainWindow", u"export landmarks to TextGrid", None))
         self.actionexport_landmarks_to_csv.setText(QCoreApplication.translate("MainWindow", u"export landmarks to csv", None))
         self.actionexport_landmarks_to_JSON.setText(QCoreApplication.translate("MainWindow", u"export landmarks to JSON", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"ANNOTATION", None))
+        self.annotationTierNumberInfoLabel.setText("")
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Number of Tiers:", None))
+        self.addTierNameToTierListButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.removeTierNameFromTierListButton.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.addFilesToDataListButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.multipleSelectionButton.setText(QCoreApplication.translate("MainWindow", u"select multiple", None))
         self.removeFilesFromDataListButton.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"INPUT FORMATS", None))
         self.comboBox_4.setItemText(0, QCoreApplication.translate("MainWindow", u"EMA", None))
 
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"EMA", None))
+        self.audioFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"wav", None))
+        self.audioFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"mp3", None))
+        self.audioFormatComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"ogg", None))
+
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"ANNOTATION", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"AUDIO", None))
         self.annotationFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"TextGrid", None))
         self.annotationFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"json", None))
         self.annotationFormatComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"csv", None))
@@ -678,13 +686,6 @@ class Ui_MainWindow(object):
         self.emaFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"AG50x", None))
         self.emaFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"netcdf", None))
 
-        self.audioFormatComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"wav", None))
-        self.audioFormatComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"mp3", None))
-        self.audioFormatComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"ogg", None))
-
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"EMA", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"AUDIO", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"ANNOTATION", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"EMA", None))
         self.emaChannelInfoLabel.setText("")
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Sample rate:", None))
@@ -699,11 +700,6 @@ class Ui_MainWindow(object):
         self.audioSamplerateInfoLabel.setText("")
         self.audioDurationInfoLabel.setText("")
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"Duration:", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"ANNOTATION", None))
-        self.annotationTierNumberInfoLabel.setText("")
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Number of Tiers:", None))
-        self.addTierNameToTierListButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
-        self.removeTierNameFromTierListButton.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.openInspectorWindowButton.setText(QCoreApplication.translate("MainWindow", u"Inspector", None))
         self.open2DInspectorWindowButton.setText(QCoreApplication.translate("MainWindow", u"2D Inspector", None))
         self.open3DInspectorWindowButton.setText(QCoreApplication.translate("MainWindow", u"3D Inspector", None))

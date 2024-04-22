@@ -68,6 +68,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
         self.tier_names = []
 
+        self.plot_configuration = None
+
         #add functionality to interface components
         # data list
         self.dataList.itemClicked.connect(self.display_information)
@@ -324,9 +326,13 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         else:
             tier_list_to_transmit = []
         channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
-        self.insp = inspector.inspector_window(transmittedData=data,transmittedChannelAllocation=channel_allocation_dict,transmittedTierList=tier_list_to_transmit) 
+        self.insp = inspector.inspector_window(transmittedData=data,
+                                               transmittedChannelAllocation=channel_allocation_dict,
+                                               transmittedTierList=tier_list_to_transmit,
+                                               transmittedPlotConfiguration=self.plot_configuration) 
         self.insp.setWindowTitle(clicked_data_item_name)
         self.insp.submitLandmarks.connect(self.on_inspector_store)
+        self.insp.submitPlotConfiguration.connect(self.on_plot_configuration_store)
         self.insp.show()
     
     def openInspector2DWindow(self):
@@ -383,6 +389,10 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 tiers = tmp_landmarks["tierName"].unique()
                 self.files[filename].annotation = self.files[filename].annotation[self.files[filename].annotation["tierName"].isin(tiers) == False].reset_index(drop=True)
                 self.files[filename].annotation = pd.concat([self.files[filename].annotation,tmp_landmarks])
+
+    @Slot(object)
+    def on_plot_configuration_store(self,plot_configuration):
+        self.plot_configuration = plot_configuration
 
     @Slot(object)
     def on_inspector_store(self,landmarks):

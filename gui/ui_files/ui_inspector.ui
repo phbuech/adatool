@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>914</width>
-    <height>1147</height>
+    <height>1251</height>
    </rect>
   </property>
   <property name="font">
@@ -411,7 +411,7 @@
               <enum>Qt::LeftToRight</enum>
              </property>
              <property name="autoFillBackground">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Plain</enum>
@@ -423,18 +423,18 @@
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <property name="tabSpacing">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_5">
               <property name="geometry">
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>377</width>
-                <height>69</height>
+                <width>375</width>
+                <height>83</height>
                </rect>
               </property>
               <attribute name="label">
@@ -552,8 +552,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>377</width>
-                <height>69</height>
+                <width>375</width>
+                <height>83</height>
                </rect>
               </property>
               <attribute name="label">
@@ -1210,402 +1210,456 @@
                 </item>
                </layout>
               </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="verticalLayoutWidget_2">
-           <layout class="QVBoxLayout" name="verticalLayout_4">
-            <property name="spacing">
-             <number>2</number>
-            </property>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <property name="spacing">
-               <number>1</number>
-              </property>
               <item>
-               <widget class="QLabel" name="label_5">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+               <widget class="QFrame" name="landmarkControlsFrame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
-                <property name="text">
-                 <string>LANDMARK CONTROLS</string>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
                 </property>
+                <layout class="QVBoxLayout" name="verticalLayout_10">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_12">
+                   <property name="spacing">
+                    <number>2</number>
+                   </property>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_11">
+                     <property name="spacing">
+                      <number>1</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="label_8">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>LANDMARK CONTROLS</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_10">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="addLandmarkButton">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>add</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="removeLandmarkButton">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>remove</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="renameLandmarkButton">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>rename</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="selectRegionButton">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>select region</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_4">
+                     <item row="0" column="1">
+                      <widget class="QComboBox" name="selectLandmarkDetectionComboBox">
+                       <item>
+                        <property name="text">
+                         <string>vel20</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>vel15</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>tvel20_xy</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>tvel20_xz</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>tvel15_xy</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>tvel15_xz</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>acc</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_16">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>detection algorithm:</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
                </widget>
               </item>
               <item>
-               <widget class="Line" name="line_9">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+               <widget class="QFrame" name="landmarkTierControlsFrame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
                 </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_6">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_7">
+                   <property name="spacing">
+                    <number>1</number>
+                   </property>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_12">
+                     <item>
+                      <widget class="QLabel" name="label_17">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>LANDMARK TIER CONTROLS</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_11">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_3">
+                     <property name="spacing">
+                      <number>1</number>
+                     </property>
+                     <item row="1" column="2">
+                      <widget class="QLineEdit" name="emaPanel1TierNameLineEdit">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QComboBox" name="emaPanel3SelectTierComboBox">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>new</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QComboBox" name="emaPanel2SelectTierComboBox">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>new</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_10">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>show</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QComboBox" name="emaPanel1SelectTierComboBox">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>150</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>new</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLabel" name="label_15">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>edit tier name</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="QLineEdit" name="emaPanel2TierNameLineEdit">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_14">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>tier</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="2">
+                      <widget class="QLineEdit" name="emaPanel3TierNameLineEdit">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="2">
+                      <widget class="QPushButton" name="removeTierButton">
+                       <property name="text">
+                        <string>remove</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QComboBox" name="emaAllTiersComboBox"/>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QPushButton" name="emaPanel1DisplayLandmarksPushButton">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="contextMenuPolicy">
+                        <enum>Qt::DefaultContextMenu</enum>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::LeftToRight</enum>
+                       </property>
+                       <property name="text">
+                        <string>1</string>
+                       </property>
+                       <property name="checkable">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QPushButton" name="emaPanel2DisplayLandmarksPushButton">
+                       <property name="text">
+                        <string>2</string>
+                       </property>
+                       <property name="checkable">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QPushButton" name="emaPanel3DisplayLandmarksPushButton">
+                       <property name="text">
+                        <string>3</string>
+                       </property>
+                       <property name="checkable">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="storeLandmarksButton">
+                     <property name="text">
+                      <string>store</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
-            </item>
-            <item>
-             <widget class="QPushButton" name="addLandmarkButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>add</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="removeLandmarkButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>remove</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="renameLandmarkButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>rename</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="selectRegionButton">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>select region</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="1">
-               <widget class="QComboBox" name="selectLandmarkDetectionComboBox">
-                <item>
-                 <property name="text">
-                  <string>vel20</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>vel15</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>tvel20_xy</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>tvel20_xz</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>tvel15_xy</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>tvel15_xz</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>acc</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_6">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>detection algorithm:</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="verticalLayoutWidget_3">
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <property name="spacing">
-             <number>1</number>
-            </property>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_12">
-              <item>
-               <widget class="QLabel" name="label_17">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>LANDMARK TIER CONTROLS</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="Line" name="line_11">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QGridLayout" name="gridLayout_3">
-              <property name="spacing">
-               <number>1</number>
-              </property>
-              <item row="1" column="2">
-               <widget class="QLineEdit" name="emaPanel1TierNameLineEdit">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QComboBox" name="emaPanel3SelectTierComboBox">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>new</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QComboBox" name="emaPanel2SelectTierComboBox">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>new</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_10">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>show</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QComboBox" name="emaPanel1SelectTierComboBox">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>new</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="label_15">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>edit tier name</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QLineEdit" name="emaPanel2TierNameLineEdit">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="label_14">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>tier</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2">
-               <widget class="QLineEdit" name="emaPanel3TierNameLineEdit">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="2">
-               <widget class="QPushButton" name="removeTierButton">
-                <property name="text">
-                 <string>remove</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QComboBox" name="emaAllTiersComboBox"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QPushButton" name="emaPanel1DisplayLandmarksPushButton">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="contextMenuPolicy">
-                 <enum>Qt::DefaultContextMenu</enum>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::LeftToRight</enum>
-                </property>
-                <property name="text">
-                 <string>1</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QPushButton" name="emaPanel2DisplayLandmarksPushButton">
-                <property name="text">
-                 <string>2</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QPushButton" name="emaPanel3DisplayLandmarksPushButton">
-                <property name="text">
-                 <string>3</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QPushButton" name="storeLandmarksButton">
-              <property name="text">
-               <string>store</string>
-              </property>
-             </widget>
             </item>
            </layout>
           </widget>
@@ -1623,11 +1677,59 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>28</height>
+     <height>34</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menudisplay_controls">
+    <property name="title">
+     <string>display controls</string>
+    </property>
+    <addaction name="actionlandmark_controls"/>
+    <addaction name="actionlandmark_tier_controls"/>
+   </widget>
+   <widget class="QMenu" name="menuplot_configuration">
+    <property name="title">
+     <string>plot configuration</string>
+    </property>
+    <addaction name="actionstore_plot_configuration"/>
+    <addaction name="actionrestore_plot_configuration"/>
+   </widget>
+   <addaction name="menudisplay_controls"/>
+   <addaction name="menuplot_configuration"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionlandmark_controls">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>landmark controls</string>
+   </property>
+  </action>
+  <action name="actionlandmark_tier_controls">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>landmark tier controls</string>
+   </property>
+  </action>
+  <action name="actionstore_plot_configuration">
+   <property name="text">
+    <string>store plot configuration</string>
+   </property>
+  </action>
+  <action name="actionrestore_plot_configuration">
+   <property name="text">
+    <string>restore plot configuration</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

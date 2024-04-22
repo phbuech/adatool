@@ -226,7 +226,7 @@ def get_signal(data,channel_dict,target_channel,target_dimension,target_paramete
                                             time = data.time.values,
                                             order = 2
                                         )
-        elif len(dims) == 2 and target_parameter == "tanvel":
+        elif len(dims) == 2 and target_parameter == "tvel":
             signal = get_tangential_velocity(
                                                     data = data,
                                                     channel_index = channel_dict[target_channel],

@@ -44,8 +44,9 @@ import inspector
 
 class inspector_window(QMainWindow, Ui_INSPECTOR):
     submitLandmarks = Signal(object)
+    submitPlotConfiguration = Signal(object)
 
-    def __init__(self, transmittedData,transmittedChannelAllocation,transmittedTierList):
+    def __init__(self, transmittedData,transmittedChannelAllocation,transmittedTierList,transmittedPlotConfiguration):
         super().__init__()
         self.setupUi(self)
 
@@ -53,6 +54,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.data = transmittedData
         self.channels = transmittedChannelAllocation
         self.tierList = transmittedTierList
+        self.plotConfiguration = transmittedPlotConfiguration
+
+        
 
         
         
@@ -224,6 +228,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.removeTierButton.clicked.connect(self.remove_tier)
         for i in range(1,4): self.displayLandmarksCheckBoxes[i].clicked.connect(self.display_landmarks)
         self.storeLandmarksButton.clicked.connect(self.store_landmarks)
+
+        self.actionlandmark_controls.triggered.connect(self.display_landmark_controls)
+        self.actionlandmark_tier_controls.triggered.connect(self.display_landmark_tier_controls)
         
 
         #self.test.clicked.connect(self.test_fun)
@@ -247,6 +254,9 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         self.showIntensityButton.setText(" ")
         self.displayAnnotationPushButton.setText(" ")
 
+        self.actionstore_plot_configuration.triggered.connect(self.store_plot_configuration)
+        self.actionrestore_plot_configuration.triggered.connect(self.restore_plot_configuration)
+
         #create 2nd spectrogram axis
         self.specgram_2nd_axis = pg.ViewBox()
         self.specgram_2nd_axis.setMouseEnabled(x=False,y=False)
@@ -262,8 +272,50 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
         updateViews()
         p1.getViewBox().sigResized.connect(updateViews)
 
+    def store_plot_configuration(self):
+        number_of_rows = self.emaControlTable.rowCount()
+        config = {}
+        for i in range(number_of_rows):
+            tmp = {}
+            tmp["channel"] = self.emaControlTable.cellWidget(i,1).currentText()
+            tmp["dimension"] = self.emaControlTable.cellWidget(i,2).currentText()
+            tmp["parameter"] = self.emaControlTable.cellWidget(i,3).currentText()
+            tmp["panel"] = self.emaControlTable.cellWidget(i,4).currentText()
+            tmp["color"] = self.emaControlTable.cellWidget(i,5).currentText()
+            config[i] = tmp
+        self.submitPlotConfiguration.emit(config)
+
+    def restore_plot_configuration(self):
+        if self.plotConfiguration is not None:
+            keys = list(self.plotConfiguration.keys())
+            for key in keys:
+                self.addChannelToEmaControlTable()
+                current_row = self.emaControlTable.rowCount()-1
+                index = self.emaControlTable.cellWidget(current_row,1).findText(self.plotConfiguration[key]["channel"])
+                self.emaControlTable.cellWidget(current_row,1).setCurrentIndex(index)
+                index = self.emaControlTable.cellWidget(current_row,2).findText(self.plotConfiguration[key]["dimension"])
+                self.emaControlTable.cellWidget(current_row,2).setCurrentIndex(index)
+                index = self.emaControlTable.cellWidget(current_row,3).findText(self.plotConfiguration[key]["parameter"])
+                self.emaControlTable.cellWidget(current_row,3).setCurrentIndex(index)
+                index = self.emaControlTable.cellWidget(current_row,4).findText(self.plotConfiguration[key]["panel"])
+                self.emaControlTable.cellWidget(current_row,4).setCurrentIndex(index)
+                index = self.emaControlTable.cellWidget(current_row,5).findText(self.plotConfiguration[key]["color"])
+                self.emaControlTable.cellWidget(current_row,5).setCurrentIndex(index)
+
+
+
         
-        
+    def display_landmark_controls(self):
+        if self.sender().isChecked():
+            self.landmarkControlsFrame.show()
+        else:
+            self.landmarkControlsFrame.hide()
+    
+    def display_landmark_tier_controls(self):
+        if self.sender().isChecked():
+            self.landmarkTierControlsFrame.show()
+        else:
+            self.landmarkTierControlsFrame.hide()
         
         # assign ema tiers to comboboxes:
         #if self.data.annotation is not None:
@@ -903,7 +955,7 @@ class inspector_window(QMainWindow, Ui_INSPECTOR):
 
         # parameter selection
         parameterSelectionComboBox = QComboBox()
-        params = ["pos","vel","acc","tanvel","eucl2D","eucl3D","dist"]
+        params = ["pos","vel","acc","tvel","eucl2D","eucl3D","dist"]
         for i in range(len(params)): parameterSelectionComboBox.addItem(params[i])
         self.emaControlTable.setCellWidget(number_of_rows,3,parameterSelectionComboBox)
 
