@@ -564,6 +564,6 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
 app = QApplication(sys.argv)
 w = MainWindow()
-w.setWindowTitle("ADA")
+w.setWindowTitle("ADA - Articulatory Data Analysis")
 w.show()
 sys.exit(app.exec())

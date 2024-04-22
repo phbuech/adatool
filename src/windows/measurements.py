@@ -254,7 +254,6 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
             item_index = self.selectionTreeWidget.indexOfTopLevelItem(selected_item)
             root.removeChild(selected_item)
             number_of_targets = self.selectionTreeWidget.topLevelItemCount()
-            print(number_of_targets)
             for i in range(number_of_targets):
                 item = self.selectionTreeWidget.topLevelItem(i)
                 item.setText(0,str(i+1))
@@ -307,9 +306,9 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
 # testing
 
 files = {}
-posfile = "/home/philipp/test2/0005.pos"
-wavfile = "/home/philipp/test2/0005.wav"
-tgfile = "/home/philipp/test2/0005.TextGrid"
+posfile = "/home/philipp/Documents/test2/0030.pos"
+wavfile = "/home/philipp/Documents/test2/0030.wav"
+tgfile = "/home/philipp/Documents/test2/0030.TextGrid"
 
 dat = data_import.dataContainer()
 dat.ema = data_import.read_AG50x(posfile)
@@ -317,19 +316,7 @@ dat.audio = data_import.read_wav(wavfile)
 
 dat.annotation = data_import.read_TextGrid(tgfile)
 
-files["0005"] = dat
-
-posfile = "/home/philipp/test2/0006.pos"
-wavfile = "/home/philipp/test2/0006.wav"
-tgfile = "/home/philipp/test2/0006.TextGrid"
-
-dat = data_import.dataContainer()
-dat.ema = data_import.read_AG50x(posfile)
-dat.audio = data_import.read_wav(wavfile)
-
-dat.annotation = data_import.read_TextGrid(tgfile)
-
-files["0006"] = dat
+files["0030"] = dat
 
 channels = {
     "TBO": 2,
