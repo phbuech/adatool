@@ -39,8 +39,8 @@ def detect_landmarks_vel(time,velocity,tmin,tmax,factor):
     onset_idx = np.abs(velmax_pvel_to -velocity[:pvel_to_idx]).argmin()
     offset_idx = np.abs(velmax_pvel_fro - velocity[pvel_fro_idx:]).argmin() + pvel_fro_idx
 
-    landmarks["pvel_to"] = time[pvel_to_idx]
-    landmarks["pvel_fro"] =time[pvel_fro_idx]
+    landmarks["pvel1"] = time[pvel_to_idx]
+    landmarks["pvel2"] =time[pvel_fro_idx]
     landmarks["target"] = time[tgt_idx]
     landmarks["release"] = time[release_idx]
     landmarks["onset"] = time[onset_idx]
@@ -66,8 +66,8 @@ def detect_landmarks_tvel(time,tangential_velocity,tmin,tmax,factor):
     offset_idx = pvel_fro_idx + tangential_velocity[pvel_fro_idx:tmax_idx].argmin()
     
 
-    landmarks["pvel_to"] = time[pvel_to_idx]
-    landmarks["pvel_fro"] = time[pvel_fro_idx]
+    landmarks["pvel1"] = time[pvel_to_idx]
+    landmarks["pvel2"] = time[pvel_fro_idx]
     landmarks["target"] = time[target_idx]
     landmarks["release"] = time[release_idx]
     landmarks["onset"] = time[onset_idx]

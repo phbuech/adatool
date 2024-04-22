@@ -6,6 +6,6 @@ pyside6 == 6.5.2
 pyqtgraph == 0.13.4
 chardet == 5.2.0
 librosa == 0.10.1
-sounddevice == 0.4.6
+python-sounddevice == 0.4.6
 
 

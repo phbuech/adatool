@@ -56,10 +56,10 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
 
         self.default_landmark_dict = {
             "onset": "onset",
-            "pVelTo": "pVelTo",
+            "pvel1": "pvel1",
             "target" : "target",
             "release" : "release",
-            "pVelFro" : "pVelFro",
+            "pvel2" : "pvel2",
             "offset" : "offset"
         }
 
@@ -104,7 +104,7 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
             5: self.landmarkLineEdit_6
         }
 
-        self.landmark_list = ["onset","pVelTo","target","release","pVelFrom","offset"]
+        self.landmark_list = ["onset","pvel1","target","release","pvel2","offset"]
         for i in range(6): self.landmark_comboboxes[i].addItems(self.landmark_list)
         self.measurementsRadioButtons = [
             self.massSpringParametersRadioButton,
@@ -180,10 +180,10 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
             label_combobox.addItems(labels)
             self.measurementsTableWidget.setCellWidget(number_of_rows,0,label_combobox)
             landmarks_combobox = QComboBox(self.measurementsTableWidget)
-            landmarks_combobox.addItems(["onset","pVelTo","target","release","pVelFrom","offset"])
+            landmarks_combobox.addItems(["onset","pvel1","target","release","pvel2","offset"])
             self.measurementsTableWidget.setCellWidget(number_of_rows,1,landmarks_combobox)
             parameters_combobox = QComboBox(self.measurementsTableWidget)
-            parameters_combobox.addItems(["displacement","time","velocity"])
+            parameters_combobox.addItems(["position","time","velocity"])
             self.measurementsTableWidget.setCellWidget(number_of_rows,2,parameters_combobox)
         elif self.measurementsRadioButtons[1].isChecked():
             number_of_targets = self.selectionTreeWidget.topLevelItemCount()
@@ -204,7 +204,7 @@ class measurements_window(QWidget, Ui_MEASUREMENTS):
                     self.removeMeasurementButton.click()
             self.measurementsTableWidget.clear()
             self.measurementsTableWidget.setColumnCount(3)
-            self.measurementsTableWidget.setHorizontalHeaderLabels(["LABEL","LANDMARK","PARAMETER"])
+            self.measurementsTableWidget.setHorizontalHeaderLabels(["LABEL","LANDMARK","MEASURE"])
             measurementsTableWidgetHeader = self.measurementsTableWidget.horizontalHeader()
             for i in range(3): measurementsTableWidgetHeader.setSectionResizeMode(i, QHeaderView.ResizeMode.Stretch)
         elif self.sender().text() == "trajectories":

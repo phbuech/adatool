@@ -195,7 +195,7 @@ def automatic_measurements(files,target_info,channel_dict,pbar,landmark_info,mea
                                 target_landmark_time = tmp_landmarks["tmin"][landmark_index]
                                 if measurements_info["measurements"][i]["parameter"] == "time":
                                     values[colname] = target_landmark_time
-                                elif measurements_info["measurements"][i]["parameter"] == "displacement":
+                                elif measurements_info["measurements"][i]["parameter"] == "position":
                                     time_idx = np.abs(step_time - files[fname].ema.time.values).argmin()
                                     values[colname] = signal[time_idx]
                                 elif measurements_info["measurements"][i]["parameter"] == "velocity":
