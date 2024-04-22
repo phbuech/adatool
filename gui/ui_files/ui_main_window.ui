@@ -788,10 +788,18 @@
     <addaction name="actionexport_landmarks_to_JSON"/>
     <addaction name="actionexport_landmarks_to_TextGrid"/>
     <addaction name="actionexport_landmarks_to_csv"/>
+    <addaction name="actionexport_channel_allocation"/>
+   </widget>
+   <widget class="QMenu" name="menuImport">
+    <property name="title">
+     <string>Import</string>
+    </property>
+    <addaction name="actionimport_channel_allocation"/>
    </widget>
    <addaction name="menuFiles"/>
    <addaction name="menuSettings"/>
    <addaction name="menuexport"/>
+   <addaction name="menuImport"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionimport_corpus">
@@ -827,6 +835,16 @@
   <action name="actionexport_landmarks_to_JSON">
    <property name="text">
     <string>export landmarks to JSON</string>
+   </property>
+  </action>
+  <action name="actionexport_channel_allocation">
+   <property name="text">
+    <string>export channel allocation</string>
+   </property>
+  </action>
+  <action name="actionimport_channel_allocation">
+   <property name="text">
+    <string>import channel allocation</string>
    </property>
   </action>
  </widget>

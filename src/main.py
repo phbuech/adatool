@@ -114,10 +114,54 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.actionexport_landmarks_to_TextGrid.triggered.connect(lambda: self.export_landmarks("TextGrid"))
         self.actionexport_EMA_to_netcdf.triggered.connect(lambda: self.export_data("netcdf"))
         self.actionexport_EMA_to_csv.triggered.connect(lambda: self.export_data("csv"))
+        self.actionexport_channel_allocation.triggered.connect(self.export_channel_allocation)
+
+        self.actionimport_channel_allocation.triggered.connect(self.import_channel_allocation)
         #self.testButton.clicked.connect(self.test_fun)
         self.landmarkDetectionButton.clicked.connect(self.start_landmark_detection)
 
         self.multipleSelectionButton.clicked.connect(self.activate_multiple_selection)
+
+    def import_channel_allocation(self):
+        if self.dataList.count() > 0:
+            self.dataList.setCurrentItem(self.dataList.item(0))
+            json_url = QFileDialog().getOpenFileUrl()
+            file_path = json_url[0].toLocalFile()
+            file = open(file_path,mode="r",encoding="utf8")
+            channel_allocation = json.load(file)
+            keys = list(channel_allocation.keys())
+            for key in keys:
+                self.addChannelToChannelTable()
+                current_row = self.channelTable.rowCount()-1
+                index = self.channelTable.cellWidget(current_row,0).findText(channel_allocation[key]["channel"])
+                self.channelTable.cellWidget(current_row,0).setCurrentIndex(index)
+                item = QTableWidgetItem()
+                item.setText(channel_allocation[key]["label"])
+                self.channelTable.setItem(current_row,1,item)
+
+
+    def export_channel_allocation(self):
+        channels = {}
+        number_of_rows = self.channelTable.rowCount()
+        for i in range(number_of_rows):
+            tmp = {}
+            print(i,self.channelTable.cellWidget(i,0).currentText())
+            tmp["channel"] = self.channelTable.cellWidget(i,0).currentText()
+            tmp["label"] = self.channelTable.item(i,1).text()
+            channels[i] = tmp
+        
+        save_dialog = QFileDialog(self,"Save channel allocation file","channel_allocation.json")
+        
+        save_dialog.setAcceptMode(QFileDialog.AcceptSave)
+        save_dialog.exec()
+        if not save_dialog.selectedFiles():
+            pass
+        else:
+            path_to_file = save_dialog.selectedFiles()[0]
+        with open(path_to_file,mode="w") as output_file:
+            json.dump(channels,output_file,indent=4)
+
+
 
     def activate_multiple_selection(self):
         if self.sender().isChecked():

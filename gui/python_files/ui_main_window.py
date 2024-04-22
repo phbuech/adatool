@@ -47,6 +47,10 @@ class Ui_MainWindow(object):
         self.actionexport_landmarks_to_csv.setObjectName(u"actionexport_landmarks_to_csv")
         self.actionexport_landmarks_to_JSON = QAction(MainWindow)
         self.actionexport_landmarks_to_JSON.setObjectName(u"actionexport_landmarks_to_JSON")
+        self.actionexport_channel_allocation = QAction(MainWindow)
+        self.actionexport_channel_allocation.setObjectName(u"actionexport_channel_allocation")
+        self.actionimport_channel_allocation = QAction(MainWindow)
+        self.actionimport_channel_allocation.setObjectName(u"actionimport_channel_allocation")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
@@ -631,6 +635,8 @@ class Ui_MainWindow(object):
         self.menuSettings.setObjectName(u"menuSettings")
         self.menuexport = QMenu(self.menubar)
         self.menuexport.setObjectName(u"menuexport")
+        self.menuImport = QMenu(self.menubar)
+        self.menuImport.setObjectName(u"menuImport")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -639,6 +645,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuFiles.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuexport.menuAction())
+        self.menubar.addAction(self.menuImport.menuAction())
         self.menuFiles.addAction(self.actionimport_corpus)
         self.menuSettings.addAction(self.actionas)
         self.menuexport.addAction(self.actionexport_EMA_to_netcdf)
@@ -646,6 +653,8 @@ class Ui_MainWindow(object):
         self.menuexport.addAction(self.actionexport_landmarks_to_JSON)
         self.menuexport.addAction(self.actionexport_landmarks_to_TextGrid)
         self.menuexport.addAction(self.actionexport_landmarks_to_csv)
+        self.menuexport.addAction(self.actionexport_channel_allocation)
+        self.menuImport.addAction(self.actionimport_channel_allocation)
 
         self.retranslateUi(MainWindow)
 
@@ -661,6 +670,8 @@ class Ui_MainWindow(object):
         self.actionexport_landmarks_to_TextGrid.setText(QCoreApplication.translate("MainWindow", u"export landmarks to TextGrid", None))
         self.actionexport_landmarks_to_csv.setText(QCoreApplication.translate("MainWindow", u"export landmarks to csv", None))
         self.actionexport_landmarks_to_JSON.setText(QCoreApplication.translate("MainWindow", u"export landmarks to JSON", None))
+        self.actionexport_channel_allocation.setText(QCoreApplication.translate("MainWindow", u"export channel allocation", None))
+        self.actionimport_channel_allocation.setText(QCoreApplication.translate("MainWindow", u"import channel allocation", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"ANNOTATION", None))
         self.annotationTierNumberInfoLabel.setText("")
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Number of Tiers:", None))
@@ -724,5 +735,6 @@ class Ui_MainWindow(object):
         self.menuFiles.setTitle(QCoreApplication.translate("MainWindow", u"Files", None))
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.menuexport.setTitle(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.menuImport.setTitle(QCoreApplication.translate("MainWindow", u"Import", None))
     # retranslateUi
 
