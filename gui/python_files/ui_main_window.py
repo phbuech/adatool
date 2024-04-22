@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_main_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.2
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,8 +27,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1497, 1058)
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.MinimumExpanding)
+        MainWindow.resize(1497, 1067)
+        sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
@@ -68,6 +68,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.addFilesToDataListButton)
 
+        self.multipleSelectionButton = QPushButton(self.centralwidget)
+        self.multipleSelectionButton.setObjectName(u"multipleSelectionButton")
+        self.multipleSelectionButton.setCheckable(True)
+
+        self.horizontalLayout_2.addWidget(self.multipleSelectionButton)
+
         self.removeFilesFromDataListButton = QPushButton(self.centralwidget)
         self.removeFilesFromDataListButton.setObjectName(u"removeFilesFromDataListButton")
 
@@ -82,7 +88,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
@@ -92,7 +98,7 @@ class Ui_MainWindow(object):
 
         self.line_9 = QFrame(self.centralwidget)
         self.line_9.setObjectName(u"line_9")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.line_9.sizePolicy().hasHeightForWidth())
@@ -185,7 +191,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -250,7 +256,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.gridLayout_3)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer)
 
@@ -305,7 +311,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.verticalLayout_4)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_2)
 
@@ -622,7 +628,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1497, 28))
+        self.menubar.setGeometry(QRect(0, 0, 1497, 34))
         self.menuFiles = QMenu(self.menubar)
         self.menuFiles.setObjectName(u"menuFiles")
         self.menuSettings = QMenu(self.menubar)
@@ -660,6 +666,7 @@ class Ui_MainWindow(object):
         self.actionexport_landmarks_to_csv.setText(QCoreApplication.translate("MainWindow", u"export landmarks to csv", None))
         self.actionexport_landmarks_to_JSON.setText(QCoreApplication.translate("MainWindow", u"export landmarks to JSON", None))
         self.addFilesToDataListButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.multipleSelectionButton.setText(QCoreApplication.translate("MainWindow", u"select multiple", None))
         self.removeFilesFromDataListButton.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"INPUT FORMATS", None))
         self.comboBox_4.setItemText(0, QCoreApplication.translate("MainWindow", u"EMA", None))

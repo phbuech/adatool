@@ -25,7 +25,8 @@ class dataContainer:
         self.audio = audio
         self.annotation = annotation
 
-def read_data(file_urls,file_dict,ema_format,audio_format,annotation_format,slash):
+def read_data(file_urls,ema_format,audio_format,annotation_format,slash):
+    file_dict = {}
     #get main path:
     main_path = slash.join(file_urls[0][0].toLocalFile().replace("/",slash).split(slash)[:-1]) + slash
     #get file names

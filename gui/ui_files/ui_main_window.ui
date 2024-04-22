@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1497</width>
-    <height>1058</height>
+    <height>1067</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -38,6 +38,16 @@
            <widget class="QPushButton" name="addFilesToDataListButton">
             <property name="text">
              <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="multipleSelectionButton">
+            <property name="text">
+             <string>select multiple</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -767,7 +777,7 @@
      <x>0</x>
      <y>0</y>
      <width>1497</width>
-     <height>28</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFiles">

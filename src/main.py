@@ -115,6 +115,16 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         #self.testButton.clicked.connect(self.test_fun)
         self.landmarkDetectionButton.clicked.connect(self.start_landmark_detection)
 
+        self.multipleSelectionButton.clicked.connect(self.activate_multiple_selection)
+
+    def activate_multiple_selection(self):
+        if self.sender().isChecked():
+            self.sender().setStyleSheet("background-color: green")
+            self.dataList.setSelectionMode(QAbstractItemView.MultiSelection)
+        else:
+            self.sender().setStyleSheet("background-color: light gray")
+            self.dataList.setSelectionMode(QAbstractItemView.SingleSelection)
+
     def openMeasurementsWindow(self):
         channel_allocation_dict = self.collect_channels(channelTable=self.channelTable)
         tiers_to_transmit = []
@@ -428,28 +438,42 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         ema_format = self.emaFormatComboBox.currentText()
         audio_format = self.audioFormatComboBox.currentText()
         annotation_format = self.annotationFormatComboBox.currentText()
-        self.files = din.read_data(file_urls = file_urls, 
-                                   file_dict = self.files, 
+        tmp_files = din.read_data(file_urls = file_urls, 
                                    ema_format = ema_format, 
                                    audio_format = audio_format, 
                                    annotation_format = annotation_format,
                                    slash = slash)
-        filenames = list(self.files.keys())
+        filenames = list(tmp_files.keys())
         
         for i in range(len(filenames)):
-            dataListEntry = QListWidgetItem(filenames[i])
+            files_keys = list(self.files.keys())
+            if filenames[i] in files_keys:
+                number_of_same_name = files_keys.count(filenames[i])
+                new_filename = filenames[i] + " - " + str(number_of_same_name)
+            else:
+                new_filename = filenames[i]
+            self.files[new_filename] = tmp_files[filenames[i]]
+            dataListEntry = QListWidgetItem(new_filename)
             self.dataList.addItem(dataListEntry)
-            if isinstance(self.files[filenames[i]].annotation, pd.DataFrame):
-                tiers = self.files[filenames[i]].annotation["tierName"].unique()
+            if isinstance(self.files[new_filename].annotation, pd.DataFrame):
+                tiers = self.files[new_filename].annotation["tierName"].unique()
                 for j in range(len(tiers)):
                     if tiers[j] not in self.tier_names:
                         self.tier_names.append(tiers[j])
 
     def removeFilesFromDataList(self):
-        clicked_item = self.dataList.selectedItems()[0]
-        clicked_item_index = self.dataList.currentRow()
-        self.files.pop(clicked_item.text())
-        self.dataList.takeItem(clicked_item_index)
+        if self.multipleSelectionButton.isChecked():
+            selected_items = self.dataList.selectedItems()
+            for i in range(len(selected_items)):
+                fname = selected_items[i].text()
+                self.files.pop(fname)
+                file_index = self.dataList.row(selected_items[i])
+                self.dataList.takeItem(file_index)
+        else:
+            clicked_item = self.dataList.selectedItems()[0]
+            clicked_item_index = self.dataList.currentRow()
+            self.files.pop(clicked_item.text())
+            self.dataList.takeItem(clicked_item_index)
 
     def display_information(self):
         clicked_item_name = self.dataList.selectedItems()[0].text()
