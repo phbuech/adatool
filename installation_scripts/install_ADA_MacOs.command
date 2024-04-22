@@ -24,7 +24,7 @@ if [ $reply == "yes" ]; then
       echo "Environment does not exist and will be installed."
     fi
     echo "Install ada environment"
-    yes "y" | conda create --name ada_env Python=3.11
+    yes "y" | conda create --name ada_env Python=3.10
     echo "Activate ada environment"
     conda init
     conda activate ada_env
