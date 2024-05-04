@@ -1,0 +1,58 @@
+---
+title: "Get started"
+---
+
+This tutorial is a step-by-step guide to install ADA. The software can be installed via (1) the use of installation scripts (Mac/Windows) or (2) manually for technical users.
+
+# Prerequisites
+
+It is necessary to have a working Python installation on your computer. I recommend [Anaconda](https://www.anaconda.com/) for non-technical users and its installation is mandatory if you want to use the installation scripts. Technical users, who want to install ADA manually can use the usual channels for obtaining a Python distribution.
+
+Anaconda is an open-source data science and includes programmings language like Python and R. It can be installed like any other program on your operating system. For the installation of Anaconda
+
+1. download a copy for your operating system [here](https://www.anaconda.com/download)
+
+Please follow then the installation instructions
+
+- for [Mac](https://docs.anaconda.com/free/anaconda/install/mac-os/)
+- for [Windows](https://docs.anaconda.com/free/anaconda/install/windows/)
+- for [Linux](https://docs.anaconda.com/free/anaconda/install/linux/)
+
+Please do not change the settings or paths if you want use the installation scripts for ADA.
+
+# ADA installation
+
+## 1. Download ADA
+
+No binaries for different operating systems are available at the moment, so it is necessary to download the source files. 
+
+1. Go on the GitHub repository [here](https://github.com/phbuech/adatool). 
+2. Be sure that the branch <i>main</i> is selected
+3. Click on <i>Code</i>
+4. Click on <i>Download zip</i> to download the files
+
+You should see a file <i>adatool-main.zip</i> in your Downloads folder. You can now unzip this archive on any location of your computer.
+
+If you want to use the installation scripts for ADA, please follow the instructions in 2. See 3. for the manual installation.
+
+
+## 2. Installation via scripts
+
+This sections shows how to install ADA via scripts. These scripts are very basic, so please ensure that you remove <i>adatool-main.zip</i> archive before you run any of these scripts. Only the folder <i>adatool-main</i> should be on your computer.
+
+If you are using Mac, you have to open the <i>adatool-main</i> folder. Then go on <i>installation_scripts</i>.
+
+### 2.1 Mac
+
+Mac users need to run the script <i>install_ADA_MacOS.command</i>. In order to run the script, you have to right-click onto the script and click on <i>Open</i> in the menu. It will not work otherwise, since this software is downloaded from the internet.
+
+
+
+### 2.2 Windows
+
+Windows users need to run the script <i>install_ADA_windows.bat</i> by double-clicking on its icon.
+
+
+## 3. Manual installation
+
+

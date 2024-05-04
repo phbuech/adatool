@@ -1,0 +1,45 @@
+project:
+  type: website
+
+website:
+  title: "ADA"
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - href: get_started.qmd
+        text: Get started
+      - href: tutorials.qmd
+        text: Tutorials
+      - href: processing.qmd
+        text: Processing information
+
+  sidebar:
+    - title: "Tutorials"
+      style: "docked"
+      background: dark
+      contents:
+        - tutorials.qmd
+        - import_data.qmd
+        - inspector_visualize_trajectories.qmd
+        - inspector_manual_annotation.qmd
+        - inspector_automatic_annotation.qmd
+        - inspector2d_visualize_sensor_positions.qmd
+        - landmark_tier_handling.qmd
+        - automatic_annotation.qmd
+        - extraction_measurements.qmd
+        - export_data.qmd
+
+    - title: "Processing information"
+      contents:
+        - processing.qmd
+        - methods_landmark_annotation.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

@@ -1,0 +1,175 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Articulatory Data Anaysis",
+    "section": "",
+    "text": "ADA is a free and open-source tool for articulatory data analysis. It a software for the visualization, annotation, and post-processing of data collected via electromagnetic articulography (EMA) as well as capabilities for post-processing and conducting measurements. ADA utilizes a graphical user interface and is especially designed to make the work with this kind of data easily without requiring programming skills from the users.\nADA is currently work-in-progress and has multiple features already implemented (see below). Fell free to try the software!\n\nFeatures\nIn its current state, ADA allows the import and export of and into various formats for EMA data, audio and annotation files. EMA data can be visualized in various ways, and articulatory landmarks can be set either manually or automatically. Furthermore, ADA allows the extraction of parametric and dynamic measurements.\nSee below a list of features that are currently implemented.\n\nImport formats\n\n\nEMA: pos (AG500/AG501), csv, netcdf\nAudio: wav, ogg, mp3\nAnnotation: Praat TextGrids, lab, json\n\n\nVisualization\n\n\nVisualization of sensor positions over time, as well as their velocity, tangential velocity, and Euclidean Distances\n2D visualation of sensor positions\n\n\nAnnotation\n\n\nManual annotation\nAutomatic annotation of landmarks using various methods (based on velocity or tangential velocity) and thresholds (15%, 20%)\nAutomatic annotation across files\n\n\nMeasurements\n\n\nParametric measurements: sensor positions, velocity and time at specific landmarks\nDynamic measurements: extraction of sensor positions in specific ranges (based on landmarks or acosutic segment boundaries)\n\n\nExport formats\n\n\nEMA: csv, netcdf\nAnnotation: Praat TextGrids, csv, json\n\n\n\nDependencies\n\n\nFuture work\n\nWriting up the documentation\nImproving perfomance\nSupport for data from AG100/AG200 and NDI WAVE\nImplementation of a head-correction\n\n\n\nContact\nIf you have any suggestions or if you want to report bugs, you can either open an issue with the appropriate label in the GitHub repository here or contact me via\n\nname (point) surname (at) sorbonne-nouvelle.fr\n\n\n\nCitation\nIf you want to cite ADA in your publications, please cite the GitHub repository:\n\nBuech, P. (2024). ADA - a tool for articulatory data analysis. GitHub. Retrieved, 04 May 2024 from https://github.com/phbuech/adatool\n\n\n\nAcknowledgements\nThis work benefited partially from a government grant managed by the ANR under the ”Investissements d’Avenir” programme with the reference ANR-10-LABX-0083. It contributes to the IdEx University of Paris - ANR-18-IDEX-0001 (LABEX-EFL). It was further partially funded by XYZ."
+  },
+  {
+    "objectID": "automatic_annotation.html",
+    "href": "automatic_annotation.html",
+    "title": "Automatic landmark annotation across files",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Automatic landmark annotation across files"
+    ]
+  },
+  {
+    "objectID": "inspector_automatic_annotation.html",
+    "href": "inspector_automatic_annotation.html",
+    "title": "Inspector: Automatic annotation",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Automatic annotation"
+    ]
+  },
+  {
+    "objectID": "landmark_tier_handling.html",
+    "href": "landmark_tier_handling.html",
+    "title": "Handling landmark tiers",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Handling landmark tiers"
+    ]
+  },
+  {
+    "objectID": "extraction_measurements.html",
+    "href": "extraction_measurements.html",
+    "title": "Extraction of measurements",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Extraction of measurements"
+    ]
+  },
+  {
+    "objectID": "inspector_visualize_trajectories.html",
+    "href": "inspector_visualize_trajectories.html",
+    "title": "Inspector: Visualize trajectories",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Visualize trajectories"
+    ]
+  },
+  {
+    "objectID": "processing.html",
+    "href": "processing.html",
+    "title": "Processing - Background information",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Processing information",
+      "Processing - Background information"
+    ]
+  },
+  {
+    "objectID": "inspector2d_visualize_sensor_positions.html",
+    "href": "inspector2d_visualize_sensor_positions.html",
+    "title": "Inspector 2D: Visualize sensor positions",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector 2D: Visualize sensor positions"
+    ]
+  },
+  {
+    "objectID": "inspector_manual_annotation.html",
+    "href": "inspector_manual_annotation.html",
+    "title": "Inspector: Manual annotation",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Manual annotation"
+    ]
+  },
+  {
+    "objectID": "export_data.html",
+    "href": "export_data.html",
+    "title": "Export data",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Export data"
+    ]
+  },
+  {
+    "objectID": "import_data.html",
+    "href": "import_data.html",
+    "title": "Import data",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Import data"
+    ]
+  },
+  {
+    "objectID": "methods_landmark_annotation.html",
+    "href": "methods_landmark_annotation.html",
+    "title": "Methods: landmark annotation",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Processing information",
+      "Methods: landmark annotation"
+    ]
+  },
+  {
+    "objectID": "get_started.html",
+    "href": "get_started.html",
+    "title": "Get started",
+    "section": "",
+    "text": "This tutorial is a step-by-step guide to install ADA. The software can be installed via (1) the use of installation scripts (Mac/Windows) or (2) manually for technical users."
+  },
+  {
+    "objectID": "get_started.html#download-ada",
+    "href": "get_started.html#download-ada",
+    "title": "Get started",
+    "section": "1. Download ADA",
+    "text": "1. Download ADA\nNo binaries for different operating systems are available at the moment, so it is necessary to download the source files.\n\nGo on the GitHub repository here.\nBe sure that the branch main is selected\nClick on Code\nClick on Download zip to download the files\n\nYou should see a file adatool-main.zip in your Downloads folder. You can now unzip this archive on any location of your computer.\nIf you want to use the installation scripts for ADA, please follow the instructions in 2. See 3. for the manual installation."
+  },
+  {
+    "objectID": "get_started.html#installation-via-scripts",
+    "href": "get_started.html#installation-via-scripts",
+    "title": "Get started",
+    "section": "2. Installation via scripts",
+    "text": "2. Installation via scripts\nThis sections shows how to install ADA via scripts. These scripts are very basic, so please ensure that you remove adatool-main.zip archive before you run any of these scripts. Only the folder adatool-main should be on your computer.\nIf you are using Mac, you have to open the adatool-main folder. Then go on installation_scripts.\n\n2.1 Mac\nMac users need to run the script install_ADA_MacOS.command. In order to run the script, you have to right-click onto the script and click on Open in the menu. It will not work otherwise, since this software is downloaded from the internet.\n\n\n2.2 Windows\nWindows users need to run the script install_ADA_windows.bat by double-clicking on its icon."
+  },
+  {
+    "objectID": "get_started.html#manual-installation",
+    "href": "get_started.html#manual-installation",
+    "title": "Get started",
+    "section": "3. Manual installation",
+    "text": "3. Manual installation"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "tutorials.html",
+    "href": "tutorials.html",
+    "title": "Tutorials",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials"
+    ]
+  }
+]
