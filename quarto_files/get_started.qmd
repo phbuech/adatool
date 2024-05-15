@@ -65,20 +65,20 @@ Windows users need to run the script <i>install_ADA_windows.bat</i> by double-cl
 
 In the manual installation, the users need to create a Python environment first. This is done in the terminal for Mac and Linux users, or in the Anaconda prompt for Windows users. The environment for ADA is then created by entering the following command:
 
-```{python}
+```
 conda create --name ada_env Python=3.10
 ```
 
 In the next step, the environment has to be activated by entering:
 
-```{python}
+```
 conda activate ada_env
 ```
 
 When this is done, (ada_env) should be placed at the beginning or the end at the current terminal line. Finally, the necessary dependencies have to be installed.
 The list of these dependencies is given in the <i>requirements.txt</i> file located in the installation scripts folder, but only the path to this file is needed.
 They can be installed via the command:
-```{python}
+```
 pip3 install -r /path/to/the/requirements.txt
 ```
 
@@ -98,11 +98,11 @@ Windows users must run the run_ADA_Windows.bat script.
 ## 3. Manual start
 
 For a manual start of ADA, Linux and Mac users have to open the terminal and Windows users the Anaconda prompt. Next, the <i>ada_env</i> environment has to be activated by:
-```{python}
+```default
 conda activate ada_env
 ```
 
 Finally, ADA can be started by executing the <i>main.py</i> file in the <i>src</i> subdirectory of the adatool-main folder:
-```{python}
+```
 python /path_to/adatool-main/src/main.py -style fusion
 ```
