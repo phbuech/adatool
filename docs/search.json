@@ -110,7 +110,7 @@
     "href": "import_data.html",
     "title": "Import data",
     "section": "",
-    "text": "under construction",
+    "text": "Load",
     "crumbs": [
       "Tutorials",
       "Import data"
@@ -146,21 +146,35 @@
     "href": "get_started.html#installation-via-scripts",
     "title": "Get started",
     "section": "2. Installation via scripts",
-    "text": "2. Installation via scripts\nThis sections shows how to install ADA via scripts. These scripts are very basic, so please ensure that you remove adatool-main.zip archive before you run any of these scripts. Only the folder adatool-main should be on your computer.\nIf you are using Mac, you have to open the adatool-main folder. Then go on installation_scripts.\n\n2.1 Mac\nMac users need to run the script install_ADA_MacOS.command. In order to run the script, you have to right-click onto the script and click on Open in the menu. It will not work otherwise, since this software is downloaded from the internet.\n\n\n2.2 Windows\nWindows users need to run the script install_ADA_windows.bat by double-clicking on its icon."
+    "text": "2. Installation via scripts\nThis sections shows how to install ADA via scripts. These scripts are very basic, so please ensure that you remove adatool-main.zip archive before you run any of these scripts. Only the folder adatool-main should be on your computer.\nIf you are using Mac, you have to open the adatool-main folder. Then go on installation_scripts.\n\n2.1 Mac\nMac users need to run the script install_ADA_MacOS.command. In order to run the script, you have to right-click onto the script and click on Open in the menu. It will not work otherwise, since this software is downloaded from the internet.\n\n\n\n\n\n\nPay Attention\n\n\n\nPlease be sure that adatoo-main is the only folder or file with this name. If you still have the adatool-main.zip file, please delete it.\n\n\n\n\n2.2 Windows\nWindows users need to run the script install_ADA_windows.bat by double-clicking on its icon. It should work out of the box. Enter &lt;yes anytime the script asks for a reply. All necessary installation will be done by the script."
   },
   {
     "objectID": "get_started.html#manual-installation",
     "href": "get_started.html#manual-installation",
     "title": "Get started",
     "section": "3. Manual installation",
-    "text": "3. Manual installation"
+    "text": "3. Manual installation\nIn the manual installation, the users need to create a Python environment first. This is done in the terminal for Mac and Linux users, or in the Anaconda prompt for Windows users. The environment for ADA is then created by entering the following command:\nconda create --name ada_env Python=3.10\nIn the next step, the environment has to be activated by entering:\nconda activate ada_env\nWhen this is done, (ada_env) should be placed at the beginning or the end at the current terminal line. Finally, the necessary dependencies have to be installed. The list of these dependencies is given in the requirements.txt file located in the installation scripts folder, but only the path to this file is needed. They can be installed via the command:\npip3 install -r /path/to/the/requirements.txt"
+  },
+  {
+    "objectID": "get_started.html#start-via-script",
+    "href": "get_started.html#start-via-script",
+    "title": "Get started",
+    "section": "1. Start via script",
+    "text": "1. Start via script\n\n1. Mac\nMac users must run the run_ADA_MacOS.command script. Similar to the installation script, the very first execution has to be done via right-click and then selecting Open. Another other execution afterwards can be done by a double click.\n\n\n2. Windows\nWindows users must run the run_ADA_Windows.bat script."
+  },
+  {
+    "objectID": "get_started.html#manual-start",
+    "href": "get_started.html#manual-start",
+    "title": "Get started",
+    "section": "3. Manual start",
+    "text": "3. Manual start\nFor a manual start of ADA, Linux and Mac users have to open the terminal and Windows users the Anaconda prompt. Next, the ada_env environment has to be activated by:\nconda activate ada_env\nFinally, ADA can be started by executing the main.py file in the src subdirectory of the adatool-main folder:\npython /path_to/adatool-main/src/main.py -style fusion"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "under cosntruction"
   },
   {
     "objectID": "tutorials.html",

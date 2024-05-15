@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -131,6 +165,15 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#manual-installation" id="toc-manual-installation" class="nav-link" data-scroll-target="#manual-installation">3. Manual installation</a></li>
   </ul></li>
+  <li><a href="#running-ada" id="toc-running-ada" class="nav-link" data-scroll-target="#running-ada">Running ADA</a>
+  <ul class="collapse">
+  <li><a href="#start-via-script" id="toc-start-via-script" class="nav-link" data-scroll-target="#start-via-script">1. Start via script</a>
+  <ul class="collapse">
+  <li><a href="#mac-1" id="toc-mac-1" class="nav-link" data-scroll-target="#mac-1">1. Mac</a></li>
+  <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1">2. Windows</a></li>
+  </ul></li>
+  <li><a href="#manual-start" id="toc-manual-start" class="nav-link" data-scroll-target="#manual-start">3. Manual start</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -193,14 +236,55 @@ ul.task-list li input[type="checkbox"] {
 <section id="mac" class="level3">
 <h3 class="anchored" data-anchor-id="mac">2.1 Mac</h3>
 <p>Mac users need to run the script <i>install_ADA_MacOS.command</i>. In order to run the script, you have to right-click onto the script and click on <i>Open</i> in the menu. It will not work otherwise, since this software is downloaded from the internet.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pay Attention
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please be sure that adatoo-main is the only folder or file with this name. If you still have the adatool-main.zip file, please delete it.</p>
+</div>
+</div>
 </section>
 <section id="windows" class="level3">
 <h3 class="anchored" data-anchor-id="windows">2.2 Windows</h3>
-<p>Windows users need to run the script <i>install_ADA_windows.bat</i> by double-clicking on its icon.</p>
+<p>Windows users need to run the script <i>install_ADA_windows.bat</i> by double-clicking on its icon. It should work out of the box. Enter <i>&lt;yes</i> anytime the script asks for a reply. All necessary installation will be done by the script.</p>
 </section>
 </section>
 <section id="manual-installation" class="level2">
 <h2 class="anchored" data-anchor-id="manual-installation">3. Manual installation</h2>
+<p>In the manual installation, the users need to create a Python environment first. This is done in the terminal for Mac and Linux users, or in the Anaconda prompt for Windows users. The environment for ADA is then created by entering the following command:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda create --name ada_env Python=3.10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the next step, the environment has to be activated by entering:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda activate ada_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When this is done, (ada_env) should be placed at the beginning or the end at the current terminal line. Finally, the necessary dependencies have to be installed. The list of these dependencies is given in the <i>requirements.txt</i> file located in the installation scripts folder, but only the path to this file is needed. They can be installed via the command:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pip3 install -r /path/to/the/requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="running-ada" class="level1">
+<h1>Running ADA</h1>
+<p>After the installation is completed, ADA can be started either by using a script for Mac or Windows, or manually</p>
+<section id="start-via-script" class="level2">
+<h2 class="anchored" data-anchor-id="start-via-script">1. Start via script</h2>
+<section id="mac-1" class="level3">
+<h3 class="anchored" data-anchor-id="mac-1">1. Mac</h3>
+<p>Mac users must run the run_ADA_MacOS.command script. Similar to the installation script, the very first execution has to be done via right-click and then selecting <i>Open</i>. Another other execution afterwards can be done by a double click.</p>
+</section>
+<section id="windows-1" class="level3">
+<h3 class="anchored" data-anchor-id="windows-1">2. Windows</h3>
+<p>Windows users must run the run_ADA_Windows.bat script.</p>
+</section>
+</section>
+<section id="manual-start" class="level2">
+<h2 class="anchored" data-anchor-id="manual-start">3. Manual start</h2>
+<p>For a manual start of ADA, Linux and Mac users have to open the terminal and Windows users the Anaconda prompt. Next, the <i>ada_env</i> environment has to be activated by:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>conda activate ada_env</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, ADA can be started by executing the <i>main.py</i> file in the <i>src</i> subdirectory of the adatool-main folder:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>python /path_to/adatool-main/src/main.py -style fusion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

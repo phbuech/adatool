@@ -1,5 +1,0 @@
----
-title: "Extraction of measurements"
----
-
-under construction

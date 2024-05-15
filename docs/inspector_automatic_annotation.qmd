@@ -1,5 +1,0 @@
----
-title: "Inspector: Automatic annotation"
----
-
-under construction
