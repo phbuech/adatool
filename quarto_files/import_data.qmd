@@ -2,4 +2,30 @@
 title: "Import data"
 ---
 
-# Load
+Data can be loaded in the upper left part of the main window, where you find a field where the files will be listed, as well as an area for the selection of input formats.
+
+![Area for the data import](imgs/data_import.png){width=50%}
+
+Use the dropdown elements for selecting the appropriate format of your data. ADA support the following file formats at the moment:
+
+- EMA: pos (AG500/AG501), csv, netcdf
+- audio: wav, ogg, mp3
+- annotation: TextGrid, Json, csv
+
+In the next step, click on + to open a window the the file selection.
+
+::: {.callout-note appearance="simple"}
+
+## Attention
+
+It is assumed that all EMA, audio, and annotation files are located in the same folder. Furthemore, it is assumed that all files have the same file name.
+
+:::
+
+Select the files you want to load. It is not necessary to select all files: Even if only of file is selected, e.g., a wav file, the corresponding EMA and annotation file with the same file will be loaded automatically.
+
+![Open dialog window](imgs/data_import_window.png){width=50%; text-align="center"}
+
+Once loaded, a list of files will appear, denominated by the filename. By clicking on of the filenames, general information will be printed out under EMA, Audio and Annotation. The screenshot below shows an example of data loaded from the AG501 at a sample rate of 1250 Hz, 16 Channels and a duration of 54.02 s. The audio file has a sample rate of 48000 and the same duration and the annotation file had 5 tiers.
+
+![File information](imgs/data_import_file_information.png){width=50%, text-align="center"}

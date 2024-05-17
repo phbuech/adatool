@@ -141,6 +141,18 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./channel_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Channel management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inspector_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inspector: Structure</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inspector_visualize_trajectories.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inspector: Visualize trajectories</span></a>
   </div>
@@ -181,25 +193,13 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Extraction of measurements</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./export_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Export data</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load" id="toc-load" class="nav-link active" data-scroll-target="#load">Load</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -223,11 +223,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="load" class="level1">
-<h1>Load</h1>
+<p>Data can be loaded in the upper left part of the main window, where you find a field where the files will be listed, as well as an area for the selection of input formats.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/data_import.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Area for the data import</figcaption>
+</figure>
+</div>
+<p>Use the dropdown elements for selecting the appropriate format of your data. ADA support the following file formats at the moment:</p>
+<ul>
+<li>EMA: pos (AG500/AG501), csv, netcdf</li>
+<li>audio: wav, ogg, mp3</li>
+<li>annotation: TextGrid, Json, csv</li>
+</ul>
+<p>In the next step, click on + to open a window the the file selection.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Attention
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is assumed that all EMA, audio, and annotation files are located in the same folder. Furthemore, it is assumed that all files have the same file name.</p>
+</div>
+</div>
+<p>Select the files you want to load. It is not necessary to select all files: Even if only of file is selected, e.g., a wav file, the corresponding EMA and annotation file with the same file will be loaded automatically.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/data_import_window.png" class="img-fluid figure-img" data-text-align="center"></p>
+<figcaption>Open dialog window</figcaption>
+</figure>
+</div>
+<p>Once loaded, a list of files will appear, denominated by the filename. By clicking on of the filenames, general information will be printed out under EMA, Audio and Annotation. The screenshot below shows an example of data loaded from the AG501 at a sample rate of 1250 Hz, 16 Channels and a duration of 54.02 s. The audio file has a sample rate of 48000 and the same duration and the annotation file had 5 tiers.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/data_import_file_information.png" class="img-fluid figure-img" data-text-align="center"></p>
+<figcaption>File information</figcaption>
+</figure>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

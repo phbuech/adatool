@@ -141,6 +141,18 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./channel_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Channel management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inspector_structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inspector: Structure</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./inspector_visualize_trajectories.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Inspector: Visualize trajectories</span></a>
   </div>
@@ -181,12 +193,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Extraction of measurements</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./export_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Export data</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -217,7 +223,38 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>under construction</p>
+<p>The lower part of the inspector window is dedicated to the visualization and annotation of EMA trajectories. Per default, one panel will show up, but up to 3 panels can be activated by clicking on the <i>show panel 2</i> and <i>show panel 3</i> buttons.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/inspector_ema_visualization area.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>EMA area of the Inspector window</figcaption>
+</figure>
+</div>
+<p>Each panel consists of three axes: a left one (denomiated as <i>a</i>), and two on the right (<i>b</i> and <i>c</i>). The axes denomiations are important later for the plotting of the sensor trajectories.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/inspector_panel.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>EMA panel in the Inspector window</figcaption>
+</figure>
+</div>
+<p>The visualization controls themselves are located at the right side under <i>EMA CONTROLS</i>. It contains of a list where the trajectories that have to be plotted are specified, as well as two buttons <i>+</i> and <i>-</i> to add or to remove a trajectory.</p>
+<p>Once a trajectory is added, a line with several dropdowns appears.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/inspector_ema_row_added.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Row in the EMA CONTROLS area of the Inpsector window</figcaption>
+</figure>
+</div>
+<p>The structure of each row is as follows:</p>
+<ul>
+<li>PLOT: contains a button to plot or to remove the specified trajectory</li>
+<li>CHAN: dropdown containing the channel label as specified in the main window</li>
+<li>DIM: dropdown containing the dimension of the sensor that has to be plotted (x = horizontal, y = vertical, z = lateral). In addition, combinations of these dimensions are selectable (x+y, x+z, y+z)</li>
+<li>PARAM: dropdown containing the parameters pos (position), vel (velocity), acc (acceleartion), tvel (tangential velocity), eucl2D (Euclidean distance in two dimensions), eucl3D (Euclidean distance in three dimensions), dist (one-dimensional distance)</li>
+<li>PANEL: dropdown containing the number of the panel (1, 2, 3) and the specification of the axis (a, b, c)</li>
+<li>COLOR: dropdown containing a selection of colors</li>
+</ul>
+<p>The specification of a trajectory is as follows: first, a channel has to be selected. Secondly, the dimension has to be specified, and third, the parameter. The selection of these various options depends on the parameters of interest. For example, if the tongue tip sensor in the vertical dimension has to be plotted, it is necessary to select the respective channel (e.g., TT), the dimension (y), and the parameter (pos). Combinations of channels or dimensions are important for, e.g., tangential velocity or euclidean distances. For a two-dimensional euclidean distance, users have to select, e.g., UL+LL (labels for the upper and lower lip sensors in the main window), the dimension x+y and eucl2D in the parameter column. In case of tangential velocity, the channel, the dimensions (e.g, x+y) and tvel has to be selected.</p>
 
 
 

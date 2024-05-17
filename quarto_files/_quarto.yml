@@ -21,6 +21,8 @@ website:
       contents:
         - tutorials.qmd
         - import_data.qmd
+        - channel_management.qmd
+        - inspector_structure.qmd
         - inspector_visualize_trajectories.qmd
         - inspector_manual_annotation.qmd
         - inspector_automatic_annotation.qmd
@@ -28,7 +30,6 @@ website:
         - landmark_tier_handling.qmd
         - automatic_annotation.qmd
         - extraction_measurements.qmd
-        - export_data.qmd
 
     - title: "Processing information"
       contents:

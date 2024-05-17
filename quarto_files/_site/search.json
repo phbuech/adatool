@@ -7,125 +7,21 @@
     "text": "ADA is a free and open-source tool for articulatory data analysis. It a software for the visualization, annotation, and post-processing of data collected via electromagnetic articulography (EMA) as well as capabilities for post-processing and conducting measurements. ADA utilizes a graphical user interface and is especially designed to make the work with this kind of data easily without requiring programming skills from the users.\nADA is currently work-in-progress and has multiple features already implemented (see below). Fell free to try the software!\n\nFeatures\nIn its current state, ADA allows the import and export of and into various formats for EMA data, audio and annotation files. EMA data can be visualized in various ways, and articulatory landmarks can be set either manually or automatically. Furthermore, ADA allows the extraction of parametric and dynamic measurements.\nSee below a list of features that are currently implemented.\n\nImport formats\n\n\nEMA: pos (AG500/AG501), csv, netcdf\nAudio: wav, ogg, mp3\nAnnotation: Praat TextGrids, lab, json\n\n\nVisualization\n\n\nVisualization of sensor positions over time, as well as their velocity, tangential velocity, and Euclidean Distances\n2D visualation of sensor positions\n\n\nAnnotation\n\n\nManual annotation\nAutomatic annotation of landmarks using various methods (based on velocity or tangential velocity) and thresholds (15%, 20%)\nAutomatic annotation across files\n\n\nMeasurements\n\n\nParametric measurements: sensor positions, velocity and time at specific landmarks\nDynamic measurements: extraction of sensor positions in specific ranges (based on landmarks or acosutic segment boundaries)\n\n\nExport formats\n\n\nEMA: csv, netcdf\nAnnotation: Praat TextGrids, csv, json\n\n\n\nDependencies\n\n\nFuture work\n\nWriting up the documentation\nImproving perfomance\nSupport for data from AG100/AG200 and NDI WAVE\nImplementation of a head-correction\n\n\n\nContact\nIf you have any suggestions or if you want to report bugs, you can either open an issue with the appropriate label in the GitHub repository here or contact me via\n\nname (point) surname (at) sorbonne-nouvelle.fr\n\n\n\nCitation\nIf you want to cite ADA in your publications, please cite the GitHub repository:\n\nBuech, P. (2024). ADA - a tool for articulatory data analysis. GitHub. Retrieved, 04 May 2024 from https://github.com/phbuech/adatool\n\n\n\nAcknowledgements\nThis work benefited partially from a government grant managed by the ANR under the ”Investissements d’Avenir” programme with the reference ANR-10-LABX-0083. It contributes to the IdEx University of Paris - ANR-18-IDEX-0001 (LABEX-EFL). It was further partially funded by XYZ."
   },
   {
-    "objectID": "automatic_annotation.html",
-    "href": "automatic_annotation.html",
-    "title": "Automatic landmark annotation across files",
+    "objectID": "tutorials.html",
+    "href": "tutorials.html",
+    "title": "Tutorials",
     "section": "",
     "text": "under construction",
     "crumbs": [
-      "Tutorials",
-      "Automatic landmark annotation across files"
+      "Tutorials"
     ]
   },
   {
-    "objectID": "inspector_automatic_annotation.html",
-    "href": "inspector_automatic_annotation.html",
-    "title": "Inspector: Automatic annotation",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Inspector: Automatic annotation"
-    ]
-  },
-  {
-    "objectID": "landmark_tier_handling.html",
-    "href": "landmark_tier_handling.html",
-    "title": "Handling landmark tiers",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Handling landmark tiers"
-    ]
-  },
-  {
-    "objectID": "extraction_measurements.html",
-    "href": "extraction_measurements.html",
-    "title": "Extraction of measurements",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Extraction of measurements"
-    ]
-  },
-  {
-    "objectID": "inspector_visualize_trajectories.html",
-    "href": "inspector_visualize_trajectories.html",
-    "title": "Inspector: Visualize trajectories",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Inspector: Visualize trajectories"
-    ]
-  },
-  {
-    "objectID": "processing.html",
-    "href": "processing.html",
-    "title": "Processing - Background information",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Processing information",
-      "Processing - Background information"
-    ]
-  },
-  {
-    "objectID": "inspector2d_visualize_sensor_positions.html",
-    "href": "inspector2d_visualize_sensor_positions.html",
-    "title": "Inspector 2D: Visualize sensor positions",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Inspector 2D: Visualize sensor positions"
-    ]
-  },
-  {
-    "objectID": "inspector_manual_annotation.html",
-    "href": "inspector_manual_annotation.html",
-    "title": "Inspector: Manual annotation",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Inspector: Manual annotation"
-    ]
-  },
-  {
-    "objectID": "export_data.html",
-    "href": "export_data.html",
-    "title": "Export data",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Tutorials",
-      "Export data"
-    ]
-  },
-  {
-    "objectID": "import_data.html",
-    "href": "import_data.html",
-    "title": "Import data",
-    "section": "",
-    "text": "Load",
-    "crumbs": [
-      "Tutorials",
-      "Import data"
-    ]
-  },
-  {
-    "objectID": "methods_landmark_annotation.html",
-    "href": "methods_landmark_annotation.html",
-    "title": "Methods: landmark annotation",
-    "section": "",
-    "text": "under construction",
-    "crumbs": [
-      "Processing information",
-      "Methods: landmark annotation"
-    ]
+    "text": "under cosntruction"
   },
   {
     "objectID": "get_started.html",
@@ -170,20 +66,153 @@
     "text": "3. Manual start\nFor a manual start of ADA, Linux and Mac users have to open the terminal and Windows users the Anaconda prompt. Next, the ada_env environment has to be activated by:\nconda activate ada_env\nFinally, ADA can be started by executing the main.py file in the src subdirectory of the adatool-main folder:\npython /path_to/adatool-main/src/main.py -style fusion"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "under cosntruction"
-  },
-  {
-    "objectID": "tutorials.html",
-    "href": "tutorials.html",
-    "title": "Tutorials",
+    "objectID": "methods_landmark_annotation.html",
+    "href": "methods_landmark_annotation.html",
+    "title": "Methods: landmark annotation",
     "section": "",
     "text": "under construction",
     "crumbs": [
-      "Tutorials"
+      "Processing information",
+      "Methods: landmark annotation"
+    ]
+  },
+  {
+    "objectID": "channel_management.html",
+    "href": "channel_management.html",
+    "title": "Channel management",
+    "section": "",
+    "text": "Once the data is loaded into ADA, it is necessary to specify the channels that will be used in the program. This channel information is used for the visualization, annotation, and measurements. The channel allocation is handled in the CHANNELS area that consists of a table with the channel and a corresponding name as headers.\n\n\n\nChannel allocation\n\n\nBy clicking on the + button, a new row will appear. It consists of a dropdown containing the number of channel available and a text field were users can specify a name for this channel.\n\n\n\nNew row for channel allocation\n\n\nFor example, if the channel 3 is for a sensor attached to the tongue body, channel 4 for a tongue mid sensor and the sensor of channel 5 is attached to the tongue tip, they can be entered as follows:\n\n\n\nExample for channel allocation\n\n\nIt is not necessary to use the same abbreviations. The naming of the channels is entirely up to the users.",
+    "crumbs": [
+      "Tutorials",
+      "Channel management"
+    ]
+  },
+  {
+    "objectID": "channel_management.html#channel-allocation",
+    "href": "channel_management.html#channel-allocation",
+    "title": "Channel management",
+    "section": "",
+    "text": "Once the data is loaded into ADA, it is necessary to specify the channels that will be used in the program. This channel information is used for the visualization, annotation, and measurements. The channel allocation is handled in the CHANNELS area that consists of a table with the channel and a corresponding name as headers.\n\n\n\nChannel allocation\n\n\nBy clicking on the + button, a new row will appear. It consists of a dropdown containing the number of channel available and a text field were users can specify a name for this channel.\n\n\n\nNew row for channel allocation\n\n\nFor example, if the channel 3 is for a sensor attached to the tongue body, channel 4 for a tongue mid sensor and the sensor of channel 5 is attached to the tongue tip, they can be entered as follows:\n\n\n\nExample for channel allocation\n\n\nIt is not necessary to use the same abbreviations. The naming of the channels is entirely up to the users.",
+    "crumbs": [
+      "Tutorials",
+      "Channel management"
+    ]
+  },
+  {
+    "objectID": "inspector_visualize_trajectories.html",
+    "href": "inspector_visualize_trajectories.html",
+    "title": "Inspector: Visualize trajectories",
+    "section": "",
+    "text": "The lower part of the inspector window is dedicated to the visualization and annotation of EMA trajectories. Per default, one panel will show up, but up to 3 panels can be activated by clicking on the show panel 2 and show panel 3 buttons.\n\n\n\nEMA area of the Inspector window\n\n\nEach panel consists of three axes: a left one (denomiated as a), and two on the right (b and c). The axes denomiations are important later for the plotting of the sensor trajectories.\n\n\n\nEMA panel in the Inspector window\n\n\nThe visualization controls themselves are located at the right side under EMA CONTROLS. It contains of a list where the trajectories that have to be plotted are specified, as well as two buttons + and - to add or to remove a trajectory.\nOnce a trajectory is added, a line with several dropdowns appears.\n\n\n\nRow in the EMA CONTROLS area of the Inpsector window\n\n\nThe structure of each row is as follows:\n\nPLOT: contains a button to plot or to remove the specified trajectory\nCHAN: dropdown containing the channel label as specified in the main window\nDIM: dropdown containing the dimension of the sensor that has to be plotted (x = horizontal, y = vertical, z = lateral). In addition, combinations of these dimensions are selectable (x+y, x+z, y+z)\nPARAM: dropdown containing the parameters pos (position), vel (velocity), acc (acceleartion), tvel (tangential velocity), eucl2D (Euclidean distance in two dimensions), eucl3D (Euclidean distance in three dimensions), dist (one-dimensional distance)\nPANEL: dropdown containing the number of the panel (1, 2, 3) and the specification of the axis (a, b, c)\nCOLOR: dropdown containing a selection of colors\n\nThe specification of a trajectory is as follows: first, a channel has to be selected. Secondly, the dimension has to be specified, and third, the parameter. The selection of these various options depends on the parameters of interest. For example, if the tongue tip sensor in the vertical dimension has to be plotted, it is necessary to select the respective channel (e.g., TT), the dimension (y), and the parameter (pos). Combinations of channels or dimensions are important for, e.g., tangential velocity or euclidean distances. For a two-dimensional euclidean distance, users have to select, e.g., UL+LL (labels for the upper and lower lip sensors in the main window), the dimension x+y and eucl2D in the parameter column. In case of tangential velocity, the channel, the dimensions (e.g, x+y) and tvel has to be selected.",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Visualize trajectories"
+    ]
+  },
+  {
+    "objectID": "processing.html",
+    "href": "processing.html",
+    "title": "Processing - Background information",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Processing information",
+      "Processing - Background information"
+    ]
+  },
+  {
+    "objectID": "inspector2d_visualize_sensor_positions.html",
+    "href": "inspector2d_visualize_sensor_positions.html",
+    "title": "Inspector 2D: Visualize sensor positions",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector 2D: Visualize sensor positions"
+    ]
+  },
+  {
+    "objectID": "inspector_manual_annotation.html",
+    "href": "inspector_manual_annotation.html",
+    "title": "Inspector: Manual annotation",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Manual annotation"
+    ]
+  },
+  {
+    "objectID": "export_data.html",
+    "href": "export_data.html",
+    "title": "Export data",
+    "section": "",
+    "text": "under construction"
+  },
+  {
+    "objectID": "import_data.html",
+    "href": "import_data.html",
+    "title": "Import data",
+    "section": "",
+    "text": "Data can be loaded in the upper left part of the main window, where you find a field where the files will be listed, as well as an area for the selection of input formats.\n\n\n\nArea for the data import\n\n\nUse the dropdown elements for selecting the appropriate format of your data. ADA support the following file formats at the moment:\n\nEMA: pos (AG500/AG501), csv, netcdf\naudio: wav, ogg, mp3\nannotation: TextGrid, Json, csv\n\nIn the next step, click on + to open a window the the file selection.\n\n\n\n\n\n\nAttention\n\n\n\nIt is assumed that all EMA, audio, and annotation files are located in the same folder. Furthemore, it is assumed that all files have the same file name.\n\n\nSelect the files you want to load. It is not necessary to select all files: Even if only of file is selected, e.g., a wav file, the corresponding EMA and annotation file with the same file will be loaded automatically.\n\n\n\nOpen dialog window\n\n\nOnce loaded, a list of files will appear, denominated by the filename. By clicking on of the filenames, general information will be printed out under EMA, Audio and Annotation. The screenshot below shows an example of data loaded from the AG501 at a sample rate of 1250 Hz, 16 Channels and a duration of 54.02 s. The audio file has a sample rate of 48000 and the same duration and the annotation file had 5 tiers.\n\n\n\nFile information",
+    "crumbs": [
+      "Tutorials",
+      "Import data"
+    ]
+  },
+  {
+    "objectID": "extraction_measurements.html",
+    "href": "extraction_measurements.html",
+    "title": "Extraction of measurements",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Extraction of measurements"
+    ]
+  },
+  {
+    "objectID": "landmark_tier_handling.html",
+    "href": "landmark_tier_handling.html",
+    "title": "Handling landmark tiers",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Handling landmark tiers"
+    ]
+  },
+  {
+    "objectID": "inspector_automatic_annotation.html",
+    "href": "inspector_automatic_annotation.html",
+    "title": "Inspector: Automatic annotation",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Automatic annotation"
+    ]
+  },
+  {
+    "objectID": "automatic_annotation.html",
+    "href": "automatic_annotation.html",
+    "title": "Automatic landmark annotation across files",
+    "section": "",
+    "text": "under construction",
+    "crumbs": [
+      "Tutorials",
+      "Automatic landmark annotation across files"
+    ]
+  },
+  {
+    "objectID": "inspector_structure.html",
+    "href": "inspector_structure.html",
+    "title": "Inspector: Structure",
+    "section": "",
+    "text": "1. Overview\nThe inspector window is structured into an upper part for the display of the audio waveform, a spectrogram, and additional information like f0 or the RMS amplitude, and a lower part for the visualization and annotation of EMA data. On the right side of both parts are control elements.\n\n\n\nOverview of the inspector window\n\n\n\n\n2. Acoustic information\nThe acoustics part display per default the waveform of the acoustic data. An additional spectrogram can be plotted or removed by activating the show spectrogram button. In addition, the RMS amplitude or f0 (estimated by either the pYin or Yin algorithm) can be plotted by clicking on the respective buttons.\n\n\n\nExample of a waveform, spectrogram and additional RMS amplitude in the insepctor window\n\n\nFInally, if acoustic labels are provided, they can be plotted in the waveform area.\n\n\n\nExample of a waveform and acoustic boundaries in the inspector window",
+    "crumbs": [
+      "Tutorials",
+      "Inspector: Structure"
     ]
   }
 ]
