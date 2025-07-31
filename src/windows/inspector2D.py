@@ -118,12 +118,15 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         self.tongueSensorRegister = {}
         self.curveItemRegister = {}
         self.tongueShapeCurve = None
+        self.palateCurve = None
         self.plotTongueShapePushButton.clicked.connect(self.plot_tongue_shape)
+        self.plotPalateTracePushButton.clicked.connect(self.plot_palate_trace)
         self.waveformSlider.setMaximum(0)
         self.waveformSlider.valueChanged.connect(self.sliderMovePlot)
 
         self.plotTracePushButton.clicked.connect(self.activate_button)
         self.plotTongueShapePushButton.clicked.connect(self.activate_button)
+        self.plotPalateTracePushButton.clicked.connect(self.activate_button)
         self.sizeSlider.valueChanged.connect(self.on_size_change)
 
         self.zoomSelectionButton.clicked.connect(self.zoom_selection)
@@ -151,6 +154,28 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
         updateViews()
         p1.getViewBox().sigResized.connect(updateViews)
 
+    def plot_palate_trace(self):
+        if self.sender().isChecked():
+            keys = list(self.scatterPlotItemRegister.keys())
+            tongue_maxima = []
+            for key in keys:
+                if key in list(self.tongueSensorRegister.keys()):
+                    dim2_max = self.dataRegister[key]["dim2"].max()
+                    dim2_argmax = self.dataRegister[key]["dim2"].argmax()
+                    dim1_position = self.dataRegister[key]["dim1"][dim2_argmax]
+                    tongue_maxima.append(np.array([dim1_position,dim2_max]))
+            tongue_maxima = np.array(tongue_maxima)
+            print(tongue_maxima)
+            sorted_ts = tongue_maxima[tongue_maxima[:,0].argsort()]
+            cs = CubicSpline(sorted_ts[:,0],sorted_ts[:,1])
+            xmin, xmax = sorted_ts[:,0].min(), sorted_ts[:,0].max()
+            xnew = np.linspace(xmin,xmax,20)
+            self.palateCurve = pg.PlotCurveItem(pen=pg.mkPen("white",width=2))
+            self.palateCurve.setData(x=xnew,y=cs(xnew))
+            self.emaPlotWidget1.addItem(self.palateCurve)
+            self.palateCurve.show()
+        else:
+            self.palateCurve.hide()
 
     def plot_intensity(self):
         if self.showFundamentalFrequencyButton.isChecked() == False:
@@ -455,6 +480,7 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
                 self.tongueShapeCurve.hide()
 
 
+
                 
                     
 
@@ -682,11 +708,12 @@ class inspector2D_window(QMainWindow, Ui_INSPECTOR2D):
             if isinstance(item,pg.PlotDataItem):
                 item.setData(self.data.audio.time.values[left_boundary_index:right_boundary_index],
                              self.data.audio.signal.values[left_boundary_index:right_boundary_index])
+
 """
 ### for testing
-posfile = "/home/philipp/test/0005.pos"
-wavfile = "/home/philipp/test/0005.wav"
-tgfile = "/home/philipp/test/0005.TextGrid"
+posfile = "/home/philipp/Documents/test/0030.pos"
+wavfile = "/home/philipp/Documents/test/0030.wav"
+tgfile = "/home/philipp/Documents/test/0030.TextGrid"
 
 dat = data_import.dataContainer()
 dat.ema = data_import.read_AG50x(posfile)

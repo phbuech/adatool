@@ -406,7 +406,7 @@
                  <enum>Qt::LeftToRight</enum>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Plain</enum>
@@ -428,8 +428,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>525</width>
-                   <height>69</height>
+                   <width>538</width>
+                   <height>83</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -547,8 +547,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>525</width>
-                   <height>69</height>
+                   <width>538</width>
+                   <height>83</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -972,7 +972,17 @@
                 <item>
                  <widget class="QPushButton" name="plotTongueShapePushButton">
                   <property name="text">
-                   <string>plot tongue shape</string>
+                   <string>plot interpolated tongue shape</string>
+                  </property>
+                  <property name="checkable">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="plotPalateTracePushButton">
+                  <property name="text">
+                   <string>plot interpolated palate</string>
                   </property>
                   <property name="checkable">
                    <bool>true</bool>
@@ -999,7 +1009,7 @@
      <x>0</x>
      <y>0</y>
      <width>1310</width>
-     <height>28</height>
+     <height>34</height>
     </rect>
    </property>
   </widget>

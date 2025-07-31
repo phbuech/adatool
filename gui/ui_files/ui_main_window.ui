@@ -704,14 +704,14 @@
           <item row="1" column="0">
            <widget class="QRadioButton" name="filterRadioButtonMovingAverage">
             <property name="text">
-             <string>moving average</string>
+             <string>Moving average</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
            <widget class="QRadioButton" name="filterRadioButtonBWLP">
             <property name="text">
-             <string>butterworth lowpass</string>
+             <string>Butterworth lowpass</string>
             </property>
            </widget>
           </item>
@@ -814,37 +814,37 @@
   </action>
   <action name="actionexport_EMA_to_netcdf">
    <property name="text">
-    <string>export EMA to netcdf</string>
+    <string>Export EMA to netcdf</string>
    </property>
   </action>
   <action name="actionexport_EMA_to_csv">
    <property name="text">
-    <string>export EMA to csv</string>
+    <string>Export EMA to csv</string>
    </property>
   </action>
   <action name="actionexport_landmarks_to_TextGrid">
    <property name="text">
-    <string>export landmarks to TextGrid</string>
+    <string>Export landmarks to TextGrid</string>
    </property>
   </action>
   <action name="actionexport_landmarks_to_csv">
    <property name="text">
-    <string>export landmarks to csv</string>
+    <string>Export landmarks to csv</string>
    </property>
   </action>
   <action name="actionexport_landmarks_to_JSON">
    <property name="text">
-    <string>export landmarks to JSON</string>
+    <string>Export landmarks to JSON</string>
    </property>
   </action>
   <action name="actionexport_channel_allocation">
    <property name="text">
-    <string>export channel allocation</string>
+    <string>Export channel allocation</string>
    </property>
   </action>
   <action name="actionimport_channel_allocation">
    <property name="text">
-    <string>import channel allocation</string>
+    <string>Import channel allocation</string>
    </property>
   </action>
  </widget>
